@@ -6,7 +6,8 @@ ROOT = Path(__file__).resolve().parent
 ASSETS = ROOT / "assets" / "img"
 SOURCE = ASSETS / "logo-t.png"
 LOGO_OUT = ASSETS / "logo-t-hd.png"
-POSTER_OUT = ASSETS / "brand-editorial.png"
+LOGO_WHITE_OUT = ASSETS / "logo-t-white.png"
+POSTER_OUT = ASSETS / "brand-editorial-white.png"
 
 
 def vertical_gradient(size: tuple[int, int], top: tuple[int, ...], bottom: tuple[int, ...]) -> Image.Image:
@@ -63,6 +64,9 @@ def extract_logo() -> Image.Image:
     )
     cropped = canvas.crop(crop_box)
     cropped.save(LOGO_OUT, optimize=True)
+    white = Image.new("RGBA", cropped.size, (255, 255, 255, 0))
+    white.putalpha(cropped.getchannel("A"))
+    white.save(LOGO_WHITE_OUT, optimize=True)
     return cropped
 
 
@@ -76,16 +80,18 @@ def create_poster(logo: Image.Image) -> None:
     poster = Image.new("RGBA", (width, height), paper)
     draw = ImageDraw.Draw(poster)
 
-    # Restrained editorial grid and small registration marks.
+    # Restrained editorial grid and a solid cobalt field for the white mark.
     line = (18, 20, 22, 22)
-    for x in range(84, width, 148):
+    panel_x = 990
+    for x in range(84, panel_x, 148):
         draw.line((x, 0, x, height), fill=line, width=1)
     for y in range(72, height, 148):
-        draw.line((0, y, width, y), fill=line, width=1)
+        draw.line((0, y, panel_x, y), fill=line, width=1)
 
     ink = (18, 20, 22, 255)
     blue = (21, 88, 232, 255)
     muted = (105, 108, 106, 255)
+    draw.rectangle((panel_x, 0, width, height), fill=blue)
     draw.text((92, 72), "TEC CAPITAL / 2026", font=font("consola.ttf", 22), fill=muted)
     draw.text((92, 326), "TEC CAPITAL", font=font("segoeuib.ttf", 91), fill=ink)
     draw.text((98, 442), "Diseñamos lo que sigue.", font=font("segoeui.ttf", 44), fill=ink)
@@ -97,9 +103,9 @@ def create_poster(logo: Image.Image) -> None:
         fill=muted,
     )
 
-    mark = logo.copy()
-    mark.thumbnail((610, 610), Image.Resampling.LANCZOS)
-    poster.alpha_composite(mark, (1140 + (540 - mark.width) // 2, 150))
+    mark = Image.open(LOGO_WHITE_OUT).convert("RGBA")
+    mark.thumbnail((470, 610), Image.Resampling.LANCZOS)
+    poster.alpha_composite(mark, (panel_x + (width - panel_x - mark.width) // 2, 145))
     poster.convert("RGB").save(POSTER_OUT, quality=94, optimize=True)
 
 
@@ -107,4 +113,5 @@ if __name__ == "__main__":
     high_resolution_logo = extract_logo()
     create_poster(high_resolution_logo)
     print(LOGO_OUT)
+    print(LOGO_WHITE_OUT)
     print(POSTER_OUT)

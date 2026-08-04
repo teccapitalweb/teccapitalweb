@@ -10,11 +10,11 @@
   <meta property="og:locale" content="es_MX">
   <meta property="og:title" content="TEC CAPITAL — Diseñamos lo que sigue">
   <meta property="og:description" content="Convertimos ideas, procesos y datos en productos digitales que mueven empresas.">
-  <meta property="og:image" content="assets/img/brand-editorial.png">
+  <meta property="og:image" content="assets/img/brand-editorial-white.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TEC CAPITAL — Diseñamos lo que sigue">
   <meta name="twitter:description" content="Estrategia, software, inteligencia artificial y diseño.">
-  <meta name="twitter:image" content="assets/img/brand-editorial.png">
+  <meta name="twitter:image" content="assets/img/brand-editorial-white.png">
   <link rel="icon" type="image/png" href="assets/img/logo-t-hd.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -171,9 +171,10 @@
     .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
     .work-meta { display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
     .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
-    .work-mark { position: absolute; top: 50%; left: 50%; width: 180px; height: 230px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; filter: grayscale(1); transform: translate(-50%, -50%) scale(.78); opacity: .07; transition: opacity .4s, transform .5s var(--ease); }
-    .work-card:hover .work-mark { opacity: .14; transform: translate(-50%, -50%) scale(1); }
-    .work-card.blue .work-mark { filter: brightness(0) invert(1); }
+    .work-mark { position: absolute; top: 50%; left: 50%; width: 210px; height: 260px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; filter: grayscale(1); transform: translate(-50%, -50%) scale(.86); opacity: .52; transition: opacity .4s, transform .5s var(--ease); }
+    .work-card:hover .work-mark { opacity: .72; transform: translate(-50%, -50%) scale(1); }
+    .work-card.blue .work-mark { background-image: url('assets/img/logo-t-white.png'); filter: none; opacity: .9; }
+    .work-card.blue:hover .work-mark { opacity: 1; }
     .work-bottom { position: relative; }
     .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
     .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
@@ -182,7 +183,7 @@
     /* Brand poster */
     .poster-section { padding: 0 0 clamp(92px, 10vw, 150px); }
     .poster-frame { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
-    .poster-frame img { width: 100%; aspect-ratio: 1.91 / 1; object-fit: cover; transition: transform 1.2s var(--ease); }
+    .poster-frame img { width: 100%; height: auto; object-fit: contain; transition: transform 1.2s var(--ease); }
     .poster-frame:hover img { transform: scale(1.018); }
     .poster-caption { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0 0; font: 400 .61rem var(--mono); color: var(--muted); text-transform: uppercase; }
 
@@ -231,7 +232,7 @@
     .whatsapp::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #50d890; }
     .whatsapp:hover { background: var(--blue); transform: translateY(-3px); }
 
-    @media (max-width: 1040px) {
+    @media (max-width: 1120px) {
       .nav { grid-template-columns: 1fr auto; }
       .nav-links { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; flex-direction: column; gap: 0; padding: 120px 32px 50px; background: var(--paper); opacity: 0; pointer-events: none; transform: translateY(-20px); transition: opacity .3s, transform .3s; }
       .nav-links.open { opacity: 1; pointer-events: auto; transform: none; }
@@ -277,7 +278,7 @@
       .work-card:nth-child(n) { grid-column: 1 / -1; min-height: 340px; }
       .work-head { display: block; }
       .work-count { margin-top: 20px; }
-      .poster-frame img { min-height: 360px; object-position: 58% center; }
+      .poster-frame img { min-height: 0; object-position: center; }
       .poster-caption { align-items: flex-start; flex-direction: column; }
       .step { grid-template-columns: 42px 1fr; gap: 12px; }
       .logo-grid { grid-template-columns: repeat(2, 1fr); }
@@ -390,9 +391,9 @@
       </div>
     </section>
 
-    <section class="poster-section">
+    <section class="poster-section" id="identidad">
       <div class="wrap reveal">
-        <div class="poster-frame"><img src="assets/img/brand-editorial.png" alt="Composición editorial de TEC CAPITAL con el símbolo T construido en metal negro y azul" width="1734" height="907" loading="lazy"></div>
+        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el símbolo T blanco sobre azul" width="1734" height="907" loading="lazy"></div>
         <div class="poster-caption"><span>TEC CAPITAL · Sistema de identidad 2026</span><span>Claridad / Dirección / Tecnología</span></div>
       </div>
     </section>
@@ -434,7 +435,7 @@
   </main>
 
   <footer>
-    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
   </footer>
 
   <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>
