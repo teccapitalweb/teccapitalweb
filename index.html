@@ -3,397 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#030810">
-  <meta name="color-scheme" content="dark">
-  <title>TEC CAPITAL — Ingeniería digital para empresas que avanzan</title>
-  <meta name="description" content="Diseñamos y construimos software, inteligencia artificial, experiencias digitales e infraestructura para convertir empresas ambiciosas en organizaciones más inteligentes.">
+  <meta name="theme-color" content="#f2efe8">
+  <title>TEC CAPITAL — Diseñamos lo que sigue</title>
+  <meta name="description" content="Estrategia, software, inteligencia artificial y diseño para empresas que quieren avanzar con claridad.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:title" content="TEC CAPITAL — Ingeniería digital para empresas que avanzan">
-  <meta property="og:description" content="Estrategia, software e inteligencia artificial convertidos en crecimiento real.">
-  <meta property="og:image" content="assets/img/og-tec-capital.png">
+  <meta property="og:title" content="TEC CAPITAL — Diseñamos lo que sigue">
+  <meta property="og:description" content="Convertimos ideas, procesos y datos en productos digitales que mueven empresas.">
+  <meta property="og:image" content="assets/img/brand-editorial.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TEC CAPITAL — Ingeniería digital">
-  <meta name="twitter:description" content="Construimos la infraestructura digital de las empresas que van adelante.">
-  <meta name="twitter:image" content="assets/img/og-tec-capital.png">
-  <link rel="icon" href="assets/img/favicon.ico">
+  <meta name="twitter:title" content="TEC CAPITAL — Diseñamos lo que sigue">
+  <meta name="twitter:description" content="Estrategia, software, inteligencia artificial y diseño.">
+  <meta name="twitter:image" content="assets/img/brand-editorial.png">
+  <link rel="icon" type="image/png" href="assets/img/logo-t.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #eef8ff;
-      --muted: #8ca2b8;
-      --dim: #53697f;
-      --blue: #119cff;
-      --cyan: #39e7ff;
-      --violet: #816dff;
-      --green: #55f0b1;
-      --night: #030810;
-      --night-2: #07111e;
-      --card: rgba(10, 24, 40, .68);
-      --card-solid: #0a1727;
-      --line: rgba(146, 199, 236, .14);
-      --line-hot: rgba(57, 231, 255, .42);
-      --shadow: 0 35px 90px rgba(0, 0, 0, .38);
-      --radius: 28px;
-      --radius-sm: 18px;
-      --display: 'Syne', sans-serif;
-      --body: 'Manrope', sans-serif;
-      --ease: cubic-bezier(.2, .8, .2, 1);
-      --wrap: 1240px;
-      --mx: 50vw;
-      --my: 20vh;
+      --paper: #f2efe8;
+      --paper-deep: #e7e3db;
+      --white: #faf9f6;
+      --ink: #121416;
+      --ink-soft: #282c30;
+      --blue: #1558e8;
+      --blue-dark: #0d41b5;
+      --muted: #6f726f;
+      --line: rgba(18, 20, 22, .18);
+      --line-soft: rgba(18, 20, 22, .1);
+      --sans: 'Manrope', sans-serif;
+      --display: 'Urbanist', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --wrap: 1340px;
+      --ease: cubic-bezier(.2, .76, .22, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scrollbar-color: var(--blue) var(--night); }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-width: 320px;
       overflow-x: hidden;
       color: var(--ink);
-      background:
-        radial-gradient(800px circle at var(--mx) var(--my), rgba(17, 156, 255, .075), transparent 52%),
-        var(--night);
-      font-family: var(--body);
+      background: var(--paper);
+      font-family: var(--sans);
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
     body.menu-open { overflow: hidden; }
     a { color: inherit; text-decoration: none; }
     button { color: inherit; font: inherit; }
     img { display: block; max-width: 100%; }
-    ::selection { color: #00121f; background: var(--cyan); }
-    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
-    .wrap { width: min(var(--wrap), calc(100% - 48px)); margin-inline: auto; }
-    .noise {
-      position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .032;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-    }
-    #space { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; opacity: .74; }
-    .progress { position: fixed; top: 0; left: 0; z-index: 150; width: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--cyan)); box-shadow: 0 0 18px var(--cyan); }
+    ::selection { color: #fff; background: var(--blue); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .wrap { width: min(var(--wrap), calc(100% - 64px)); margin-inline: auto; }
+    .section { padding: clamp(92px, 10vw, 150px) 0; }
+    .section-rule { border-top: 1px solid var(--line); }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; font: 500 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--blue); }
+    .display { margin: 0; font-family: var(--display); font-weight: 600; line-height: .91; letter-spacing: -.064em; }
+    .section-title { max-width: 970px; margin-bottom: 32px; font-size: clamp(3rem, 7vw, 7.4rem); }
+    .section-copy { max-width: 620px; margin: 0; color: var(--muted); font-size: clamp(1rem, 1.45vw, 1.18rem); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .progress { position: fixed; top: 0; left: 0; z-index: 200; width: 0; height: 3px; background: var(--blue); }
 
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { font-family: var(--display); line-height: 1.03; letter-spacing: -.045em; }
-    h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); margin-bottom: 24px; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px;
-      color: var(--cyan); font-size: .72rem; font-weight: 800; letter-spacing: .19em; text-transform: uppercase;
-    }
-    .eyebrow::before { content: ''; width: 30px; height: 1px; background: currentColor; box-shadow: 0 0 12px currentColor; }
-    .section { position: relative; padding: clamp(92px, 11vw, 160px) 0; }
-    .section-head { max-width: 850px; margin-bottom: 58px; }
-    .section-head p { max-width: 660px; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.18rem); }
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-    .reveal.visible { opacity: 1; transform: none; }
+    .btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 54px; padding: 0 22px; border: 1px solid var(--ink); border-radius: 0; font-size: .78rem; font-weight: 700; transition: color .25s, background .25s, transform .25s var(--ease); }
+    .btn::after { content: '↗'; font-family: var(--mono); font-size: 1rem; transition: transform .25s var(--ease); }
+    .btn:hover { color: var(--paper); background: var(--ink); transform: translateY(-3px); }
+    .btn:hover::after { transform: translate(3px, -3px); }
+    .btn-blue { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .btn-blue:hover { border-color: var(--ink); background: var(--ink); }
 
-    .button {
-      position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-      min-height: 54px; padding: 0 24px; overflow: hidden; border: 1px solid transparent; border-radius: 999px;
-      font-weight: 800; font-size: .9rem; letter-spacing: -.01em; transition: transform .25s var(--ease), border-color .25s, background .25s, color .25s, box-shadow .25s;
-    }
-    .button::after { content: '↗'; font-size: 1rem; transition: transform .25s var(--ease); }
-    .button:hover { transform: translateY(-3px); }
-    .button:hover::after { transform: translate(3px, -3px); }
-    .button-primary { color: #00111f; background: linear-gradient(125deg, #d7f7ff, var(--cyan) 48%, var(--blue)); box-shadow: 0 16px 45px rgba(17, 156, 255, .28); }
-    .button-primary:hover { box-shadow: 0 22px 60px rgba(17, 156, 255, .42); }
-    .button-ghost { color: var(--ink); border-color: var(--line); background: rgba(255, 255, 255, .035); backdrop-filter: blur(14px); }
-    .button-ghost:hover { border-color: var(--line-hot); background: rgba(57, 231, 255, .07); }
-
-    /* Navigation */
-    .site-header { position: fixed; top: 18px; left: 0; right: 0; z-index: 100; }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between; min-height: 68px; padding: 10px 12px 10px 18px;
-      border: 1px solid rgba(255, 255, 255, .09); border-radius: 22px; background: rgba(3, 8, 16, .62);
-      box-shadow: 0 18px 70px rgba(0, 0, 0, .22); backdrop-filter: blur(22px) saturate(1.4);
-      transition: background .3s, border-color .3s, transform .3s;
-    }
-    .site-header.scrolled .nav { background: rgba(3, 8, 16, .88); border-color: rgba(57, 231, 255, .15); }
-    .brand { display: inline-flex; align-items: center; gap: 12px; position: relative; z-index: 102; }
-    .brand-mark { width: 42px; height: 42px; padding: 3px; object-fit: cover; border-radius: 13px; box-shadow: 0 0 28px rgba(17, 156, 255, .22); }
-    .brand-copy { display: grid; line-height: 1; }
-    .brand-copy strong { font-family: var(--display); font-size: .95rem; letter-spacing: -.02em; }
-    .brand-copy small { margin-top: 5px; color: var(--muted); font-size: .51rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a { padding: 10px 13px; border-radius: 999px; color: var(--muted); font-size: .8rem; font-weight: 700; transition: color .2s, background .2s; }
-    .nav-links a:hover { color: var(--ink); background: rgba(255, 255, 255, .05); }
-    .nav .button { min-height: 44px; padding-inline: 18px; font-size: .78rem; }
-    .menu-toggle { display: none; position: relative; z-index: 102; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255, 255, 255, .04); cursor: pointer; }
-    .menu-toggle span { position: absolute; left: 12px; width: 18px; height: 1px; background: var(--ink); transition: transform .3s, top .3s; }
+    /* Header */
+    .header { position: fixed; inset: 0 0 auto; z-index: 100; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s; }
+    .header.scrolled { border-color: var(--line-soft); background: rgba(242, 239, 232, .9); backdrop-filter: blur(18px); }
+    .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 86px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; justify-self: start; position: relative; z-index: 102; }
+    .brand img { width: 45px; height: 35px; object-fit: contain; mix-blend-mode: multiply; }
+    .brand strong { font-family: var(--display); font-size: .92rem; font-weight: 700; letter-spacing: -.02em; }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; }
+    .nav-links a { position: relative; font-size: .73rem; font-weight: 600; }
+    .nav-links a::after { content: ''; position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-contact { justify-self: end; display: inline-flex; align-items: center; gap: 10px; font: 500 .68rem var(--mono); text-transform: uppercase; }
+    .nav-contact i { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2.2s infinite; }
+    @keyframes blink { 50% { opacity: .28; } }
+    .menu-toggle { display: none; position: relative; z-index: 102; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .menu-toggle span { position: absolute; left: 12px; width: 19px; height: 1px; background: var(--ink); transition: transform .3s, top .3s; }
     .menu-toggle span:first-child { top: 17px; }
     .menu-toggle span:last-child { top: 25px; }
     .menu-toggle[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
     .menu-toggle[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
 
     /* Hero */
-    .hero { min-height: 100svh; display: grid; align-items: center; padding: 150px 0 80px; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 12% -10% auto auto; width: 58vw; height: 58vw; border-radius: 50%; background: radial-gradient(circle, rgba(17, 156, 255, .13), transparent 65%); filter: blur(10px); pointer-events: none; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(40px, 6vw, 90px); }
-    .status-pill { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 26px; padding: 9px 14px 9px 10px; border: 1px solid rgba(85, 240, 177, .2); border-radius: 99px; color: #b7fddd; background: rgba(85, 240, 177, .055); font-size: .72rem; font-weight: 800; }
-    .status-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 14px var(--green); }
-    .status-dot::after { content: ''; position: absolute; inset: -5px; border: 1px solid var(--green); border-radius: inherit; animation: ping 2s infinite; }
-    @keyframes ping { 70%, 100% { transform: scale(1.6); opacity: 0; } }
-    .hero h1 { max-width: 780px; margin-bottom: 28px; font-size: clamp(3.35rem, 7.2vw, 7.6rem); }
-    .hero h1 .line { display: block; }
-    .hero h1 .gradient { color: transparent; background: linear-gradient(92deg, #fff 2%, var(--cyan) 45%, var(--blue) 80%, var(--violet)); background-clip: text; -webkit-background-clip: text; }
-    .hero-lead { max-width: 680px; margin-bottom: 34px; color: var(--muted); font-size: clamp(1.04rem, 1.65vw, 1.28rem); }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
-    .hero-meta { display: flex; align-items: center; gap: 22px; margin-top: 42px; color: var(--dim); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
-    .hero-meta i { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px var(--blue); }
+    .hero { min-height: 100svh; display: grid; align-items: end; padding: 142px 0 54px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: clamp(30px, 5vw, 80px); align-items: end; }
+    .hero-label { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; font: 400 .68rem var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+    .hero-label::before { content: ''; width: 30px; height: 1px; background: var(--ink); }
+    .hero h1 { max-width: 940px; font-size: clamp(4.6rem, 10.4vw, 10.7rem); }
+    .hero-line { display: block; overflow: hidden; }
+    .hero-word { display: block; transform: translateY(112%); animation: intro .95s var(--ease) forwards; }
+    .hero-line:nth-child(2) .hero-word { color: var(--blue); animation-delay: .12s; }
+    @keyframes intro { to { transform: none; } }
+    .hero-bottom { display: grid; grid-template-columns: .88fr 1.12fr; gap: 28px; align-items: end; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .hero-index { font: 400 .68rem var(--mono); color: var(--muted); }
+    .hero-copy p { max-width: 570px; margin: 0 0 28px; font-size: clamp(1.02rem, 1.7vw, 1.28rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-    .hero-visual { position: relative; min-height: 620px; perspective: 1200px; transform-style: preserve-3d; }
-    .hero-orbit { position: absolute; inset: 3% -10% auto -10%; aspect-ratio: 1; border: 1px solid rgba(57, 231, 255, .12); border-radius: 50%; transform: rotateX(70deg) rotateZ(-12deg); box-shadow: inset 0 0 80px rgba(17, 156, 255, .035), 0 0 80px rgba(17, 156, 255, .03); animation: orbitSpin 26s linear infinite; }
-    .hero-orbit::before, .hero-orbit::after { content: ''; position: absolute; border: 1px solid rgba(129, 109, 255, .15); border-radius: 50%; }
-    .hero-orbit::before { inset: 13%; }
-    .hero-orbit::after { inset: 32%; border-color: rgba(57, 231, 255, .2); }
-    @keyframes orbitSpin { to { transform: rotateX(70deg) rotateZ(348deg); } }
-    .core {
-      position: absolute; top: 50%; left: 50%; width: min(430px, 82%); aspect-ratio: 1; transform: translate(-50%, -50%) rotateX(var(--tilt-y, -7deg)) rotateY(var(--tilt-x, 10deg)); transform-style: preserve-3d;
-      transition: transform .25s ease-out;
-    }
-    .core-halo { position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(17, 156, 255, .18), transparent 66%); filter: blur(18px); transform: translateZ(-80px); animation: breathe 4.8s ease-in-out infinite; }
-    @keyframes breathe { 50% { transform: translateZ(-80px) scale(1.12); opacity: .75; } }
-    .logo-cube {
-      position: absolute; inset: 10%; padding: 22px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 35px;
-      background: linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(9, 25, 43, .45)); box-shadow: var(--shadow), inset 0 1px rgba(255, 255, 255, .12), 0 0 75px rgba(17, 156, 255, .14);
-      backdrop-filter: blur(22px); transform: translateZ(50px); overflow: hidden; animation: floatCore 6s ease-in-out infinite;
-    }
-    .logo-cube::before { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, .13) 48%, transparent 70%); transform: translateX(-120%); animation: sheen 5.5s ease-in-out infinite; }
-    .logo-cube img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
-    @keyframes floatCore { 50% { transform: translateZ(80px) translateY(-12px); } }
-    @keyframes sheen { 55%, 100% { transform: translateX(120%); } }
-    .float-chip {
-      position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, .11); border-radius: 16px;
-      color: #b8cce0; background: rgba(5, 15, 26, .78); box-shadow: 0 18px 50px rgba(0, 0, 0, .35); backdrop-filter: blur(18px); font: 700 .72rem/1 var(--body); letter-spacing: .02em;
-      animation: floatChip 5s ease-in-out infinite;
-    }
-    .float-chip::before { content: ''; width: 8px; height: 8px; border-radius: 3px; background: var(--chip, var(--cyan)); box-shadow: 0 0 14px var(--chip, var(--cyan)); }
-    .chip-1 { top: 9%; left: -2%; --chip: var(--cyan); }
-    .chip-2 { top: 28%; right: -5%; --chip: var(--green); animation-delay: -1.8s; }
-    .chip-3 { bottom: 20%; left: -8%; --chip: var(--violet); animation-delay: -3.1s; }
-    .chip-4 { right: 3%; bottom: 5%; --chip: var(--blue); animation-delay: -4.2s; }
-    @keyframes floatChip { 50% { transform: translateY(-12px) rotate(1deg); } }
-    .scroll-cue { position: absolute; left: 50%; bottom: 22px; display: grid; justify-items: center; gap: 9px; transform: translateX(-50%); color: var(--dim); font-size: .57rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
-    .scroll-cue i { display: block; width: 1px; height: 36px; overflow: hidden; background: rgba(255, 255, 255, .1); }
-    .scroll-cue i::after { content: ''; display: block; width: 1px; height: 14px; background: var(--cyan); animation: scrollLine 1.8s infinite; }
-    @keyframes scrollLine { from { transform: translateY(-16px); } to { transform: translateY(38px); } }
+    .hero-art { position: relative; min-height: 650px; perspective: 1100px; }
+    .art-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, transparent, #000 17%, #000 82%, transparent); }
+    .art-number { position: absolute; top: 8px; right: 0; font: 300 .66rem var(--mono); color: var(--muted); writing-mode: vertical-rl; }
+    .mark-scene { position: absolute; top: 50%; left: 50%; width: 360px; height: 470px; transform: translate(-50%, -50%) rotateX(var(--rx, 1deg)) rotateY(var(--ry, -8deg)); transform-style: preserve-3d; transition: transform .3s ease-out; }
+    .mark-shadow { position: absolute; left: 20%; right: 2%; bottom: 5%; height: 80px; border-radius: 50%; background: rgba(0, 0, 0, .2); filter: blur(30px); transform: rotateX(72deg) translateZ(-30px); }
+    .mark-black { position: absolute; top: 78px; left: 78px; width: 58px; height: 310px; background: var(--ink); box-shadow: 7px 7px 0 #050607, 14px 14px 32px rgba(0, 0, 0, .2); transform: translateZ(40px); }
+    .mark-black::before { content: ''; position: absolute; top: 0; right: 0; width: 126px; height: 55px; background: var(--ink); }
+    .mark-black::after { content: ''; position: absolute; right: -110px; bottom: 0; width: 112px; height: 48px; background: var(--ink); }
+    .mark-blue { position: absolute; top: 23px; right: 23px; width: 145px; height: 96px; background: var(--blue); clip-path: polygon(0 0, 100% 0, 72% 100%, 0 100%); box-shadow: 0 22px 38px rgba(21, 88, 232, .26); transform: translateZ(78px); }
+    .mark-blue::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(255, 255, 255, .3); clip-path: inherit; }
+    .art-note { position: absolute; padding: 11px 14px; border: 1px solid var(--line); background: rgba(242, 239, 232, .84); backdrop-filter: blur(8px); font: 400 .61rem var(--mono); text-transform: uppercase; }
+    .note-a { top: 22%; left: -2%; }
+    .note-b { right: -1%; bottom: 24%; }
+    .art-caption { position: absolute; right: 0; bottom: 0; display: flex; justify-content: space-between; width: 66%; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font: 400 .59rem var(--mono); text-transform: uppercase; }
 
-    /* Client constellation */
-    .trust { padding: 28px 0; overflow: hidden; border-block: 1px solid var(--line); background: rgba(4, 12, 21, .5); }
-    .trust-label { margin-bottom: 18px; color: var(--dim); font-size: .65rem; font-weight: 800; letter-spacing: .17em; text-align: center; text-transform: uppercase; }
-    .marquee { display: flex; width: max-content; animation: marquee 34s linear infinite; }
-    .marquee:hover { animation-play-state: paused; }
-    .marquee-track { display: flex; align-items: center; gap: 16px; padding-right: 16px; }
-    .client-logo { display: grid; place-items: center; width: 156px; height: 76px; padding: 12px 18px; border: 1px solid rgba(255, 255, 255, .07); border-radius: 16px; background: rgba(255, 255, 255, .025); }
-    .client-logo img { max-width: 118px; max-height: 46px; object-fit: contain; filter: grayscale(1) brightness(1.65); opacity: .58; transition: filter .3s, opacity .3s, transform .3s; }
-    .client-logo:hover img { filter: none; opacity: 1; transform: scale(1.05); }
-    @keyframes marquee { to { transform: translateX(-50%); } }
+    .ticker { overflow: hidden; border-block: 1px solid var(--ink); background: var(--blue); color: #fff; }
+    .ticker-row { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+    .ticker-track { display: flex; align-items: center; gap: 38px; padding: 16px 19px; font: 400 .7rem var(--mono); letter-spacing: .1em; white-space: nowrap; text-transform: uppercase; }
+    .ticker-track i { width: 6px; height: 6px; background: #fff; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
 
-    /* Manifesto */
-    .manifesto-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(48px, 8vw, 130px); align-items: start; }
-    .manifesto-sticky { position: sticky; top: 130px; }
-    .manifesto-sticky p { max-width: 410px; color: var(--muted); font-size: 1.06rem; }
-    .big-statement { font-family: var(--display); font-size: clamp(2.15rem, 4.2vw, 4.7rem); line-height: 1.08; letter-spacing: -.045em; }
-    .big-statement span { color: var(--blue); }
-    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 64px; }
-    .metric { min-height: 160px; padding: 24px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(145deg, rgba(18, 43, 68, .45), rgba(7, 17, 30, .36)); }
-    .metric strong { display: block; margin-bottom: 22px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.06em; color: transparent; background: linear-gradient(120deg, #fff, var(--cyan)); background-clip: text; -webkit-background-clip: text; }
-    .metric span { color: var(--muted); font-size: .75rem; font-weight: 700; }
+    /* Statement */
+    .statement-grid { display: grid; grid-template-columns: .5fr 1.5fr; gap: 70px; }
+    .statement-label { font: 400 .68rem var(--mono); text-transform: uppercase; }
+    .statement-main { font-family: var(--display); font-size: clamp(2.5rem, 5.3vw, 6rem); font-weight: 500; line-height: 1.02; letter-spacing: -.052em; }
+    .statement-main em { color: var(--blue); font-style: normal; }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 80px; border-top: 1px solid var(--line); }
+    .principle { min-height: 230px; padding: 26px 28px 18px 0; border-right: 1px solid var(--line); }
+    .principle + .principle { padding-left: 28px; }
+    .principle:last-child { border: 0; }
+    .principle small { display: block; margin-bottom: 54px; font: 400 .63rem var(--mono); color: var(--blue); }
+    .principle h3 { margin: 0 0 12px; font-family: var(--display); font-size: 1.45rem; letter-spacing: -.03em; }
+    .principle p { max-width: 320px; margin: 0; color: var(--muted); font-size: .86rem; }
 
-    /* Services */
-    .services { background: linear-gradient(180deg, transparent, rgba(7, 18, 31, .72) 15%, rgba(7, 18, 31, .72) 85%, transparent); }
-    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .service-card {
-      position: relative; min-height: 330px; padding: 32px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(17, 38, 61, .82), rgba(7, 17, 29, .72)); box-shadow: 0 25px 80px rgba(0, 0, 0, .16); transform-style: preserve-3d;
-      transition: border-color .3s, box-shadow .3s;
-    }
-    .service-card:hover { border-color: var(--line-hot); box-shadow: 0 35px 100px rgba(0, 0, 0, .3), 0 0 45px rgba(17, 156, 255, .07); }
-    .accent-cyan { --accent: #39e7ff; }
-    .accent-violet { --accent: #816dff; }
-    .accent-green { --accent: #55f0b1; }
-    .accent-blue { --accent: #119cff; }
-    .service-card:nth-child(1), .service-card:nth-child(4) { grid-column: span 7; }
-    .service-card:nth-child(2), .service-card:nth-child(3) { grid-column: span 5; }
-    .service-card > * { position: relative; z-index: 2; transform: translateZ(20px); }
-    .service-card::before { content: ''; position: absolute; width: 260px; height: 260px; right: -120px; top: -130px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 24%, transparent), transparent 68%); transition: transform .5s; }
-    .service-card:hover::before { transform: scale(1.35); }
-    .service-card::after { content: attr(data-index); position: absolute; right: 24px; bottom: 10px; color: rgba(255, 255, 255, .025); font-family: var(--display); font-size: 8rem; font-weight: 800; line-height: 1; }
-    .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 72px; }
-    .service-icon { display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent); border-radius: 17px; color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); box-shadow: inset 0 1px rgba(255, 255, 255, .08), 0 0 28px color-mix(in srgb, var(--accent) 12%, transparent); font-family: var(--display); font-size: 1.15rem; }
-    .service-arrow { color: var(--dim); font-size: 1.3rem; }
-    .service-card h3 { margin-bottom: 13px; font-size: clamp(1.45rem, 2.5vw, 2.1rem); }
-    .service-card p { max-width: 530px; margin-bottom: 26px; color: var(--muted); }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tags span { padding: 7px 11px; border: 1px solid var(--line); border-radius: 99px; color: #9bb0c5; font-size: .67rem; font-weight: 700; }
+    /* Capabilities */
+    .capabilities { color: var(--paper); background: var(--ink); }
+    .capabilities .eyebrow::before { background: #4e7fff; }
+    .capabilities .section-copy { color: #9a9d9d; }
+    .cap-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; align-items: end; margin-bottom: 75px; }
+    .cap-head .section-title { margin-bottom: 0; }
+    .cap-list { border-top: 1px solid rgba(255, 255, 255, .2); }
+    .cap-row { position: relative; display: grid; grid-template-columns: 80px 1fr .9fr 50px; gap: 28px; align-items: center; min-height: 152px; border-bottom: 1px solid rgba(255, 255, 255, .2); overflow: hidden; transition: padding .4s var(--ease), color .3s; }
+    .cap-row::before { content: ''; position: absolute; inset: 0; z-index: 0; background: var(--blue); transform: translateY(102%); transition: transform .45s var(--ease); }
+    .cap-row:hover::before { transform: none; }
+    .cap-row > * { position: relative; z-index: 1; }
+    .cap-row small { font: 300 .67rem var(--mono); color: #777; transition: color .3s; }
+    .cap-row h3 { margin: 0; font-family: var(--display); font-size: clamp(1.7rem, 3.8vw, 3.7rem); font-weight: 500; letter-spacing: -.045em; }
+    .cap-row p { margin: 0; color: #979a99; font-size: .85rem; transition: color .3s; }
+    .cap-row span { font-size: 1.4rem; transition: transform .35s var(--ease); }
+    .cap-row:hover small, .cap-row:hover p { color: #fff; }
+    .cap-row:hover span { transform: rotate(45deg); }
 
     /* Work */
-    .work-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
-    .work-head .section-head { margin-bottom: 52px; }
-    .work-note { max-width: 300px; margin-bottom: 62px; color: var(--dim); font-size: .76rem; }
-    .projects { border-top: 1px solid var(--line); }
-    .project {
-      display: grid; grid-template-columns: 72px 1.1fr .9fr auto; align-items: center; gap: 24px; min-height: 154px; padding: 26px 12px;
-      border-bottom: 1px solid var(--line); transition: background .3s, padding .3s, border-color .3s;
-    }
-    .project:hover { padding-inline: 24px; border-color: rgba(57, 231, 255, .25); background: linear-gradient(90deg, rgba(17, 156, 255, .09), rgba(17, 156, 255, .015)); }
-    .project-index { color: var(--dim); font: 700 .72rem var(--display); }
-    .project-title h3 { margin-bottom: 7px; font-size: clamp(1.45rem, 3vw, 2.5rem); }
-    .project-title p { margin: 0; color: var(--muted); font-size: .83rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .project-tags span { padding: 7px 10px; border-radius: 8px; color: var(--muted); background: rgba(255, 255, 255, .04); font-size: .66rem; font-weight: 700; }
-    .project-arrow { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; color: var(--cyan); transition: transform .3s, background .3s; }
-    .project:hover .project-arrow { transform: rotate(45deg); background: rgba(57, 231, 255, .08); }
+    .work-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 58px; }
+    .work-head .section-title { margin-bottom: 0; }
+    .work-count { padding-bottom: 10px; font: 400 .67rem var(--mono); color: var(--muted); }
+    .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .work-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 390px; padding: 28px; overflow: hidden; border: 1px solid var(--line); background: var(--white); transition: transform .35s var(--ease), box-shadow .35s; }
+    .work-card:nth-child(1), .work-card:nth-child(4) { grid-column: span 7; }
+    .work-card:nth-child(2), .work-card:nth-child(3) { grid-column: span 5; }
+    .work-card:hover { transform: translateY(-8px); box-shadow: 0 24px 55px rgba(32, 34, 37, .1); }
+    .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .work-meta { display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
+    .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
+    .work-mark { position: absolute; top: 50%; left: 50%; width: 180px; height: 200px; transform: translate(-50%, -50%) scale(.78); opacity: .07; transition: opacity .4s, transform .5s var(--ease); }
+    .work-card:hover .work-mark { opacity: .14; transform: translate(-50%, -50%) scale(1); }
+    .work-mark::before { content: ''; position: absolute; top: 34px; left: 42px; width: 30px; height: 140px; background: currentColor; box-shadow: -32px 0 currentColor; }
+    .work-mark::after { content: ''; position: absolute; top: 22px; right: 22px; width: 72px; height: 48px; background: var(--blue); clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); }
+    .work-card.blue .work-mark::after { background: #fff; }
+    .work-bottom { position: relative; }
+    .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
+    .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
+    .work-card.blue .work-bottom p { color: rgba(255, 255, 255, .7); }
 
-    /* Process */
-    .process-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(50px, 9vw, 140px); }
-    .process-intro { position: sticky; top: 130px; align-self: start; }
-    .process-intro p { color: var(--muted); }
-    .process-steps { position: relative; }
-    .process-steps::before { content: ''; position: absolute; left: 23px; top: 24px; bottom: 24px; width: 1px; background: linear-gradient(var(--cyan), rgba(17, 156, 255, .12)); }
-    .process-step { position: relative; display: grid; grid-template-columns: 48px 1fr; gap: 25px; padding: 0 0 58px; }
-    .process-step:last-child { padding-bottom: 0; }
-    .step-dot { display: grid; place-items: center; width: 48px; height: 48px; z-index: 1; border: 1px solid rgba(57, 231, 255, .28); border-radius: 50%; color: var(--cyan); background: var(--night); box-shadow: 0 0 30px rgba(57, 231, 255, .08); font: 700 .7rem var(--display); }
-    .step-content { padding-top: 7px; }
-    .step-content h3 { margin-bottom: 10px; font-size: 1.35rem; }
-    .step-content p { max-width: 550px; margin: 0; color: var(--muted); font-size: .9rem; }
+    /* Brand poster */
+    .poster-section { padding: 0 0 clamp(92px, 10vw, 150px); }
+    .poster-frame { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
+    .poster-frame img { width: 100%; aspect-ratio: 1.91 / 1; object-fit: cover; transition: transform 1.2s var(--ease); }
+    .poster-frame:hover img { transform: scale(1.018); }
+    .poster-caption { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0 0; font: 400 .61rem var(--mono); color: var(--muted); text-transform: uppercase; }
 
-    /* System band */
-    .system { overflow: hidden; }
-    .system-shell { position: relative; padding: clamp(40px, 7vw, 78px); overflow: hidden; border: 1px solid var(--line); border-radius: 38px; background: linear-gradient(135deg, rgba(15, 42, 68, .74), rgba(6, 16, 27, .82)); box-shadow: var(--shadow); }
-    .system-shell::before { content: ''; position: absolute; inset: -20% 38% auto -10%; height: 90%; background: radial-gradient(circle, rgba(17, 156, 255, .22), transparent 68%); filter: blur(25px); }
-    .system-grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
-    .system-copy h2 { font-size: clamp(2.5rem, 5vw, 5.6rem); }
-    .system-copy p { max-width: 520px; color: var(--muted); }
-    .layers { position: relative; min-height: 420px; perspective: 900px; }
-    .layer { position: absolute; left: 50%; width: min(430px, 90%); height: 125px; padding: 25px 28px; border: 1px solid rgba(255, 255, 255, .11); border-radius: 22px; background: rgba(7, 21, 35, .82); box-shadow: 0 28px 60px rgba(0, 0, 0, .32); backdrop-filter: blur(18px); transform: translateX(-50%) rotateX(60deg) rotateZ(-8deg); transition: border-color .3s, transform .5s var(--ease); }
-    .layer:nth-child(1) { top: 10px; z-index: 3; }
-    .layer:nth-child(2) { top: 110px; z-index: 2; }
-    .layer:nth-child(3) { top: 210px; z-index: 1; }
-    .layer:hover { border-color: var(--line-hot); transform: translateX(-50%) rotateX(55deg) rotateZ(-5deg) translateY(-12px); }
-    .layer small { color: var(--cyan); font-size: .62rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    .layer strong { display: block; margin-top: 9px; font-family: var(--display); font-size: 1.15rem; }
+    /* Method */
+    .method-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(60px, 10vw, 150px); }
+    .method-intro { position: sticky; top: 128px; align-self: start; }
+    .method-intro h2 { margin: 0 0 25px; font-size: clamp(3rem, 6vw, 6rem); }
+    .method-intro p { color: var(--muted); }
+    .steps { counter-reset: steps; border-top: 1px solid var(--line); }
+    .step { counter-increment: steps; display: grid; grid-template-columns: 70px 1fr; gap: 30px; padding: 34px 0 55px; border-bottom: 1px solid var(--line); }
+    .step::before { content: '0' counter(steps); font: 400 .65rem var(--mono); color: var(--blue); }
+    .step h3 { margin: 0 0 14px; font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.7rem); font-weight: 500; letter-spacing: -.04em; }
+    .step p { max-width: 550px; margin: 0; color: var(--muted); font-size: .9rem; }
 
-    /* CTA / footer */
-    .cta { text-align: center; }
-    .cta-inner { position: relative; padding: clamp(80px, 13vw, 160px) 24px; overflow: hidden; border-block: 1px solid var(--line); }
-    .cta-inner::before { content: ''; position: absolute; left: 50%; top: 50%; width: 720px; height: 720px; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(17, 156, 255, .2), transparent 65%); filter: blur(30px); }
-    .cta-inner > * { position: relative; }
-    .cta h2 { max-width: 970px; margin-inline: auto; font-size: clamp(3rem, 7.2vw, 7.8rem); }
-    .cta h2 span { color: transparent; -webkit-text-stroke: 1px rgba(190, 230, 255, .55); }
-    .cta p { max-width: 610px; margin: 0 auto 32px; color: var(--muted); font-size: 1.08rem; }
-    .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    footer { padding: 62px 0 28px; }
-    .footer-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; padding-bottom: 45px; }
-    .footer-statement { max-width: 530px; margin-top: 28px; color: var(--muted); font-size: 1.03rem; }
-    .footer-columns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    .footer-col strong { display: block; margin-bottom: 17px; color: var(--dim); font-size: .63rem; letter-spacing: .17em; text-transform: uppercase; }
-    .footer-col a, .footer-col span { display: block; margin: 10px 0; color: var(--muted); font-size: .84rem; transition: color .2s; }
-    .footer-col a:hover { color: var(--cyan); }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--dim); font-size: .67rem; font-weight: 700; letter-spacing: .04em; }
-    .whatsapp { position: fixed; right: 22px; bottom: 22px; z-index: 80; display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 19px; border: 1px solid rgba(85, 240, 177, .26); border-radius: 99px; color: #d6ffeb; background: rgba(8, 45, 31, .84); box-shadow: 0 18px 45px rgba(0, 0, 0, .3), 0 0 26px rgba(85, 240, 177, .08); backdrop-filter: blur(14px); font-size: .73rem; font-weight: 800; transition: transform .25s, background .25s; }
-    .whatsapp:hover { transform: translateY(-4px); background: rgba(11, 66, 44, .92); }
-    .whatsapp i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    /* Clients */
+    .clients { background: var(--paper-deep); }
+    .clients-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 60px; }
+    .clients-head h2 { margin: 0; font-size: clamp(2.8rem, 6vw, 6.2rem); }
+    .clients-head p { max-width: 510px; justify-self: end; margin: 0; color: var(--muted); }
+    .logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .logo-cell { display: grid; place-items: center; min-height: 150px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, .12); transition: background .3s; }
+    .logo-cell:hover { background: var(--white); }
+    .logo-cell img { max-width: 135px; max-height: 58px; object-fit: contain; filter: grayscale(1); opacity: .62; transition: filter .3s, opacity .3s, transform .3s; }
+    .logo-cell:hover img { filter: none; opacity: 1; transform: scale(1.04); }
+
+    /* Contact and footer */
+    .contact { color: #fff; background: var(--blue); }
+    .contact-top { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: end; }
+    .contact h2 { margin: 0; font-size: clamp(4rem, 10vw, 10.8rem); }
+    .contact-side p { margin: 0 0 30px; color: rgba(255, 255, 255, .74); font-size: 1.05rem; }
+    .contact .btn { color: #fff; border-color: rgba(255, 255, 255, .7); }
+    .contact .btn:hover { color: var(--ink); background: #fff; }
+    .contact-info { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 100px; border-top: 1px solid rgba(255, 255, 255, .35); }
+    .contact-item { padding: 22px 28px 0 0; border-right: 1px solid rgba(255, 255, 255, .35); }
+    .contact-item + .contact-item { padding-left: 28px; }
+    .contact-item:last-child { border: 0; }
+    .contact-item small { display: block; margin-bottom: 13px; font: 400 .59rem var(--mono); color: rgba(255, 255, 255, .55); text-transform: uppercase; }
+    .contact-item a, .contact-item span { font-size: .83rem; }
+    footer { color: #aaa; background: var(--ink); }
+    .footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 92px; font: 400 .59rem var(--mono); text-transform: uppercase; }
+    .footer .brand strong { color: var(--paper); }
+    .footer .brand img { filter: invert(1) grayscale(1); mix-blend-mode: screen; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a:hover { color: #fff; }
+    .whatsapp { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 0 18px; color: #fff; background: var(--ink); font: 500 .63rem var(--mono); text-transform: uppercase; transition: background .25s, transform .25s; }
+    .whatsapp::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #50d890; }
+    .whatsapp:hover { background: var(--blue); transform: translateY(-3px); }
 
     @media (max-width: 1040px) {
-      .nav-links { display: none; }
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-links { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; flex-direction: column; gap: 0; padding: 120px 32px 50px; background: var(--paper); opacity: 0; pointer-events: none; transform: translateY(-20px); transition: opacity .3s, transform .3s; }
+      .nav-links.open { opacity: 1; pointer-events: auto; transform: none; }
+      .nav-links a { width: 100%; padding: 14px 0; border-bottom: 1px solid var(--line); font: 600 clamp(2rem, 8vw, 4rem) var(--display); letter-spacing: -.04em; }
+      .nav-contact { display: none; }
       .menu-toggle { display: block; }
-      .nav > .button { display: none; }
-      .nav-links {
-        position: fixed; inset: -18px -24px auto; height: 100svh; padding: 130px 34px 40px; align-items: stretch; flex-direction: column;
-        background: rgba(3, 8, 16, .98); opacity: 0; transform: translateY(-15px); pointer-events: none; transition: opacity .3s, transform .3s;
-      }
-      .nav-links.open { display: flex; opacity: 1; transform: none; pointer-events: auto; }
-      .nav-links a { padding: 15px 4px; border-bottom: 1px solid var(--line); border-radius: 0; font: 700 clamp(1.5rem, 8vw, 2.6rem) var(--display); color: var(--ink); }
-      .nav-links a:last-child { margin-top: 18px; border: 0; color: var(--cyan); font-size: 1rem; }
       .hero-grid { grid-template-columns: 1fr; }
-      .hero-copy { position: relative; z-index: 3; }
-      .hero-visual { min-height: 540px; max-width: 670px; width: 100%; margin-inline: auto; }
-      .scroll-cue { display: none; }
-      .manifesto-grid, .process-layout, .system-grid, .footer-top { grid-template-columns: 1fr; }
-      .manifesto-sticky, .process-intro { position: static; }
-      .service-card:nth-child(n) { grid-column: span 6; }
-      .project { grid-template-columns: 50px 1fr auto; }
-      .project-tags { display: none; }
-      .system-grid { gap: 20px; }
+      .hero-art { min-height: 540px; }
+      .hero-bottom { grid-template-columns: 120px 1fr; }
+      .statement-grid, .method-grid { grid-template-columns: 1fr; }
+      .method-intro { position: static; }
+      .cap-head, .clients-head, .contact-top { grid-template-columns: 1fr; }
+      .cap-head { gap: 25px; }
+      .cap-row { grid-template-columns: 55px 1fr .9fr 35px; }
+      .work-card:nth-child(n) { grid-column: span 6; }
+      .logo-grid { grid-template-columns: repeat(3, 1fr); }
+      .clients-head p { justify-self: start; }
+      .contact-side { max-width: 560px; }
     }
 
     @media (max-width: 680px) {
-      .wrap { width: min(100% - 30px, var(--wrap)); }
-      .site-header { top: 10px; }
-      .nav { min-height: 60px; border-radius: 18px; }
-      .brand-mark { width: 37px; height: 37px; border-radius: 11px; }
-      .brand-copy small { display: none; }
-      .hero { padding-top: 122px; }
-      .hero h1 { font-size: clamp(3rem, 16vw, 5.1rem); }
-      .hero-meta { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .hero-visual { min-height: 410px; }
-      .core { width: 82%; }
-      .float-chip { padding: 10px 12px; font-size: .61rem; }
-      .chip-1 { left: 0; }
-      .chip-2 { right: 0; }
-      .chip-3 { left: -1%; bottom: 15%; }
-      .chip-4 { right: 1%; }
-      h2 { font-size: clamp(2.25rem, 12vw, 3.6rem); }
-      .section { padding-block: 90px; }
-      .metrics { grid-template-columns: 1fr; }
-      .metric { min-height: auto; }
-      .service-card:nth-child(n) { grid-column: 1 / -1; min-height: 360px; }
-      .service-top { margin-bottom: 62px; }
+      .wrap { width: min(var(--wrap), calc(100% - 30px)); }
+      .nav { height: 70px; }
+      .hero { min-height: auto; padding-top: 118px; }
+      .hero h1 { font-size: clamp(4rem, 20vw, 6.3rem); }
+      .hero-bottom { grid-template-columns: 1fr; margin-top: 32px; }
+      .hero-index { display: none; }
+      .hero-actions .btn { width: 100%; }
+      .hero-art { min-height: 440px; }
+      .mark-scene { width: 290px; height: 400px; transform: translate(-50%, -50%) scale(.8); }
+      .note-a { left: 0; }
+      .note-b { right: 0; }
+      .art-caption { width: 100%; }
+      .section { padding: 88px 0; }
+      .section-title { font-size: clamp(3.2rem, 15vw, 5.2rem); }
+      .statement-main { font-size: clamp(2.4rem, 11vw, 3.8rem); }
+      .principles { grid-template-columns: 1fr; }
+      .principle, .principle + .principle { min-height: auto; padding: 26px 0 32px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .principle small { margin-bottom: 26px; }
+      .cap-row { grid-template-columns: 38px 1fr 28px; gap: 12px; min-height: 125px; }
+      .cap-row p { display: none; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card:nth-child(n) { grid-column: 1 / -1; min-height: 340px; }
       .work-head { display: block; }
-      .work-note { margin-top: -35px; margin-bottom: 40px; }
-      .project { grid-template-columns: 36px 1fr auto; gap: 12px; min-height: 125px; padding-inline: 3px; }
-      .project:hover { padding-inline: 8px; }
-      .project-title h3 { font-size: 1.35rem; }
-      .project-title p { display: none; }
-      .project-arrow { width: 38px; height: 38px; }
-      .process-steps::before { left: 18px; }
-      .process-step { grid-template-columns: 38px 1fr; gap: 18px; }
-      .step-dot { width: 38px; height: 38px; }
-      .system-shell { padding: 42px 22px; border-radius: 28px; }
-      .layers { min-height: 340px; margin-top: 10px; }
-      .layer { height: 110px; padding: 20px; }
-      .layer:nth-child(2) { top: 85px; }
-      .layer:nth-child(3) { top: 160px; }
-      .cta-inner { padding-inline: 15px; }
-      .cta h2 { font-size: clamp(3rem, 16vw, 5.2rem); }
-      .cta-actions .button { width: 100%; }
-      .footer-columns { grid-template-columns: 1fr 1fr; }
-      .footer-bottom { align-items: flex-start; flex-direction: column; }
-      .whatsapp { right: 14px; bottom: 14px; width: 50px; padding: 0; justify-content: center; }
-      .whatsapp span { display: none; }
+      .work-count { margin-top: 20px; }
+      .poster-frame img { min-height: 360px; object-position: 58% center; }
+      .poster-caption { align-items: flex-start; flex-direction: column; }
+      .step { grid-template-columns: 42px 1fr; gap: 12px; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .logo-cell { min-height: 118px; padding: 18px; }
+      .contact h2 { font-size: clamp(4rem, 20vw, 6.5rem); }
+      .contact-info { grid-template-columns: 1fr; margin-top: 65px; }
+      .contact-item, .contact-item + .contact-item { padding: 20px 0; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, .35); }
+      .footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 28px 0 90px; }
+      .footer-links { flex-wrap: wrap; }
+      .whatsapp { right: 14px; bottom: 14px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
       .reveal { opacity: 1; transform: none; }
-      #space { display: none; }
+      .hero-word { transform: none; }
     }
   </style>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <canvas id="space" aria-hidden="true"></canvas>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <header class="site-header" id="header">
+  <header class="header" id="header">
     <div class="wrap nav">
-      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio">
-        <img class="brand-mark" src="assets/img/logo-mark.png" alt="" width="42" height="42">
-        <span class="brand-copy"><strong>TEC CAPITAL</strong><small>Digital Intelligence Group</small></span>
-      </a>
+      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t.png" alt="" width="104" height="81"><strong>TEC CAPITAL</strong></a>
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#capacidades">Capacidades</a>
-        <a href="#ecosistema">Ecosistema</a>
+        <a href="#proyectos">Proyectos</a>
         <a href="#metodo">Método</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Iniciar un proyecto ↗</a>
+        <a href="#clientes">Clientes</a>
       </nav>
-      <a class="button button-primary" href="https://wa.me/5212361112213?text=Hola%2C%20quiero%20iniciar%20un%20proyecto%20con%20TEC%20CAPITAL" target="_blank" rel="noopener">Hablemos</a>
+      <a class="nav-contact" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener"><i></i>Iniciar un proyecto</a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
     </div>
   </header>
@@ -401,336 +325,176 @@
   <main>
     <section class="hero" id="inicio">
       <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <div class="status-pill"><span class="status-dot"></span>Disponibles para nuevos retos</div>
-          <h1><span class="line">Ideas que</span><span class="line gradient">mueven empresas.</span></h1>
-          <p class="hero-lead">Construimos la infraestructura digital de las empresas que van adelante: estrategia, software e inteligencia artificial convertidos en crecimiento real.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://wa.me/5212361112213?text=Hola%2C%20tengo%20una%20idea%20para%20TEC%20CAPITAL" target="_blank" rel="noopener">Construyamos algo</a>
-            <a class="button button-ghost" href="#ecosistema">Explorar proyectos</a>
-          </div>
-          <div class="hero-meta"><span><i></i>Tehuacán · México</span><span><i></i>Software · IA · Producto digital</span></div>
-        </div>
-
-        <div class="hero-visual" id="heroVisual" role="img" aria-label="Representación tridimensional de TEC CAPITAL">
-          <div class="hero-orbit" aria-hidden="true"></div>
-          <div class="core" id="core">
-            <div class="core-halo" aria-hidden="true"></div>
-            <div class="logo-cube"><img src="assets/img/logo-mark.png" alt="Símbolo tridimensional de TEC CAPITAL" width="1254" height="1254"></div>
-          </div>
-          <span class="float-chip chip-1">Sistemas vivos</span>
-          <span class="float-chip chip-2">IA conectada</span>
-          <span class="float-chip chip-3">Diseño estratégico</span>
-          <span class="float-chip chip-4">Cloud seguro</span>
-        </div>
-      </div>
-      <div class="scroll-cue" aria-hidden="true"><span>Descubre</span><i></i></div>
-    </section>
-
-    <section class="trust" aria-label="Clientes de TEC CAPITAL">
-      <div class="trust-label">Tecnología detrás de organizaciones que transforman su industria</div>
-      <div class="marquee">
-        <div class="marquee-track">
-          <div class="client-logo"><img src="assets/clients/icadem.webp" alt="ICADEM"></div>
-          <div class="client-logo"><img src="assets/clients/synova-mexico.webp" alt="Synova México"></div>
-          <div class="client-logo"><img src="assets/clients/odonteck.webp" alt="OdonTeck"></div>
-          <div class="client-logo"><img src="assets/clients/fisioteck.webp" alt="FisioTeck"></div>
-          <div class="client-logo"><img src="assets/clients/bionova.webp" alt="Bionova"></div>
-          <div class="client-logo"><img src="assets/clients/sinergia-agricola.webp" alt="Sinergia Agrícola"></div>
-          <div class="client-logo"><img src="assets/clients/agrotec-america.webp" alt="Agrotec America"></div>
-          <div class="client-logo"><img src="assets/clients/imdiil.webp" alt="IMDIIL"></div>
-          <div class="client-logo"><img src="assets/clients/vision-pecuaria.webp" alt="Visión Pecuaria"></div>
-          <div class="client-logo"><img src="assets/clients/zoorigen.webp" alt="Zoorigen"></div>
-          <div class="client-logo"><img src="assets/clients/dermalysse.webp" alt="Dermalysse"></div>
-        </div>
-        <div class="marquee-track" aria-hidden="true">
-          <div class="client-logo"><img src="assets/clients/icadem.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/synova-mexico.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/odonteck.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/fisioteck.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/bionova.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/sinergia-agricola.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/agrotec-america.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/imdiil.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/vision-pecuaria.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/zoorigen.webp" alt=""></div>
-          <div class="client-logo"><img src="assets/clients/dermalysse.webp" alt=""></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="nosotros">
-      <div class="wrap manifesto-grid">
-        <div class="manifesto-sticky reveal">
-          <span class="eyebrow">Nuestra forma de pensar</span>
-          <p>No vendemos páginas. Diseñamos sistemas que conectan personas, procesos y decisiones para que una empresa opere mejor hoy y pueda crecer mañana.</p>
-        </div>
         <div>
-          <div class="big-statement reveal">La tecnología sólo importa cuando cambia <span>lo que tu negocio puede hacer.</span></div>
-          <div class="metrics reveal">
-            <div class="metric"><strong data-count="40" data-suffix="+">0</strong><span>Productos, plataformas y experiencias lanzadas</span></div>
-            <div class="metric"><strong data-count="16">0</strong><span>Capacidades reunidas en un solo equipo</span></div>
-            <div class="metric"><strong data-count="100" data-suffix="%">0</strong><span>Arquitecturas creadas alrededor de cada negocio</span></div>
+          <div class="hero-label">Tecnología con dirección</div>
+          <h1 class="display"><span class="hero-line"><span class="hero-word">Diseñamos</span></span><span class="hero-line"><span class="hero-word">lo que sigue.</span></span></h1>
+          <div class="hero-bottom">
+            <span class="hero-index">TC / 2026</span>
+            <div class="hero-copy">
+              <p>Convertimos ideas, procesos y datos en productos digitales claros, útiles y preparados para crecer.</p>
+              <div class="hero-actions"><a class="btn btn-blue" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20tengo%20una%20idea" target="_blank" rel="noopener">Cuéntanos tu idea</a><a class="btn" href="#proyectos">Ver nuestro trabajo</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-art" id="heroArt" aria-label="Símbolo arquitectónico de TEC CAPITAL" role="img">
+          <div class="art-grid" aria-hidden="true"></div>
+          <span class="art-number">MÉXICO · 18.4637° N</span>
+          <div class="mark-scene" id="markScene" aria-hidden="true"><div class="mark-shadow"></div><div class="mark-black"></div><div class="mark-blue"></div></div>
+          <span class="art-note note-a">Estrategia / 01</span>
+          <span class="art-note note-b">Ejecución / 02</span>
+          <div class="art-caption"><span>Objeto digital</span><span>En movimiento</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="ticker-row">
+        <div class="ticker-track"><span>Software a medida</span><i></i><span>Inteligencia artificial</span><i></i><span>Diseño de producto</span><i></i><span>Infraestructura</span><i></i><span>Automatización</span><i></i></div>
+        <div class="ticker-track" aria-hidden="true"><span>Software a medida</span><i></i><span>Inteligencia artificial</span><i></i><span>Diseño de producto</span><i></i><span>Infraestructura</span><i></i><span>Automatización</span><i></i></div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="wrap statement-grid">
+        <div class="statement-label reveal">No somos una agencia tradicional.</div>
+        <div>
+          <div class="statement-main reveal">Somos el equipo que conecta <em>negocio, diseño e ingeniería</em> para volver posibles las ideas importantes.</div>
+          <div class="principles reveal">
+            <article class="principle"><small>01 / CLARIDAD</small><h3>Primero entendemos.</h3><p>Antes de escribir código, encontramos el problema que realmente mueve al negocio.</p></article>
+            <article class="principle"><small>02 / PRECISIÓN</small><h3>Diseñamos lo esencial.</h3><p>Cada pantalla, flujo y automatización existe por una razón concreta.</p></article>
+            <article class="principle"><small>03 / IMPACTO</small><h3>Construimos para crecer.</h3><p>Productos sólidos que pueden evolucionar junto con la empresa.</p></article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section services" id="capacidades">
+    <section class="section capabilities" id="capacidades">
       <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Capacidades</span>
-          <h2>De una idea compleja a un producto extraordinario.</h2>
-          <p>Unimos pensamiento de negocio, diseño e ingeniería para resolver el reto completo, no solamente una parte.</p>
+        <div class="cap-head reveal">
+          <div><span class="eyebrow">Capacidades</span><h2 class="display section-title">Un equipo.<br>Todo el sistema.</h2></div>
+          <p class="section-copy">Estrategia, experiencia e ingeniería trabajan juntas desde el inicio. Así evitamos soluciones fragmentadas y hacemos que cada inversión tenga sentido.</p>
         </div>
-        <div class="bento">
-          <article class="service-card tilt reveal accent-cyan" data-index="01">
-            <div class="service-top"><span class="service-icon">&lt;/&gt;</span><span class="service-arrow">↗</span></div>
-            <h3>Software &amp; productos digitales</h3>
-            <p>Plataformas web, apps, SaaS y sistemas internos que se sienten simples por fuera y son poderosos por dentro.</p>
-            <div class="tags"><span>Web apps</span><span>Apps móviles</span><span>CRM / ERP</span><span>Portales</span></div>
-          </article>
-          <article class="service-card tilt reveal accent-violet" data-index="02">
-            <div class="service-top"><span class="service-icon">AI</span><span class="service-arrow">↗</span></div>
-            <h3>Inteligencia artificial</h3>
-            <p>Agentes, asistentes y automatizaciones conectadas a tu operación real.</p>
-            <div class="tags"><span>Agentes IA</span><span>Automatización</span><span>Analítica</span></div>
-          </article>
-          <article class="service-card tilt reveal accent-green" data-index="03">
-            <div class="service-top"><span class="service-icon">UX</span><span class="service-arrow">↗</span></div>
-            <h3>Diseño &amp; crecimiento</h3>
-            <p>Identidades, interfaces y experiencias que vuelven visible el valor de tu empresa.</p>
-            <div class="tags"><span>Branding</span><span>UI/UX</span><span>Growth</span></div>
-          </article>
-          <article class="service-card tilt reveal accent-blue" data-index="04">
-            <div class="service-top"><span class="service-icon">∞</span><span class="service-arrow">↗</span></div>
-            <h3>Cloud &amp; operación</h3>
-            <p>Arquitecturas seguras, integraciones y soporte continuo para que la tecnología nunca frene a tu equipo.</p>
-            <div class="tags"><span>Cloud</span><span>APIs</span><span>Seguridad</span><span>DevOps</span></div>
-          </article>
+        <div class="cap-list reveal">
+          <article class="cap-row"><small>01</small><h3>Producto digital</h3><p>Plataformas, aplicaciones, SaaS y sistemas internos diseñados alrededor de tu operación.</p><span>↗</span></article>
+          <article class="cap-row"><small>02</small><h3>Inteligencia artificial</h3><p>Agentes, asistentes y automatizaciones conectados a datos y procesos reales.</p><span>↗</span></article>
+          <article class="cap-row"><small>03</small><h3>Marca &amp; experiencia</h3><p>Identidades e interfaces que comunican valor con claridad y consistencia.</p><span>↗</span></article>
+          <article class="cap-row"><small>04</small><h3>Cloud &amp; operación</h3><p>Arquitectura, integraciones, seguridad y soporte para mantener todo en movimiento.</p><span>↗</span></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="ecosistema">
+    <section class="section" id="proyectos">
       <div class="wrap">
-        <div class="work-head">
-          <div class="section-head reveal">
-            <span class="eyebrow">Ecosistema</span>
-            <h2>Ideas que ya están trabajando.</h2>
-            <p>Productos y plataformas creados para industrias reales, desde el campo hasta el bienestar y las operaciones financieras.</p>
-          </div>
-          <p class="work-note reveal">Selección de productos del ecosistema TEC CAPITAL.</p>
-        </div>
-        <div class="projects reveal">
-          <article class="project"><span class="project-index">01</span><div class="project-title"><h3>AviGo</h3><p>Operación avícola inteligente en tiempo real</p></div><div class="project-tags"><span>App</span><span>Datos</span><span>Industria 4.0</span></div><span class="project-arrow">↗</span></article>
-          <article class="project"><span class="project-index">02</span><div class="project-title"><h3>Visión Pecuaria</h3><p>Consultoría, conocimiento y comunidad ganadera</p></div><div class="project-tags"><span>Plataforma</span><span>Suscripciones</span><span>Contenido</span></div><span class="project-arrow">↗</span></article>
-          <article class="project"><span class="project-index">03</span><div class="project-title"><h3>Gymvexa</h3><p>Gestión integral para gimnasios modernos</p></div><div class="project-tags"><span>SaaS</span><span>Desktop</span><span>Móvil</span></div><span class="project-arrow">↗</span></article>
-          <article class="project"><span class="project-index">04</span><div class="project-title"><h3>AgroClub MX</h3><p>Inteligencia comercial para el sector agrícola</p></div><div class="project-tags"><span>Marketplace</span><span>Datos de mercado</span><span>Club</span></div><span class="project-arrow">↗</span></article>
-          <article class="project"><span class="project-index">05</span><div class="project-title"><h3>ContaTeck</h3><p>Tecnología que simplifica la operación financiera</p></div><div class="project-tags"><span>Fintech</span><span>Automatización</span><span>Cloud</span></div><span class="project-arrow">↗</span></article>
-          <article class="project"><span class="project-index">06</span><div class="project-title"><h3>Órbita IA</h3><p>Diseño asistido por inteligencia artificial</p></div><div class="project-tags"><span>Generative AI</span><span>Creative ops</span><span>Internal tool</span></div><span class="project-arrow">↗</span></article>
+        <div class="work-head reveal"><div><span class="eyebrow">Trabajo seleccionado</span><h2 class="display section-title">Tecnología en uso.</h2></div><span class="work-count">04 / ECOSISTEMA TEC CAPITAL</span></div>
+        <div class="work-grid">
+          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="metodo">
-      <div class="wrap process-layout">
-        <div class="process-intro reveal">
-          <span class="eyebrow">El método</span>
-          <h2>Claridad antes que código.</h2>
-          <p>Reducimos incertidumbre, avanzamos por entregables y medimos el impacto. Cada decisión técnica tiene una razón de negocio.</p>
-        </div>
-        <div class="process-steps reveal">
-          <article class="process-step"><span class="step-dot">01</span><div class="step-content"><h3>Entender lo esencial</h3><p>Nos metemos al negocio, escuchamos a las personas y encontramos el problema que realmente vale la pena resolver.</p></div></article>
-          <article class="process-step"><span class="step-dot">02</span><div class="step-content"><h3>Diseñar el sistema</h3><p>Convertimos la complejidad en una experiencia clara, una arquitectura sólida y un plan de ejecución visible.</p></div></article>
-          <article class="process-step"><span class="step-dot">03</span><div class="step-content"><h3>Construir en movimiento</h3><p>Lanzamos avances funcionales, probamos temprano y hacemos que cada semana acerque el producto a la realidad.</p></div></article>
-          <article class="process-step"><span class="step-dot">04</span><div class="step-content"><h3>Crecer contigo</h3><p>Medimos, aprendemos y evolucionamos el producto para que acompañe la siguiente etapa de tu empresa.</p></div></article>
+    <section class="poster-section">
+      <div class="wrap reveal">
+        <div class="poster-frame"><img src="assets/img/brand-editorial.png" alt="Composición editorial de TEC CAPITAL con el símbolo T construido en metal negro y azul" width="1734" height="907" loading="lazy"></div>
+        <div class="poster-caption"><span>TEC CAPITAL · Sistema de identidad 2026</span><span>Claridad / Dirección / Tecnología</span></div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="metodo">
+      <div class="wrap method-grid">
+        <div class="method-intro reveal"><span class="eyebrow">Nuestro método</span><h2 class="display">Pensar.<br>Hacer.<br>Mejorar.</h2><p>Un proceso sin misterio, diseñado para avanzar con decisiones claras y entregables que funcionan.</p></div>
+        <div class="steps reveal">
+          <article class="step"><div><h3>Entendemos el negocio</h3><p>Hablamos con las personas, revisamos los procesos y alineamos el proyecto con un resultado concreto.</p></div></article>
+          <article class="step"><div><h3>Diseñamos la solución</h3><p>Convertimos la complejidad en una experiencia clara, una arquitectura sólida y un plan realista.</p></div></article>
+          <article class="step"><div><h3>Construimos en ciclos</h3><p>Entregamos avances funcionales, probamos temprano y mantenemos visible el progreso.</p></div></article>
+          <article class="step"><div><h3>Evolucionamos contigo</h3><p>Medimos, aprendemos y mejoramos el producto conforme crecen sus usuarios y el negocio.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="section system">
-      <div class="wrap system-shell reveal">
-        <div class="system-grid">
-          <div class="system-copy">
-            <span class="eyebrow">Una sola visión</span>
-            <h2>Negocio. Diseño. Ingeniería.</h2>
-            <p>Las mejores soluciones aparecen cuando las tres capas trabajan juntas desde el primer día. Esa es la diferencia entre entregar software y construir una ventaja.</p>
-          </div>
-          <div class="layers">
-            <div class="layer"><small>01 · Dirección</small><strong>Estrategia de negocio</strong></div>
-            <div class="layer"><small>02 · Experiencia</small><strong>Diseño centrado en personas</strong></div>
-            <div class="layer"><small>03 · Motor</small><strong>Ingeniería escalable</strong></div>
-          </div>
+    <section class="section clients" id="clientes">
+      <div class="wrap">
+        <div class="clients-head reveal"><h2 class="display">Confianza que se construye trabajando.</h2><p>Empresas de salud, educación, agroindustria y servicios han confiado en TEC CAPITAL para crear y operar sus productos digitales.</p></div>
+        <div class="logo-grid reveal">
+          <div class="logo-cell"><img src="assets/clients/icadem.webp" alt="ICADEM" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/synova-mexico.webp" alt="Synova México" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/odonteck.webp" alt="OdonTeck" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/fisioteck.webp" alt="FisioTeck" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/bionova.webp" alt="Bionova" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/sinergia-agricola.webp" alt="Sinergia Agrícola" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/agrotec-america.webp" alt="Agrotec America" loading="lazy"></div>
+          <div class="logo-cell"><img src="assets/clients/vision-pecuaria.webp" alt="Visión Pecuaria" loading="lazy"></div>
         </div>
       </div>
     </section>
 
-    <section class="section cta" id="contacto">
-      <div class="cta-inner">
-        <span class="eyebrow reveal">El próximo movimiento</span>
-        <h2 class="reveal">Tu mejor idea merece <span>existir.</span></h2>
-        <p class="reveal">Cuéntanos qué quieres cambiar en tu empresa. Nosotros te ayudamos a convertirlo en una solución clara, útil y extraordinaria.</p>
-        <div class="cta-actions reveal">
-          <a class="button button-primary" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20una%20idea" target="_blank" rel="noopener">Iniciar conversación</a>
-          <a class="button button-ghost" href="mailto:teccapitalweb@gmail.com">teccapitalweb@gmail.com</a>
-        </div>
+    <section class="section contact" id="contacto">
+      <div class="wrap">
+        <div class="contact-top"><h2 class="display reveal">Hagamos<br>que pase.</h2><div class="contact-side reveal"><p>Si tienes una idea, un proceso que ya no funciona o un producto que necesita evolucionar, conversemos.</p><a class="btn" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Iniciar conversación</a></div></div>
+        <div class="contact-info reveal"><div class="contact-item"><small>WhatsApp</small><a href="https://wa.me/5212361112213" target="_blank" rel="noopener">+52 236 111 2213</a></div><div class="contact-item"><small>Correo</small><a href="mailto:teccapitalweb@gmail.com">teccapitalweb@gmail.com</a></div><div class="contact-item"><small>Base</small><span>Tehuacán, Puebla · México</span></div></div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <div class="footer-top">
-        <div>
-          <a class="brand" href="#inicio"><img class="brand-mark" src="assets/img/logo-mark.png" alt="" width="42" height="42"><span class="brand-copy"><strong>TEC CAPITAL</strong><small>Digital Intelligence Group</small></span></a>
-          <p class="footer-statement">Construimos tecnología con propósito para empresas que no quieren quedarse quietas.</p>
-        </div>
-        <div class="footer-columns">
-          <div class="footer-col"><strong>Explora</strong><a href="#capacidades">Capacidades</a><a href="#ecosistema">Ecosistema</a><a href="#metodo">Método</a><a href="#nosotros">Nosotros</a></div>
-          <div class="footer-col"><strong>Contacto</strong><a href="mailto:teccapitalweb@gmail.com">Correo</a><a href="https://wa.me/5212361112213" target="_blank" rel="noopener">WhatsApp</a><span>Tehuacán, Puebla</span><span>México</span></div>
-        </div>
-      </div>
-      <div class="footer-bottom"><span>© <span id="year">2026</span> TEC CAPITAL GROUP</span><span>ESTRATEGIA · SOFTWARE · IA · INFRAESTRUCTURA</span></div>
-    </div>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t.png" alt="" width="104" height="81"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20una%20idea" target="_blank" rel="noopener" aria-label="Escribir a TEC CAPITAL por WhatsApp"><i></i><span>Conversemos</span></a>
+  <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>
 
   <script>
     (() => {
-      const root = document.documentElement;
       const header = document.getElementById('header');
       const progress = document.getElementById('progress');
       const toggle = document.getElementById('menuToggle');
       const nav = document.getElementById('navLinks');
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const updateScroll = () => {
+      function scrollState() {
         const max = document.documentElement.scrollHeight - innerHeight;
-        progress.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
-        header.classList.toggle('scrolled', scrollY > 18);
-      };
-      addEventListener('scroll', updateScroll, { passive: true });
-      updateScroll();
+        progress.style.width = `${max > 0 ? scrollY / max * 100 : 0}%`;
+        header.classList.toggle('scrolled', scrollY > 16);
+      }
+      addEventListener('scroll', scrollState, { passive: true });
+      scrollState();
 
-      const setMenu = (open) => {
+      function setMenu(open) {
         toggle.setAttribute('aria-expanded', String(open));
         toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
         nav.classList.toggle('open', open);
         document.body.classList.toggle('menu-open', open);
-      };
+      }
       toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
       nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
       addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
 
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+
       if (!reduced) {
-        addEventListener('pointermove', event => {
-          root.style.setProperty('--mx', `${event.clientX}px`);
-          root.style.setProperty('--my', `${event.clientY}px`);
-        }, { passive: true });
-
-        const visual = document.getElementById('heroVisual');
-        const core = document.getElementById('core');
-        visual.addEventListener('pointermove', event => {
-          const r = visual.getBoundingClientRect();
-          const x = (event.clientX - r.left) / r.width - .5;
-          const y = (event.clientY - r.top) / r.height - .5;
-          core.style.setProperty('--tilt-x', `${x * 22}deg`);
-          core.style.setProperty('--tilt-y', `${y * -18}deg`);
+        const art = document.getElementById('heroArt');
+        const mark = document.getElementById('markScene');
+        art.addEventListener('pointermove', event => {
+          const box = art.getBoundingClientRect();
+          const x = (event.clientX - box.left) / box.width - .5;
+          const y = (event.clientY - box.top) / box.height - .5;
+          mark.style.setProperty('--ry', `${x * 18}deg`);
+          mark.style.setProperty('--rx', `${y * -12}deg`);
         });
-        visual.addEventListener('pointerleave', () => {
-          core.style.setProperty('--tilt-x', '10deg');
-          core.style.setProperty('--tilt-y', '-7deg');
-        });
-
-        document.querySelectorAll('.tilt').forEach(card => {
-          card.addEventListener('pointermove', event => {
-            const r = card.getBoundingClientRect();
-            const x = (event.clientX - r.left) / r.width - .5;
-            const y = (event.clientY - r.top) / r.height - .5;
-            card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 6}deg) translateY(-4px)`;
-          });
-          card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-        });
-      }
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('visible');
-          if (entry.target.classList.contains('metrics')) animateCounters(entry.target);
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: .13 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-      function animateCounters(scope) {
-        scope.querySelectorAll('[data-count]').forEach(el => {
-          const target = Number(el.dataset.count);
-          const suffix = el.dataset.suffix || '';
-          const start = performance.now();
-          const tick = now => {
-            const p = reduced ? 1 : Math.min((now - start) / 1200, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = `${Math.round(target * eased)}${suffix}`;
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
+        art.addEventListener('pointerleave', () => {
+          mark.style.setProperty('--ry', '-8deg');
+          mark.style.setProperty('--rx', '1deg');
         });
       }
 
       document.getElementById('year').textContent = new Date().getFullYear();
-
-      if (!reduced) {
-        const canvas = document.getElementById('space');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-        let cursor = { x: -1000, y: -1000 };
-        const resize = () => {
-          const dpr = Math.min(devicePixelRatio || 1, 1.7);
-          canvas.width = innerWidth * dpr;
-          canvas.height = innerHeight * dpr;
-          canvas.style.width = `${innerWidth}px`;
-          canvas.style.height = `${innerHeight}px`;
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          const count = Math.min(105, Math.max(42, Math.floor(innerWidth / 15)));
-          points = Array.from({ length: count }, () => ({
-            x: Math.random() * innerWidth,
-            y: Math.random() * innerHeight,
-            vx: (Math.random() - .5) * .12,
-            vy: (Math.random() - .5) * .12,
-            r: Math.random() * 1.3 + .35
-          }));
-        };
-        addEventListener('resize', resize);
-        addEventListener('pointermove', e => { cursor = { x: e.clientX, y: e.clientY }; }, { passive: true });
-        addEventListener('pointerleave', () => { cursor = { x: -1000, y: -1000 }; });
-        resize();
-        const frame = () => {
-          ctx.clearRect(0, 0, innerWidth, innerHeight);
-          points.forEach((p, i) => {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < -10) p.x = innerWidth + 10;
-            if (p.x > innerWidth + 10) p.x = -10;
-            if (p.y < -10) p.y = innerHeight + 10;
-            if (p.y > innerHeight + 10) p.y = -10;
-            const cd = Math.hypot(p.x - cursor.x, p.y - cursor.y);
-            const glow = cd < 170 ? 1 - cd / 170 : 0;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.r + glow * 1.2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${glow ? '57,231,255' : '80,150,205'},${.18 + glow * .58})`; ctx.fill();
-            for (let j = i + 1; j < points.length; j++) {
-              const q = points[j]; const d = Math.hypot(p.x - q.x, p.y - q.y);
-              if (d < 110) {
-                ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-                ctx.strokeStyle = `rgba(62,155,218,${(1 - d / 110) * .075})`; ctx.stroke();
-              }
-            }
-          });
-          requestAnimationFrame(frame);
-        };
-        requestAnimationFrame(frame);
-      }
     })();
   </script>
 </body>
