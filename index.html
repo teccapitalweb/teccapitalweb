@@ -169,13 +169,14 @@
     .work-card:nth-child(2), .work-card:nth-child(3) { grid-column: span 5; }
     .work-card:hover { transform: translateY(-8px); box-shadow: 0 24px 55px rgba(32, 34, 37, .1); }
     .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
-    .work-meta { display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
+    .work-meta { position: relative; z-index: 2; display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
     .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
-    .work-mark { position: absolute; top: 50%; left: 50%; width: 210px; height: 260px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; transform: translate(-50%, -50%) scale(.86); opacity: 1; transition: transform .5s var(--ease); }
-    .work-card:hover .work-mark { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    .work-card.blue .work-mark { background-image: url('assets/img/logo-t-white.png'); filter: none; opacity: 1; }
-    .work-card.blue:hover .work-mark { opacity: 1; }
-    .work-bottom { position: relative; }
+    .work-mark { position: absolute; z-index: 1; top: 49%; left: 50%; width: min(52%, 245px); height: 220px; object-fit: contain; transform: translate(-50%, -50%) scale(.91); filter: drop-shadow(0 18px 16px rgba(18, 20, 22, .16)); transition: transform .55s var(--ease), filter .55s var(--ease); }
+    .work-mark.wide { width: min(70%, 320px); }
+    .work-card:hover .work-mark { transform: translate(-50%, -52%) scale(1); filter: drop-shadow(0 25px 22px rgba(18, 20, 22, .22)); }
+    .work-card.blue .work-mark { filter: drop-shadow(0 18px 16px rgba(4, 18, 54, .3)); }
+    .work-card.blue:hover .work-mark { filter: drop-shadow(0 25px 22px rgba(4, 18, 54, .4)); }
+    .work-bottom { position: relative; z-index: 2; }
     .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
     .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
     .work-card.blue .work-bottom p { color: rgba(255, 255, 255, .7); }
@@ -305,7 +306,7 @@
 
   <header class="header" id="header">
     <div class="wrap nav">
-      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="765" height="684"><strong>TEC CAPITAL</strong></a>
+      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a>
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#capacidades">Capacidades</a>
         <a href="#proyectos">Proyectos</a>
@@ -335,7 +336,7 @@
         <div class="hero-art" id="heroArt" aria-label="Símbolo arquitectónico de TEC CAPITAL" role="img">
           <div class="art-grid" aria-hidden="true"></div>
           <span class="art-number">MÉXICO · 18.4637° N</span>
-          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="765" height="684"></div>
+          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"></div>
           <span class="art-note note-a">Estrategia / 01</span>
           <span class="art-note note-b">Ejecución / 02</span>
           <div class="art-caption"><span>Objeto digital</span><span>En movimiento</span></div>
@@ -383,17 +384,17 @@
       <div class="wrap">
         <div class="work-head reveal"><div><span class="eyebrow">Trabajo seleccionado</span><h2 class="display section-title">Tecnología en uso.</h2></div><span class="work-count">04 / ECOSISTEMA TEC CAPITAL</span></div>
         <div class="work-grid">
-          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div></article>
-          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div></article>
-          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div></article>
-          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><div class="work-mark" aria-hidden="true"></div><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><img class="work-mark" src="assets/img/projects/avigo.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><img class="work-mark wide" src="assets/img/projects/gymvexa.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><img class="work-mark" src="assets/img/projects/agroclub.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><img class="work-mark" src="assets/img/projects/vision-pecuaria.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="poster-section" id="identidad">
       <div class="wrap reveal">
-        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el nuevo monograma T" width="1734" height="907" loading="lazy"></div>
+        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el símbolo T tridimensional blanco y negro" width="1734" height="907" loading="lazy"></div>
         <div class="poster-caption"><span>TEC CAPITAL · Sistema de identidad 2026</span><span>Claridad / Dirección / Tecnología</span></div>
       </div>
     </section>
@@ -435,7 +436,7 @@
   </main>
 
   <footer>
-    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="765" height="684"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
   </footer>
 
   <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>

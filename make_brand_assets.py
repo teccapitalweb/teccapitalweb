@@ -22,26 +22,59 @@ def vertical_gradient(size: tuple[int, int], top: tuple[int, ...], bottom: tuple
 
 
 def extract_logo() -> Image.Image:
-    """Build TEC CAPITAL's flat editorial T as a transparent master mark."""
+    """Rebuild the supplied dimensional T as a crisp transparent mark."""
     canvas = Image.new("RGBA", (1024, 1024), (0, 0, 0, 0))
+
+    # The reference is a real T: a white frontal face, extruded to the left
+    # and bottom, plus a separate trapezoidal counter-shape on the upper right.
+    # Blue in the supplied render is intentionally replaced by TEC black.
+    shadow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    shadow_draw = ImageDraw.Draw(shadow)
+    shadow_draw.polygon(((225, 196), (599, 196), (599, 850), (414, 850),
+                         (414, 345), (225, 345)), fill=(0, 0, 0, 150))
+    shadow_draw.polygon(((620, 196), (856, 196), (750, 372), (620, 372)),
+                        fill=(0, 0, 0, 135))
+    shadow = shadow.filter(ImageFilter.GaussianBlur(24))
+    canvas.alpha_composite(shadow, (18, 30))
+
     draw = ImageDraw.Draw(canvas)
 
-    # A compact, unmistakable T. Its asymmetric top and angled terminals echo
-    # the site's editorial grids while avoiding the synthetic 3D treatment.
-    ink = (18, 20, 22, 255)
-    blue = (21, 88, 232, 255)
-    draw.polygon(
-        ((164, 210), (760, 210), (724, 348), (548, 348),
-         (548, 824), (394, 824), (394, 348), (164, 348)),
-        fill=ink,
-    )
+    # Black depth of the T. The facets make the extrusion legible even at
+    # navigation-logo size without making the mark feel glossy or artificial.
+    draw.polygon(((246, 155), (218, 191), (218, 356), (246, 320)),
+                 fill=(10, 12, 15, 255))
+    draw.polygon(((218, 356), (378, 356), (406, 320), (246, 320)),
+                 fill=(20, 23, 28, 255))
+    draw.polygon(((378, 356), (406, 320), (406, 824), (378, 854)),
+                 fill=(8, 10, 13, 255))
+    draw.polygon(((378, 854), (565, 854), (592, 824), (406, 824)),
+                 fill=(18, 21, 25, 255))
 
-    # Forward accent: one precise diagonal cut integrated into the top bar.
-    # It carries the signature cobalt without compromising small-size reading.
-    draw.polygon(((650, 210), (860, 210), (824, 348), (614, 348)), fill=blue)
+    # Fully opaque white frontal face, following the exact T silhouette.
+    face_mask = Image.new("L", canvas.size, 0)
+    face_draw = ImageDraw.Draw(face_mask)
+    face_draw.polygon(((246, 155), (592, 155), (592, 824), (406, 824),
+                       (406, 320), (246, 320)), fill=255)
+    face = vertical_gradient(canvas.size, (255, 255, 255, 255), (246, 246, 244, 255))
+    face.putalpha(face_mask)
+    canvas.alpha_composite(face)
+    draw = ImageDraw.Draw(canvas)
+    draw.line(((246, 155), (592, 155), (592, 824), (406, 824)),
+              fill=(221, 222, 220, 210), width=2)
 
-    # A subtle ivory keyline separates the two solids and keeps the mark crisp.
-    draw.line(((650, 210), (614, 348)), fill=(242, 239, 232, 255), width=10)
+    # Separate upper-right counter-shape, now black instead of blue.
+    draw.polygon(((630, 155), (608, 190), (608, 362), (630, 332)),
+                 fill=(5, 7, 10, 255))
+    draw.polygon(((608, 362), (716, 362), (746, 332), (630, 332)),
+                 fill=(12, 14, 18, 255))
+    cap_mask = Image.new("L", canvas.size, 0)
+    cap_draw = ImageDraw.Draw(cap_mask)
+    cap_draw.polygon(((630, 155), (856, 155), (746, 332), (630, 332)), fill=255)
+    cap = vertical_gradient(canvas.size, (31, 34, 39, 255), (10, 12, 16, 255))
+    cap.putalpha(cap_mask)
+    canvas.alpha_composite(cap)
+    draw = ImageDraw.Draw(canvas)
+    draw.line(((637, 158), (847, 158)), fill=(86, 90, 98, 180), width=3)
 
     bbox = canvas.getchannel("A").getbbox()
     if not bbox:
@@ -55,7 +88,8 @@ def extract_logo() -> Image.Image:
     )
     cropped = canvas.crop(crop_box)
     cropped.save(LOGO_OUT, optimize=True)
-    # Single-colour inverse keeps the same silhouette readable on dark fields.
+    # Single-colour inverse keeps the exact silhouette readable on the dark
+    # footer while the dimensional master is used everywhere else.
     white = Image.new("RGBA", cropped.size, (255, 255, 255, 0))
     white.putalpha(cropped.getchannel("A").point(lambda a: 255 if a > 72 else a))
     white.save(LOGO_WHITE_OUT, optimize=True)
@@ -72,7 +106,7 @@ def create_poster(logo: Image.Image) -> None:
     poster = Image.new("RGBA", (width, height), paper)
     draw = ImageDraw.Draw(poster)
 
-    # Restrained editorial grid and a solid cobalt field for the inverse mark.
+    # Restrained editorial grid and a solid cobalt field for the dimensional mark.
     line = (18, 20, 22, 22)
     panel_x = 990
     for x in range(84, panel_x, 148):
@@ -95,7 +129,7 @@ def create_poster(logo: Image.Image) -> None:
         fill=muted,
     )
 
-    mark = Image.open(LOGO_WHITE_OUT).convert("RGBA")
+    mark = Image.open(LOGO_OUT).convert("RGBA")
     mark.thumbnail((470, 610), Image.Resampling.LANCZOS)
     poster.alpha_composite(mark, (panel_x + (width - panel_x - mark.width) // 2, 145))
     poster.convert("RGB").save(POSTER_OUT, quality=94, optimize=True)
