@@ -87,6 +87,8 @@
     .nav-links a { position: relative; font-size: .73rem; font-weight: 600; }
     .nav-links a::after { content: ''; position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
     .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links a.active { color: var(--blue); }
+    .nav-links a.active::after { background: var(--blue); transform: scaleX(1); }
     .nav-contact { justify-self: end; display: inline-flex; align-items: center; gap: 10px; font: 500 .68rem var(--mono); text-transform: uppercase; }
     .nav-contact i { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2.2s infinite; }
     @keyframes blink { 50% { opacity: .28; } }
@@ -243,6 +245,34 @@
     .logo-cell img { max-width: 170px; max-height: 68px; object-fit: contain; filter: grayscale(1); opacity: .72; transition: filter .3s, opacity .3s, transform .3s; }
     .logo-cell:hover img { filter: none; opacity: 1; transform: scale(1.04); }
 
+    /* Diagnostic */
+    .diagnostic { background: var(--white); }
+    .diagnostic-head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: end; margin-bottom: 58px; }
+    .diagnostic-head h2 { margin: 0; font-size: clamp(3.3rem, 6.8vw, 7rem); }
+    .diagnostic-head p { max-width: 500px; justify-self: end; margin: 0; color: var(--muted); }
+    .diagnostic-shell { display: grid; grid-template-columns: .82fr 1.18fr; min-height: 520px; border: 1px solid var(--line); }
+    .diagnostic-options { border-right: 1px solid var(--line); }
+    .diagnostic-option { width: 100%; min-height: 130px; display: grid; grid-template-columns: 44px 1fr 24px; gap: 12px; align-items: center; padding: 24px; border: 0; border-bottom: 1px solid var(--line); color: var(--ink); background: transparent; text-align: left; cursor: pointer; transition: color .3s, background .3s; }
+    .diagnostic-option:last-child { border-bottom: 0; }
+    .diagnostic-option small { color: var(--blue); font: 400 .61rem var(--mono); }
+    .diagnostic-option strong { font-family: var(--display); font-size: clamp(1.35rem, 2vw, 2rem); font-weight: 500; letter-spacing: -.03em; }
+    .diagnostic-option span { font-size: 1.05rem; transition: transform .3s var(--ease); }
+    .diagnostic-option:hover, .diagnostic-option.active { color: #fff; background: var(--ink); }
+    .diagnostic-option.active small { color: #73a0ff; }
+    .diagnostic-option:hover span, .diagnostic-option.active span { transform: translateX(4px); }
+    .diagnostic-result { position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(34px, 6vw, 76px); overflow: hidden; color: #fff; background: var(--blue); }
+    .diagnostic-result::before { content: ''; position: absolute; top: -170px; right: -120px; width: 420px; height: 420px; border: 1px solid rgba(255, 255, 255, .22); border-radius: 50%; box-shadow: 0 0 0 65px rgba(255, 255, 255, .05), 0 0 0 130px rgba(255, 255, 255, .035); transition: transform .8s var(--ease); }
+    .diagnostic-result.changing::before { transform: scale(.8) rotate(22deg); }
+    .diagnostic-result > * { position: relative; z-index: 1; }
+    .diagnostic-result small { margin-bottom: auto; font: 400 .62rem var(--mono); color: rgba(255, 255, 255, .65); text-transform: uppercase; }
+    .diagnostic-result h3 { max-width: 680px; margin: 0 0 18px; font-family: var(--display); font-size: clamp(2.6rem, 5vw, 5.4rem); font-weight: 500; line-height: .94; letter-spacing: -.052em; }
+    .diagnostic-result > p { max-width: 610px; margin: 0 0 42px; color: rgba(255, 255, 255, .76); }
+    .diagnostic-meta { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255, 255, 255, .35); }
+    .diagnostic-meta div { padding: 18px 18px 0 0; }
+    .diagnostic-meta div + div { padding-left: 18px; border-left: 1px solid rgba(255, 255, 255, .35); }
+    .diagnostic-meta b { display: block; margin-bottom: 7px; font: 400 .56rem var(--mono); color: rgba(255, 255, 255, .55); text-transform: uppercase; }
+    .diagnostic-meta span { font-size: .8rem; }
+
     /* FAQ */
     .faq { border-top: 1px solid var(--line); }
     .faq-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(60px, 10vw, 150px); }
@@ -309,6 +339,12 @@
       .work-card:nth-child(n) { grid-column: span 6; }
       .logo-grid { grid-template-columns: repeat(3, 1fr); }
       .clients-head p { justify-self: start; }
+      .diagnostic-head { grid-template-columns: 1fr; }
+      .diagnostic-head p { justify-self: start; }
+      .diagnostic-shell { grid-template-columns: 1fr; }
+      .diagnostic-options { border-right: 0; border-bottom: 1px solid var(--line); }
+      .diagnostic-option { min-height: 100px; }
+      .diagnostic-result { min-height: 520px; }
       .faq-grid { grid-template-columns: 1fr; }
       .faq-intro { position: static; }
       .contact-side { max-width: 560px; }
@@ -351,6 +387,9 @@
       .logo-grid { grid-template-columns: repeat(2, 1fr); }
       .logo-cell { min-height: 118px; padding: 18px; }
       .logo-cell img { max-width: 140px; max-height: 56px; }
+      .diagnostic-result { min-height: 500px; padding: 28px 22px; }
+      .diagnostic-meta { grid-template-columns: 1fr; }
+      .diagnostic-meta div + div { padding-left: 0; border-left: 0; }
       .contact h2 { font-size: clamp(4rem, 20vw, 6.5rem); }
       .contact-info { grid-template-columns: 1fr; margin-top: 65px; }
       .contact-item, .contact-item + .contact-item { padding: 20px 0; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, .35); }
@@ -518,10 +557,30 @@
           <div class="logo-cell"><img src="assets/clients/sinergia-agricola.png" alt="Sinergia Agrícola" width="1077" height="417" loading="lazy" decoding="async"></div>
           <div class="logo-cell"><img src="assets/clients/agrotec-america.png" alt="Agrotec América" width="1200" height="261" loading="lazy" decoding="async"></div>
           <div class="logo-cell"><img src="assets/clients/vision-pecuaria.png" alt="Visión Pecuaria" width="1039" height="394" loading="lazy" decoding="async"></div>
-          <div class="logo-cell"><img src="assets/clients/dermalysse.webp" alt="Dermalysse" loading="lazy" decoding="async"></div>
-          <div class="logo-cell"><img src="assets/clients/imdiil.webp" alt="IMDIIL" loading="lazy" decoding="async"></div>
-          <div class="logo-cell"><img src="assets/clients/zoorigen.webp" alt="Zoorigen" loading="lazy" decoding="async"></div>
-          <div class="logo-cell"><img src="assets/clients/cliente-industria.webp" alt="Empresa del sector industrial" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/dermalysse.png" alt="Dermalysse" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/imdiil.png" alt="IMDIIL" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/zoorigen.png" alt="Zoorigen" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/cliente-industria.png" alt="Empresa del sector industrial" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section diagnostic" id="diagnostico">
+      <div class="wrap">
+        <div class="diagnostic-head reveal"><h2 class="display">Encuentra tu<br>punto de partida.</h2><p>Elige el reto que más se parece al tuyo y te mostramos una forma sensata de comenzar, sin venderte una solución antes de entender el problema.</p></div>
+        <div class="diagnostic-shell reveal">
+          <div class="diagnostic-options" role="group" aria-label="Selecciona tu reto principal">
+            <button class="diagnostic-option active" type="button" data-diagnostic="launch" aria-pressed="true"><small>01</small><strong>Quiero lanzar una idea</strong><span>→</span></button>
+            <button class="diagnostic-option" type="button" data-diagnostic="order" aria-pressed="false"><small>02</small><strong>Necesito ordenar mi operación</strong><span>→</span></button>
+            <button class="diagnostic-option" type="button" data-diagnostic="ai" aria-pressed="false"><small>03</small><strong>Quiero aplicar IA</strong><span>→</span></button>
+            <button class="diagnostic-option" type="button" data-diagnostic="evolve" aria-pressed="false"><small>04</small><strong>Mi producto debe evolucionar</strong><span>→</span></button>
+          </div>
+          <div class="diagnostic-result" id="diagnosticResult" aria-live="polite">
+            <small id="diagnosticLabel">Punto de partida recomendado / 01</small>
+            <h3 id="diagnosticTitle">Sprint de definición</h3>
+            <p id="diagnosticCopy">Convertimos la idea en una propuesta clara, priorizamos lo esencial y construimos un prototipo para tomar decisiones con algo real frente a nosotros.</p>
+            <div class="diagnostic-meta"><div><b>Enfoque</b><span id="diagnosticFocus">Problema · usuario · oportunidad</span></div><div><b>Resultado</b><span id="diagnosticOutput">Ruta de producto y prototipo</span></div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -586,6 +645,16 @@
       }), { threshold: .12 });
       document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 
+      const navigationLinks = [...nav.querySelectorAll('a[href^="#"]')];
+      const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navigationLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+      }), { rootMargin: '-35% 0px -55% 0px' });
+      navigationLinks.forEach(link => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section) sectionObserver.observe(section);
+      });
+
       if (!reduced) {
         const art = document.getElementById('heroArt');
         const mark = document.getElementById('markScene');
@@ -619,6 +688,58 @@
           question.setAttribute('aria-expanded', String(!open));
         });
       });
+
+      const diagnosticContent = {
+        launch: {
+          label: 'Punto de partida recomendado / 01',
+          title: 'Sprint de definición',
+          copy: 'Convertimos la idea en una propuesta clara, priorizamos lo esencial y construimos un prototipo para tomar decisiones con algo real frente a nosotros.',
+          focus: 'Problema · usuario · oportunidad',
+          output: 'Ruta de producto y prototipo'
+        },
+        order: {
+          label: 'Punto de partida recomendado / 02',
+          title: 'Mapa de operación',
+          copy: 'Observamos cómo fluye hoy el trabajo, detectamos fricción y diseñamos un sistema que conecta personas, información y decisiones sin agregar complejidad.',
+          focus: 'Procesos · datos · responsables',
+          output: 'Arquitectura y plan de automatización'
+        },
+        ai: {
+          label: 'Punto de partida recomendado / 03',
+          title: 'Exploración de IA aplicada',
+          copy: 'Evaluamos dónde la inteligencia artificial puede ahorrar tiempo o mejorar una decisión. Empezamos por un caso de uso concreto, medible y conectado con tus datos.',
+          focus: 'Caso de uso · datos · viabilidad',
+          output: 'Prueba funcional y ruta de integración'
+        },
+        evolve: {
+          label: 'Punto de partida recomendado / 04',
+          title: 'Auditoría de producto',
+          copy: 'Revisamos la experiencia, la tecnología y el uso actual para encontrar las mejoras con mayor impacto y ordenar la siguiente etapa de evolución.',
+          focus: 'Experiencia · arquitectura · métricas',
+          output: 'Prioridades y plan de evolución'
+        }
+      };
+      const diagnosticResult = document.getElementById('diagnosticResult');
+      const diagnosticFields = {
+        label: document.getElementById('diagnosticLabel'),
+        title: document.getElementById('diagnosticTitle'),
+        copy: document.getElementById('diagnosticCopy'),
+        focus: document.getElementById('diagnosticFocus'),
+        output: document.getElementById('diagnosticOutput')
+      };
+      document.querySelectorAll('.diagnostic-option').forEach(option => option.addEventListener('click', () => {
+        const content = diagnosticContent[option.dataset.diagnostic];
+        document.querySelectorAll('.diagnostic-option').forEach(item => {
+          const active = item === option;
+          item.classList.toggle('active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        diagnosticResult.classList.add('changing');
+        setTimeout(() => {
+          Object.entries(diagnosticFields).forEach(([key, element]) => { element.textContent = content[key]; });
+          diagnosticResult.classList.remove('changing');
+        }, reduced ? 0 : 170);
+      }));
 
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
