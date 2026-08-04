@@ -1,393 +1,501 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f1eb">
-  <meta name="description" content="TEC Capital crea productos digitales, automatización e inteligencia artificial para empresas que quieren avanzar con claridad.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2efe8">
+  <title>TEC CAPITAL — Diseñamos lo que sigue</title>
+  <meta name="description" content="Estrategia, software, inteligencia artificial y diseño para empresas que quieren avanzar con claridad.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:title" content="TEC Capital — Tecnología con dirección">
-  <meta property="og:description" content="Estrategia, diseño y tecnología para resolver retos reales de negocio.">
-  <meta property="og:url" content="https://teccapitalweb.com/">
-  <meta property="og:image" content="https://teccapitalweb.com/assets/img/studio-collaboration.png">
+  <meta property="og:title" content="TEC CAPITAL — Diseñamos lo que sigue">
+  <meta property="og:description" content="Convertimos ideas, procesos y datos en productos digitales que mueven empresas.">
+  <meta property="og:image" content="assets/img/brand-editorial-white.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TEC Capital — Tecnología con dirección">
-  <meta name="twitter:description" content="Diseñamos tecnología útil, humana y preparada para crecer.">
-  <meta name="twitter:image" content="https://teccapitalweb.com/assets/img/studio-collaboration.png">
-  <link rel="icon" href="assets/img/favicon.ico">
+  <meta name="twitter:title" content="TEC CAPITAL — Diseñamos lo que sigue">
+  <meta name="twitter:description" content="Estrategia, software, inteligencia artificial y diseño.">
+  <meta name="twitter:image" content="assets/img/brand-editorial-white.png">
+  <link rel="icon" type="image/png" href="assets/img/logo-t-hd.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <title>TEC Capital — Tecnología con dirección</title>
-  <script>document.documentElement.classList.add('js')</script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper: #f3f1eb;
-      --paper-2: #e9e6df;
-      --ink: #111317;
-      --soft: #5d626a;
-      --blue: #1f5eff;
-      --line: rgba(17, 19, 23, .18);
-      --white: #fff;
-      --sans: "Manrope", Arial, sans-serif;
-      --serif: "Instrument Serif", Georgia, serif;
-      --mono: "Roboto Mono", monospace;
-      --wrap: min(1440px, calc(100vw - 72px));
+      --paper: #f2efe8;
+      --paper-deep: #e7e3db;
+      --white: #faf9f6;
+      --ink: #121416;
+      --ink-soft: #282c30;
+      --blue: #1558e8;
+      --blue-dark: #0d41b5;
+      --muted: #6f726f;
+      --line: rgba(18, 20, 22, .18);
+      --line-soft: rgba(18, 20, 22, .1);
+      --sans: 'Manrope', sans-serif;
+      --display: 'Urbanist', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --wrap: 1340px;
+      --ease: cubic-bezier(.2, .76, .22, 1);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--paper); }
-    body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
     body.menu-open { overflow: hidden; }
-    ::selection { color: #fff; background: var(--blue); }
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
     button { color: inherit; font: inherit; }
-    .wrap { width: var(--wrap); margin-inline: auto; position: relative; }
-    .skip { position: fixed; left: 16px; top: -60px; z-index: 200; padding: 12px 16px; background: var(--ink); color: #fff; }
-    .skip:focus { top: 16px; }
-    .progress { position: fixed; inset: 0 auto auto 0; z-index: 190; width: 0; height: 3px; background: var(--blue); }
-    .cursor-dot { position: fixed; z-index: 180; width: 10px; height: 10px; border-radius: 50%; pointer-events: none; background: var(--blue); transform: translate(-50%, -50%); mix-blend-mode: multiply; transition: width .18s, height .18s, opacity .18s; }
-    .cursor-dot.active { width: 44px; height: 44px; opacity: .2; }
-    .kicker { display: flex; align-items: center; gap: 12px; margin: 0; font: 500 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-    .kicker::before { content: ""; width: 30px; height: 1px; background: currentColor; }
-    .kicker.blue { color: var(--blue); }
+    img { display: block; max-width: 100%; }
+    ::selection { color: #fff; background: var(--blue); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .wrap { width: min(var(--wrap), calc(100% - 64px)); margin-inline: auto; }
+    .section { padding: clamp(92px, 10vw, 150px) 0; }
+    .section-rule { border-top: 1px solid var(--line); }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; font: 500 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--blue); }
+    .display { margin: 0; font-family: var(--display); font-weight: 600; line-height: .91; letter-spacing: -.064em; }
+    .section-title { max-width: 970px; margin-bottom: 32px; font-size: clamp(3rem, 7vw, 7.4rem); }
+    .section-copy { max-width: 620px; margin: 0; color: var(--muted); font-size: clamp(1rem, 1.45vw, 1.18rem); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .progress { position: fixed; top: 0; left: 0; z-index: 200; width: 0; height: 3px; background: var(--blue); }
 
-    .header { position: fixed; inset: 0 0 auto; z-index: 150; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s; }
-    .header.scrolled { background: rgba(243,241,235,.9); border-color: var(--line); backdrop-filter: blur(18px); }
-    .nav { width: var(--wrap); height: 78px; margin: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
-    .brand { justify-self: start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: -.02em; }
-    .brand img { width: 22px; height: 32px; object-fit: contain; }
-    .nav-links { display: flex; align-items: center; gap: 34px; color: #3e4249; font-size: 11px; font-weight: 600; }
-    .nav-links a { position: relative; padding: 8px 0; }
-    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 3px; height: 1px; background: var(--blue); transition: right .25s; }
-    .nav-links a:hover::after { right: 0; }
-    .nav-action { justify-self: end; display: inline-flex; align-items: center; gap: 10px; font: 500 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-    .nav-action i { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2.4s ease infinite; }
-    .menu { display: none; justify-self: end; width: 44px; height: 44px; padding: 10px; border: 0; background: none; }
-    .menu span { display: block; height: 1px; margin: 6px 0; background: currentColor; }
+    .btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 54px; padding: 0 22px; border: 1px solid var(--ink); border-radius: 0; font-size: .78rem; font-weight: 700; transition: color .25s, background .25s, transform .25s var(--ease); }
+    .btn::after { content: '↗'; font-family: var(--mono); font-size: 1rem; transition: transform .25s var(--ease); }
+    .btn:hover { color: var(--paper); background: var(--ink); transform: translateY(-3px); }
+    .btn:hover::after { transform: translate(3px, -3px); }
+    .btn-blue { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .btn-blue:hover { border-color: var(--ink); background: var(--ink); }
 
-    .hero { min-height: 100svh; padding: 118px 0 42px; border-bottom: 1px solid var(--line); }
-    .hero-grid { min-height: calc(100svh - 160px); display: grid; grid-template-columns: 44% 56%; grid-template-rows: 1fr auto; }
-    .hero-copy { z-index: 3; align-self: center; padding: 50px 0 40px; }
-    .hero h1 { width: 128%; margin: 32px 0; font-size: clamp(64px, 8.3vw, 150px); font-weight: 500; line-height: .82; letter-spacing: -.075em; }
-    .hero h1 span { display: block; color: var(--blue); font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.045em; }
-    .hero-lead { max-width: 460px; margin: 0; color: var(--soft); font-size: 15px; line-height: 1.7; }
-    .hero-actions { display: flex; align-items: center; gap: 18px; margin-top: 30px; }
-    .button { min-height: 50px; padding: 0 20px; border: 1px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; gap: 24px; background: transparent; font-size: 11px; font-weight: 700; transition: color .25s, background .25s, transform .25s; }
-    .button.primary { border-color: var(--blue); color: #fff; background: var(--blue); }
-    .button:hover { color: #fff; background: var(--ink); transform: translateY(-3px); }
-    .button.primary:hover { color: var(--ink); background: transparent; }
-    .text-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 700; }
-    .hero-media { position: relative; align-self: stretch; overflow: hidden; background: #d9d3c7; clip-path: inset(0 100% 0 0); animation: imageIn 1.25s .2s cubic-bezier(.2,.7,.2,1) forwards; }
-    .hero-media picture { display: block; width: 100%; height: 100%; }
-    .hero-media img { width: 100%; height: 100%; min-height: 650px; object-fit: cover; object-position: center; transform: scale(1.045); animation: imageSettle 1.5s .25s cubic-bezier(.2,.7,.2,1) forwards; }
-    .hero-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(17,19,23,.2); pointer-events: none; }
-    .media-tag { position: absolute; z-index: 2; left: 20px; bottom: 20px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.65); color: #fff; background: rgba(17,19,23,.28); backdrop-filter: blur(10px); font: 400 9px/1 var(--mono); text-transform: uppercase; }
-    .media-count { position: absolute; z-index: 2; right: 20px; top: 20px; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--blue); font: 500 10px/1 var(--mono); }
-    .hero-bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 44% 56%; padding-top: 26px; }
-    .hero-code { color: #70747b; font: 400 9px/1 var(--mono); text-transform: uppercase; }
-    .hero-facts { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .fact { padding-left: 22px; border-left: 1px solid var(--line); }
-    .fact strong { display: block; margin-bottom: 5px; font-size: 14px; }
-    .fact span { color: #747982; font: 400 9px/1.4 var(--mono); text-transform: uppercase; }
+    /* Header */
+    .header { position: fixed; inset: 0 0 auto; z-index: 100; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s; }
+    .header.scrolled { border-color: var(--line-soft); background: rgba(242, 239, 232, .9); backdrop-filter: blur(18px); }
+    .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 86px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; justify-self: start; position: relative; z-index: 102; }
+    .brand img { width: 38px; height: 42px; object-fit: contain; }
+    .brand strong { font-family: var(--display); font-size: .92rem; font-weight: 700; letter-spacing: -.02em; }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; }
+    .nav-links a { position: relative; font-size: .73rem; font-weight: 600; }
+    .nav-links a::after { content: ''; position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-contact { justify-self: end; display: inline-flex; align-items: center; gap: 10px; font: 500 .68rem var(--mono); text-transform: uppercase; }
+    .nav-contact i { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: blink 2.2s infinite; }
+    @keyframes blink { 50% { opacity: .28; } }
+    .menu-toggle { display: none; position: relative; z-index: 102; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .menu-toggle span { position: absolute; left: 12px; width: 19px; height: 1px; background: var(--ink); transition: transform .3s, top .3s; }
+    .menu-toggle span:first-child { top: 17px; }
+    .menu-toggle span:last-child { top: 25px; }
+    .menu-toggle[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
 
-    .statement { padding: 150px 0; overflow: hidden; }
-    .statement-grid { display: grid; grid-template-columns: 25% 75%; gap: 30px; }
-    .statement h2 { margin: 0; max-width: 1080px; font-size: clamp(54px, 7vw, 116px); font-weight: 500; line-height: .95; letter-spacing: -.065em; }
-    .statement h2 em { color: var(--blue); font-family: var(--serif); font-weight: 400; }
-    .statement-note { grid-column: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; max-width: 760px; margin: 50px 0 0 auto; }
-    .statement-note p { margin: 0; color: var(--soft); font-size: 14px; line-height: 1.75; }
+    /* Hero */
+    .hero { min-height: 100svh; display: grid; align-items: start; padding: 112px 0 40px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: clamp(30px, 5vw, 80px); align-items: end; }
+    .hero-label { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; font: 400 .68rem var(--mono); letter-spacing: .11em; text-transform: uppercase; }
+    .hero-label::before { content: ''; width: 30px; height: 1px; background: var(--ink); }
+    .hero h1 { max-width: 940px; font-size: clamp(4.6rem, 10.4vw, 10.7rem); }
+    .hero-line { display: block; overflow: hidden; }
+    .hero-line:last-child { margin-bottom: -.12em; padding-bottom: .12em; }
+    .hero-word { display: block; transform: translateY(112%); animation: intro .95s var(--ease) forwards; }
+    .hero-line:nth-child(2) .hero-word { color: var(--blue); animation-delay: .12s; }
+    @keyframes intro { to { transform: none; } }
+    .hero-bottom { display: grid; grid-template-columns: .88fr 1.12fr; gap: 28px; align-items: end; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .hero-index { font: 400 .68rem var(--mono); color: var(--muted); }
+    .hero-copy p { max-width: 570px; margin: 0 0 28px; font-size: clamp(1.02rem, 1.7vw, 1.28rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-    .services { padding: 120px 0; color: #fff; background: var(--ink); }
-    .services-head { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 40px; margin-bottom: 70px; }
-    .services h2 { margin: 0; font-size: clamp(52px, 6.5vw, 104px); font-weight: 500; line-height: .9; letter-spacing: -.06em; }
-    .services h2 em { color: #70a0ff; font-family: var(--serif); font-weight: 400; }
-    .services-head p { max-width: 470px; margin: 0 0 8px auto; color: #989da7; line-height: 1.7; }
-    .service-list { border-top: 1px solid rgba(255,255,255,.22); }
-    .service { position: relative; display: grid; grid-template-columns: 90px 1fr 1fr 36px; gap: 24px; align-items: center; min-height: 126px; border-bottom: 1px solid rgba(255,255,255,.18); overflow: hidden; }
-    .service::before { content: ""; position: absolute; inset: 0; background: var(--blue); transform: translateY(101%); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
-    .service:hover::before { transform: none; }
-    .service > * { position: relative; z-index: 1; }
-    .service small { color: #77808d; font: 400 10px/1 var(--mono); transition: color .3s; }
-    .service h3 { margin: 0; font-size: clamp(24px, 3vw, 46px); font-weight: 500; letter-spacing: -.045em; }
-    .service p { max-width: 420px; margin: 0; color: #8e949f; font-size: 12px; line-height: 1.65; transition: color .3s; }
-    .service i { font-style: normal; font-size: 18px; }
-    .service:hover small, .service:hover p { color: rgba(255,255,255,.8); }
+    .hero-art { position: relative; min-height: 620px; perspective: 1100px; }
+    .art-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, transparent, #000 17%, #000 82%, transparent); }
+    .art-number { position: absolute; top: 8px; right: 0; font: 300 .66rem var(--mono); color: var(--muted); writing-mode: vertical-rl; }
+    .mark-scene { position: absolute; top: 50%; left: 50%; width: 390px; height: 500px; transform: translate(-50%, -50%) rotateX(var(--rx, 1deg)) rotateY(var(--ry, -8deg)); transform-style: preserve-3d; transition: transform .3s ease-out; }
+    .mark-scene img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(18px 24px 20px rgba(18, 20, 22, .18)); }
+    .art-note { position: absolute; padding: 11px 14px; border: 1px solid var(--line); background: rgba(242, 239, 232, .84); backdrop-filter: blur(8px); font: 400 .61rem var(--mono); text-transform: uppercase; }
+    .note-a { top: 22%; left: -2%; }
+    .note-b { right: -1%; bottom: 24%; }
+    .art-caption { position: absolute; right: 0; bottom: 0; display: flex; justify-content: space-between; width: 66%; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font: 400 .59rem var(--mono); text-transform: uppercase; }
 
-    .work { padding: 140px 0; }
-    .section-top { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; margin-bottom: 52px; }
-    .section-top h2 { margin: 24px 0 0; font-size: clamp(58px, 7vw, 112px); font-weight: 500; line-height: .88; letter-spacing: -.07em; }
-    .section-top h2 em { color: var(--blue); font-family: var(--serif); font-weight: 400; }
-    .section-top p { width: 310px; margin: 0 0 8px; color: var(--soft); font-size: 13px; line-height: 1.65; }
-    .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .project { position: relative; min-height: 590px; overflow: hidden; border: 1px solid var(--line); background: #e7e3dc; }
-    .project:nth-child(1), .project:nth-child(4) { grid-column: span 7; }
-    .project:nth-child(2), .project:nth-child(3) { grid-column: span 5; }
-    .project.blue { color: #fff; border-color: transparent; background: var(--blue); }
-    .project.dark { color: #fff; border-color: transparent; background: #17191d; }
-    .project-top { position: absolute; z-index: 3; inset: 20px 20px auto; display: flex; justify-content: space-between; font: 400 9px/1 var(--mono); text-transform: uppercase; }
-    .project-visual { position: absolute; inset: 55px 20px 130px; display: grid; place-items: center; }
-    .project-visual img { width: min(88%, 560px); height: min(90%, 380px); object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0,0,0,.17)); transition: transform .65s cubic-bezier(.2,.7,.2,1); }
-    .project:hover .project-visual img { transform: translateY(-10px) scale(1.035); }
-    .project-info { position: absolute; z-index: 3; inset: auto 20px 22px; }
-    .project-info h3 { margin: 0 0 8px; font-size: clamp(35px, 4vw, 62px); font-weight: 500; line-height: .95; letter-spacing: -.06em; }
-    .project-info p { max-width: 470px; margin: 0; color: #686d74; font-size: 11px; }
-    .project.blue .project-info p, .project.dark .project-info p { color: rgba(255,255,255,.7); }
-    .project-number { position: absolute; right: 18px; bottom: 18px; color: rgba(17,19,23,.18); font: 400 72px/1 var(--serif); }
-    .project.blue .project-number, .project.dark .project-number { color: rgba(255,255,255,.2); }
+    .ticker { overflow: hidden; border-block: 1px solid var(--ink); background: var(--blue); color: #fff; }
+    .ticker-row { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+    .ticker-track { display: flex; align-items: center; gap: 38px; padding: 16px 19px; font: 400 .7rem var(--mono); letter-spacing: .1em; white-space: nowrap; text-transform: uppercase; }
+    .ticker-track i { width: 6px; height: 6px; background: #fff; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
 
-    .method { padding: 135px 0; border-top: 1px solid var(--line); background: var(--paper-2); }
-    .method-grid { display: grid; grid-template-columns: 42% 58%; gap: 60px; }
-    .method-copy { align-self: start; position: sticky; top: 120px; }
-    .method h2 { margin: 28px 0 26px; font-size: clamp(56px, 6.5vw, 104px); font-weight: 500; line-height: .88; letter-spacing: -.07em; }
-    .method h2 em { color: var(--blue); font-family: var(--serif); font-weight: 400; }
-    .method-copy > p { max-width: 450px; color: var(--soft); font-size: 14px; line-height: 1.75; }
-    .steps { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
-    .step { display: grid; grid-template-columns: 60px 1fr; gap: 26px; padding: 38px 0; border-bottom: 1px solid var(--line); }
-    .step small { color: var(--blue); font: 500 10px/1.5 var(--mono); }
-    .step h3 { margin: 0 0 10px; font-size: 25px; font-weight: 600; letter-spacing: -.04em; }
-    .step p { max-width: 500px; margin: 0; color: var(--soft); font-size: 13px; line-height: 1.7; }
+    /* Statement */
+    .statement-grid { display: grid; grid-template-columns: .5fr 1.5fr; gap: 70px; }
+    .statement-label { font: 400 .68rem var(--mono); text-transform: uppercase; }
+    .statement-main { font-family: var(--display); font-size: clamp(2.5rem, 5.3vw, 6rem); font-weight: 500; line-height: 1.02; letter-spacing: -.052em; }
+    .statement-main em { color: var(--blue); font-style: normal; }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 80px; border-top: 1px solid var(--line); }
+    .principle { min-height: 230px; padding: 26px 28px 18px 0; border-right: 1px solid var(--line); }
+    .principle + .principle { padding-left: 28px; }
+    .principle:last-child { border: 0; }
+    .principle small { display: block; margin-bottom: 54px; font: 400 .63rem var(--mono); color: var(--blue); }
+    .principle h3 { margin: 0 0 12px; font-family: var(--display); font-size: 1.45rem; letter-spacing: -.03em; }
+    .principle p { max-width: 320px; margin: 0; color: var(--muted); font-size: .86rem; }
 
-    .clients { padding: 130px 0; background: #fff; }
-    .clients-head { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: end; margin-bottom: 52px; }
-    .clients h2 { margin: 26px 0 0; font-size: clamp(52px, 6.4vw, 100px); font-weight: 500; line-height: .9; letter-spacing: -.065em; }
-    .clients-head p { max-width: 470px; margin: 0 0 6px auto; color: var(--soft); line-height: 1.7; }
+    /* Capabilities */
+    .capabilities { color: var(--paper); background: var(--ink); }
+    .capabilities .eyebrow::before { background: #4e7fff; }
+    .capabilities .section-copy { color: #9a9d9d; }
+    .cap-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; align-items: end; margin-bottom: 75px; }
+    .cap-head .section-title { margin-bottom: 0; }
+    .cap-list { border-top: 1px solid rgba(255, 255, 255, .2); }
+    .cap-row { position: relative; display: grid; grid-template-columns: 80px 1fr .9fr 50px; gap: 28px; align-items: center; min-height: 152px; border-bottom: 1px solid rgba(255, 255, 255, .2); overflow: hidden; transition: padding .4s var(--ease), color .3s; }
+    .cap-row::before { content: ''; position: absolute; inset: 0; z-index: 0; background: var(--blue); transform: translateY(102%); transition: transform .45s var(--ease); }
+    .cap-row:hover::before { transform: none; }
+    .cap-row > * { position: relative; z-index: 1; }
+    .cap-row small { font: 300 .67rem var(--mono); color: #777; transition: color .3s; }
+    .cap-row h3 { margin: 0; font-family: var(--display); font-size: clamp(1.7rem, 3.8vw, 3.7rem); font-weight: 500; letter-spacing: -.045em; }
+    .cap-row p { margin: 0; color: #979a99; font-size: .85rem; transition: color .3s; }
+    .cap-row span { font-size: 1.4rem; transition: transform .35s var(--ease); }
+    .cap-row:hover small, .cap-row:hover p { color: #fff; }
+    .cap-row:hover span { transform: rotate(45deg); }
+
+    /* Work */
+    .work-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 58px; }
+    .work-head .section-title { margin-bottom: 0; }
+    .work-count { padding-bottom: 10px; font: 400 .67rem var(--mono); color: var(--muted); }
+    .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .work-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 390px; padding: 28px; overflow: hidden; border: 1px solid var(--line); background: var(--white); transition: transform .35s var(--ease), box-shadow .35s; }
+    .work-card:nth-child(1), .work-card:nth-child(4) { grid-column: span 7; }
+    .work-card:nth-child(2), .work-card:nth-child(3) { grid-column: span 5; }
+    .work-card:hover { transform: translateY(-8px); box-shadow: 0 24px 55px rgba(32, 34, 37, .1); }
+    .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .work-meta { position: relative; z-index: 2; display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
+    .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
+    .work-mark { position: absolute; z-index: 1; top: 47.5%; left: 50%; width: min(56%, 260px); height: 230px; object-fit: contain; transform: translate(-50%, -50%) scale(.95); filter: drop-shadow(0 18px 16px rgba(18, 20, 22, .16)); transition: transform .55s var(--ease), filter .55s var(--ease); }
+    .work-mark.wide { width: min(72%, 330px); }
+    .work-card:hover .work-mark { transform: translate(-50%, -52%) scale(1.04); filter: drop-shadow(0 25px 22px rgba(18, 20, 22, .22)); }
+    .work-card.blue .work-mark { filter: drop-shadow(0 18px 16px rgba(4, 18, 54, .3)); }
+    .work-card.blue:hover .work-mark { filter: drop-shadow(0 25px 22px rgba(4, 18, 54, .4)); }
+    .work-bottom { position: relative; z-index: 2; }
+    .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
+    .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
+    .work-card.blue .work-bottom p { color: rgba(255, 255, 255, .7); }
+
+    /* Brand poster */
+    .poster-section { padding: 0 0 clamp(92px, 10vw, 150px); }
+    .poster-frame { position: relative; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
+    .poster-frame img { width: 100%; height: auto; object-fit: contain; transition: transform 1.2s var(--ease); }
+    .poster-frame:hover img { transform: scale(1.018); }
+    .poster-caption { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0 0; font: 400 .61rem var(--mono); color: var(--muted); text-transform: uppercase; }
+
+    /* Method */
+    .method-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(60px, 10vw, 150px); }
+    .method-intro { position: sticky; top: 128px; align-self: start; }
+    .method-intro h2 { margin: 0 0 25px; font-size: clamp(3rem, 6vw, 6rem); }
+    .method-intro p { color: var(--muted); }
+    .steps { counter-reset: steps; border-top: 1px solid var(--line); }
+    .step { counter-increment: steps; display: grid; grid-template-columns: 70px 1fr; gap: 30px; padding: 34px 0 55px; border-bottom: 1px solid var(--line); }
+    .step::before { content: '0' counter(steps); font: 400 .65rem var(--mono); color: var(--blue); }
+    .step h3 { margin: 0 0 14px; font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.7rem); font-weight: 500; letter-spacing: -.04em; }
+    .step p { max-width: 550px; margin: 0; color: var(--muted); font-size: .9rem; }
+
+    /* Clients */
+    .clients { background: var(--paper-deep); }
+    .clients-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 60px; }
+    .clients-head h2 { margin: 0; font-size: clamp(2.8rem, 6vw, 6.2rem); }
+    .clients-head p { max-width: 510px; justify-self: end; margin: 0; color: var(--muted); }
     .logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-    .logo { position: relative; min-height: 175px; display: grid; place-items: center; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .logo::after { content: attr(data-id); position: absolute; top: 12px; right: 12px; color: #92969d; font: 400 8px/1 var(--mono); }
-    .logo img { max-width: 150px; max-height: 64px; object-fit: contain; filter: grayscale(1); opacity: .63; transition: filter .3s, opacity .3s, transform .3s; }
-    .logo:hover img { filter: none; opacity: 1; transform: scale(1.05); }
+    .logo-cell { display: grid; place-items: center; min-height: 150px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, .12); transition: background .3s; }
+    .logo-cell:hover { background: var(--white); }
+    .logo-cell img { max-width: 170px; max-height: 68px; object-fit: contain; filter: grayscale(1); opacity: .72; transition: filter .3s, opacity .3s, transform .3s; }
+    .logo-cell:hover img { filter: none; opacity: 1; transform: scale(1.04); }
 
+    /* Contact and footer */
     .contact { color: #fff; background: var(--blue); }
-    .contact-grid { min-height: 610px; display: grid; grid-template-columns: 1fr 1fr; align-items: end; padding: 90px 0 70px; }
-    .contact h2 { margin: 28px 0 0; font-size: clamp(68px, 8.8vw, 148px); font-weight: 500; line-height: .8; letter-spacing: -.075em; }
-    .contact h2 em { font-family: var(--serif); font-weight: 400; }
-    .contact-side { justify-self: end; max-width: 470px; }
-    .contact-side p { margin: 0 0 30px; color: rgba(255,255,255,.8); line-height: 1.7; }
-    .contact .button { border-color: #fff; color: var(--blue); background: #fff; }
-    .contact .button:hover { color: #fff; background: transparent; }
-
-    footer { padding: 30px 0; color: #747982; background: var(--ink); }
-    .footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; font: 400 9px/1 var(--mono); text-transform: uppercase; }
-    .footer strong { color: #fff; font-family: var(--sans); font-size: 12px; }
+    .contact-top { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: end; }
+    .contact h2 { margin: 0; font-size: clamp(4rem, 10vw, 10.8rem); }
+    .contact-side p { margin: 0 0 30px; color: rgba(255, 255, 255, .74); font-size: 1.05rem; }
+    .contact .btn { color: #fff; border-color: rgba(255, 255, 255, .7); }
+    .contact .btn:hover { color: var(--ink); background: #fff; }
+    .contact-info { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 100px; border-top: 1px solid rgba(255, 255, 255, .35); }
+    .contact-item { padding: 22px 28px 0 0; border-right: 1px solid rgba(255, 255, 255, .35); }
+    .contact-item + .contact-item { padding-left: 28px; }
+    .contact-item:last-child { border: 0; }
+    .contact-item small { display: block; margin-bottom: 13px; font: 400 .59rem var(--mono); color: rgba(255, 255, 255, .55); text-transform: uppercase; }
+    .contact-item a, .contact-item span { font-size: .83rem; }
+    footer { color: #aaa; background: var(--ink); }
+    .footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 92px; font: 400 .59rem var(--mono); text-transform: uppercase; }
+    .footer .brand strong { color: var(--paper); }
+    .footer .brand img { filter: brightness(0) invert(1); }
     .footer-links { display: flex; gap: 24px; }
-    .footer span { justify-self: end; }
+    .footer-links a:hover { color: #fff; }
+    .whatsapp { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 0 18px; color: #fff; background: var(--ink); font: 500 .63rem var(--mono); text-transform: uppercase; transition: background .25s, transform .25s; }
+    .whatsapp::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #50d890; }
+    .whatsapp:hover { background: var(--blue); transform: translateY(-3px); }
 
-    .reveal { opacity: 1; transform: none; }
-    .js .reveal { opacity: 0; transform: translateY(32px); transition: opacity .75s ease, transform .85s cubic-bezier(.2,.7,.2,1); }
-    .js .reveal.in { opacity: 1; transform: none; }
-    .js .delay { transition-delay: .12s; }
-
-    @keyframes blink { 50% { opacity: .25; transform: scale(.75); } }
-    @keyframes imageIn { to { clip-path: inset(0); } }
-    @keyframes imageSettle { to { transform: scale(1); } }
-
-    @media (max-width: 1050px) {
-      :root { --wrap: min(100% - 42px, 1440px); }
+    @media (max-width: 1120px) {
       .nav { grid-template-columns: 1fr auto; }
-      .nav-links, .nav-action { display: none; }
-      .menu { display: block; }
-      .nav-links.open { position: fixed; inset: 78px 0 0; display: flex; flex-direction: column; justify-content: center; gap: 28px; background: rgba(243,241,235,.98); font-size: 27px; }
+      .nav-links { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; flex-direction: column; gap: 0; padding: 120px 32px 50px; background: var(--paper); opacity: 0; pointer-events: none; transform: translateY(-20px); transition: opacity .3s, transform .3s; }
+      .nav-links.open { opacity: 1; pointer-events: auto; transform: none; }
+      .nav-links a { width: 100%; padding: 14px 0; border-bottom: 1px solid var(--line); font: 600 clamp(2rem, 8vw, 4rem) var(--display); letter-spacing: -.04em; }
+      .nav-contact { display: none; }
+      .menu-toggle { display: block; }
       .hero-grid { grid-template-columns: 1fr; }
-      .hero-copy { padding-bottom: 48px; }
-      .hero h1 { width: 100%; max-width: 900px; }
-      .hero-media { min-height: 640px; }
-      .hero-bottom { grid-template-columns: 1fr; gap: 20px; }
-      .hero-facts { max-width: 640px; }
-      .statement-grid { grid-template-columns: 1fr; }
-      .statement h2, .statement-note { grid-column: 1; }
-      .services-head { grid-template-columns: 1fr; }
-      .services-head p { margin-left: 0; }
-      .service { grid-template-columns: 60px 1fr 1fr 28px; }
-      .project:nth-child(n) { grid-column: span 6; }
-      .method-grid { grid-template-columns: 1fr; }
-      .method-copy { position: static; }
+      .hero-art { min-height: 540px; }
+      .hero-bottom { grid-template-columns: 120px 1fr; }
+      .statement-grid, .method-grid { grid-template-columns: 1fr; }
+      .method-intro { position: static; }
+      .cap-head, .clients-head, .contact-top { grid-template-columns: 1fr; }
+      .cap-head { gap: 25px; }
+      .cap-row { grid-template-columns: 55px 1fr .9fr 35px; }
+      .work-card:nth-child(n) { grid-column: span 6; }
       .logo-grid { grid-template-columns: repeat(3, 1fr); }
-      .contact-grid { grid-template-columns: 1fr; gap: 70px; }
-      .contact-side { justify-self: start; }
+      .clients-head p { justify-self: start; }
+      .contact-side { max-width: 560px; }
     }
 
     @media (max-width: 680px) {
-      :root { --wrap: calc(100vw - 28px); }
-      .cursor-dot { display: none; }
-      .nav { height: 68px; }
-      .nav-links.open { top: 68px; }
-      .hero { padding-top: 90px; }
-      .hero-grid { min-height: auto; }
-      .hero-copy { padding-top: 38px; }
-      .hero h1 { font-size: clamp(60px, 19vw, 92px); }
-      .hero-lead { max-width: 360px; }
-      .hero-actions { align-items: flex-start; flex-direction: column; }
-      .hero-media, .hero-media img { min-height: 470px; }
-      .hero-facts { grid-template-columns: 1fr; gap: 18px; }
-      .fact { padding-left: 14px; }
-      .statement, .services, .work, .method, .clients { padding: 88px 0; }
-      .statement-note, .clients-head { grid-template-columns: 1fr; }
-      .statement-note { margin-top: 32px; }
-      .service { grid-template-columns: 42px 1fr 26px; min-height: 112px; }
-      .service p { display: none; }
-      .service h3 { font-size: 27px; }
-      .section-top { grid-template-columns: 1fr; }
-      .section-top p { width: auto; max-width: 360px; }
-      .project-grid { display: block; }
-      .project { min-height: 470px; margin-bottom: 14px; }
-      .project-visual { inset: 54px 12px 120px; }
-      .project-info h3 { font-size: 42px; }
-      .step { grid-template-columns: 42px 1fr; gap: 16px; padding: 28px 0; }
-      .logo-grid { grid-template-columns: 1fr 1fr; }
-      .logo { min-height: 125px; padding: 22px; }
-      .contact-grid { min-height: 610px; padding: 80px 0 60px; }
-      .contact h2 { font-size: clamp(68px, 22vw, 108px); }
-      .footer { grid-template-columns: 1fr; gap: 22px; text-align: center; }
-      .footer-links { justify-content: center; }
-      .footer span { justify-self: center; }
+      .wrap { width: min(var(--wrap), calc(100% - 30px)); }
+      .nav { height: 70px; }
+      .hero { min-height: auto; padding-top: 118px; }
+      .hero h1 { font-size: clamp(4rem, 20vw, 6.3rem); }
+      .hero-bottom { grid-template-columns: 1fr; margin-top: 32px; }
+      .hero-index { display: none; }
+      .hero-actions .btn { width: 100%; }
+      .hero-art { min-height: 440px; }
+      .mark-scene { width: 290px; height: 400px; transform: translate(-50%, -50%) scale(.8); }
+      .note-a { left: 0; }
+      .note-b { right: 0; }
+      .art-caption { width: 100%; }
+      .section { padding: 88px 0; }
+      .section-title { font-size: clamp(3.2rem, 15vw, 5.2rem); }
+      .statement-main { font-size: clamp(2.4rem, 11vw, 3.8rem); }
+      .principles { grid-template-columns: 1fr; }
+      .principle, .principle + .principle { min-height: auto; padding: 26px 0 32px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .principle small { margin-bottom: 26px; }
+      .cap-row { grid-template-columns: 38px 1fr 28px; gap: 12px; min-height: 125px; }
+      .cap-row p { display: none; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card:nth-child(n) { grid-column: 1 / -1; min-height: 340px; }
+      .work-mark { top: 45.5%; width: min(58%, 230px); height: 195px; }
+      .work-mark.wide { width: min(76%, 290px); }
+      .work-head { display: block; }
+      .work-count { margin-top: 20px; }
+      .poster-frame img { min-height: 0; object-position: center; }
+      .poster-caption { align-items: flex-start; flex-direction: column; }
+      .step { grid-template-columns: 42px 1fr; gap: 12px; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .logo-cell { min-height: 118px; padding: 18px; }
+      .logo-cell img { max-width: 140px; max-height: 56px; }
+      .contact h2 { font-size: clamp(4rem, 20vw, 6.5rem); }
+      .contact-info { grid-template-columns: 1fr; margin-top: 65px; }
+      .contact-item, .contact-item + .contact-item { padding: 20px 0; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, .35); }
+      .footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 28px 0 90px; }
+      .footer-links { flex-wrap: wrap; }
+      .whatsapp { right: 14px; bottom: 14px; }
+      .whatsapp { width: 48px; padding: 0; justify-content: center; font-size: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .cursor-dot { display: none; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .hero-word { transform: none; }
     }
   </style>
 </head>
 <body>
-  <a class="skip" href="#contenido">Saltar al contenido</a>
-  <div class="progress" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <header class="header">
-    <nav class="nav" aria-label="Navegación principal">
-      <a class="brand" href="#inicio" aria-label="TEC Capital, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="22" height="32"><span>TEC CAPITAL</span></a>
-      <div class="nav-links" id="nav-links"><a href="#servicios">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#metodo">Método</a><a href="#clientes">Clientes</a></div>
-      <a class="nav-action" href="mailto:contacto@teccapitalweb.com"><i></i> Iniciar un proyecto</a>
-      <button class="menu" type="button" aria-label="Abrir menú" aria-controls="nav-links" aria-expanded="false"><span></span><span></span></button>
-    </nav>
+  <header class="header" id="header">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#capacidades">Capacidades</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#metodo">Método</a>
+        <a href="#clientes">Clientes</a>
+      </nav>
+      <a class="nav-contact" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener"><i></i>Iniciar un proyecto</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </div>
   </header>
 
-  <main id="contenido">
+  <main>
     <section class="hero" id="inicio">
       <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="kicker blue reveal">Tecnología con dirección</p>
-          <h1 class="reveal">Hacemos que <span>lo complejo</span> funcione.</h1>
-          <p class="hero-lead reveal delay">Convertimos ideas, procesos y datos en productos digitales claros, útiles y preparados para crecer.</p>
-          <div class="hero-actions reveal delay"><a class="button primary hoverable" href="mailto:contacto@teccapitalweb.com?subject=Quiero%20iniciar%20un%20proyecto">Cuéntanos tu idea <span>↗</span></a><a class="text-link hoverable" href="#proyectos">Ver nuestro trabajo ↓</a></div>
+        <div>
+          <div class="hero-label">Tecnología con dirección</div>
+          <h1 class="display"><span class="hero-line"><span class="hero-word">Diseñamos</span></span><span class="hero-line"><span class="hero-word">lo que sigue.</span></span></h1>
+          <div class="hero-bottom">
+            <span class="hero-index">TC / 2026</span>
+            <div class="hero-copy">
+              <p>Convertimos ideas, procesos y datos en productos digitales claros, útiles y preparados para crecer.</p>
+              <div class="hero-actions"><a class="btn btn-blue" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20tengo%20una%20idea" target="_blank" rel="noopener">Cuéntanos tu idea</a><a class="btn" href="#proyectos">Ver nuestro trabajo</a></div>
+            </div>
+          </div>
         </div>
-        <div class="hero-media">
-          <picture><source srcset="assets/img/studio-collaboration.webp" type="image/webp"><img src="assets/img/studio-collaboration.png" alt="Equipo colaborando alrededor de un producto digital y sus datos"></picture>
-          <span class="media-tag">Producto · Datos · Diseño</span><span class="media-count">01/04</span>
+
+        <div class="hero-art" id="heroArt" aria-label="Símbolo arquitectónico de TEC CAPITAL" role="img">
+          <div class="art-grid" aria-hidden="true"></div>
+          <span class="art-number">MÉXICO · 18.4637° N</span>
+          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"></div>
+          <span class="art-note note-a">Estrategia / 01</span>
+          <span class="art-note note-b">Ejecución / 02</span>
+          <div class="art-caption"><span>Objeto digital</span><span>En movimiento</span></div>
         </div>
-        <div class="hero-bottom"><span class="hero-code">TEC / México / 2026</span><div class="hero-facts"><div class="fact"><strong>Estrategia</strong><span>Antes de construir</span></div><div class="fact"><strong>Diseño</strong><span>Para personas reales</span></div><div class="fact"><strong>Tecnología</strong><span>Lista para crecer</span></div></div></div>
       </div>
     </section>
 
-    <section class="statement">
+    <div class="ticker">
+      <div class="ticker-row">
+        <div class="ticker-track"><span>Software a medida</span><i></i><span>Inteligencia artificial</span><i></i><span>Diseño de producto</span><i></i><span>Infraestructura</span><i></i><span>Automatización</span><i></i></div>
+        <div class="ticker-track" aria-hidden="true"><span>Software a medida</span><i></i><span>Inteligencia artificial</span><i></i><span>Diseño de producto</span><i></i><span>Infraestructura</span><i></i><span>Automatización</span><i></i></div>
+      </div>
+    </div>
+
+    <section class="section">
       <div class="wrap statement-grid">
-        <p class="kicker reveal">Lo que hacemos</p>
-        <h2 class="reveal">Diseñamos tecnología que se entiende, se usa y <em>genera resultados.</em></h2>
-        <div class="statement-note reveal"><p>Unimos negocio, diseño y desarrollo en un mismo equipo para que cada decisión tenga sentido desde el primer día.</p><p>Sin capas innecesarias ni soluciones de moda. Construimos exactamente lo que tu operación necesita para avanzar.</p></div>
-      </div>
-    </section>
-
-    <section class="services" id="servicios">
-      <div class="wrap">
-        <div class="services-head"><div><p class="kicker blue reveal">Capacidades</p><h2 class="reveal">De la idea al <em>sistema.</em></h2></div><p class="reveal">Pensamos el producto completo: qué debe resolver, cómo debe sentirse y qué tecnología necesita para funcionar bien.</p></div>
-        <div class="service-list reveal">
-          <article class="service"><small>01</small><h3>Estrategia de producto</h3><p>Definimos oportunidad, prioridades y una ruta clara antes de invertir en desarrollo.</p><i>↗</i></article>
-          <article class="service"><small>02</small><h3>Diseño UX/UI</h3><p>Creamos experiencias sencillas, consistentes y agradables para quienes realmente las usan.</p><i>↗</i></article>
-          <article class="service"><small>03</small><h3>Software y plataformas</h3><p>Desarrollamos productos web robustos, rápidos y preparados para evolucionar.</p><i>↗</i></article>
-          <article class="service"><small>04</small><h3>IA y automatización</h3><p>Aplicamos datos e inteligencia artificial donde aportan tiempo, control y mejores decisiones.</p><i>↗</i></article>
+        <div class="statement-label reveal">No somos una agencia tradicional.</div>
+        <div>
+          <div class="statement-main reveal">Somos el equipo que conecta <em>negocio, diseño e ingeniería</em> para volver posibles las ideas importantes.</div>
+          <div class="principles reveal">
+            <article class="principle"><small>01 / CLARIDAD</small><h3>Primero entendemos.</h3><p>Antes de escribir código, encontramos el problema que realmente mueve al negocio.</p></article>
+            <article class="principle"><small>02 / PRECISIÓN</small><h3>Diseñamos lo esencial.</h3><p>Cada pantalla, flujo y automatización existe por una razón concreta.</p></article>
+            <article class="principle"><small>03 / IMPACTO</small><h3>Construimos para crecer.</h3><p>Productos sólidos que pueden evolucionar junto con la empresa.</p></article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="work" id="proyectos">
+    <section class="section capabilities" id="capacidades">
       <div class="wrap">
-        <div class="section-top"><div><p class="kicker reveal">Proyectos seleccionados</p><h2 class="reveal">Tecnología <em>en uso.</em></h2></div><p class="reveal">Productos pensados para contextos reales: campo, fitness, operaciones y conocimiento especializado.</p></div>
-        <div class="project-grid">
-          <article class="project reveal"><div class="project-top"><span>Industria avícola</span><span>2026</span></div><div class="project-visual"><img src="assets/img/projects/avigo.png" alt="AviGo, solución digital para la industria avícola" loading="lazy"></div><div class="project-info"><h3>AviGo</h3><p>Operación pecuaria más visible, conectada y fácil de dirigir.</p></div><span class="project-number">01</span></article>
-          <article class="project blue reveal delay"><div class="project-top"><span>SaaS · Fitness</span><span>2026</span></div><div class="project-visual"><img src="assets/img/projects/gymvexa.png" alt="Gymvexa, gestión integral para gimnasios" loading="lazy"></div><div class="project-info"><h3>Gymvexa</h3><p>Control integral para gimnasios que quieren crecer.</p></div><span class="project-number">02</span></article>
-          <article class="project dark reveal"><div class="project-top"><span>Agro · Datos</span><span>2026</span></div><div class="project-visual"><img src="assets/img/projects/agroclub.png" alt="AgroClub, datos y comunidad para el campo" loading="lazy"></div><div class="project-info"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia para el campo mexicano.</p></div><span class="project-number">03</span></article>
-          <article class="project reveal delay"><div class="project-top"><span>Conocimiento · Club</span><span>2026</span></div><div class="project-visual"><img src="assets/img/projects/vision-pecuaria.png" alt="Visión Pecuaria, conocimiento especializado" loading="lazy"></div><div class="project-info"><h3>Visión Pecuaria</h3><p>Conocimiento especializado dentro de una experiencia digital premium.</p></div><span class="project-number">04</span></article>
+        <div class="cap-head reveal">
+          <div><span class="eyebrow">Capacidades</span><h2 class="display section-title">Un equipo.<br>Todo el sistema.</h2></div>
+          <p class="section-copy">Estrategia, experiencia e ingeniería trabajan juntas desde el inicio. Así evitamos soluciones fragmentadas y hacemos que cada inversión tenga sentido.</p>
+        </div>
+        <div class="cap-list reveal">
+          <article class="cap-row"><small>01</small><h3>Producto digital</h3><p>Plataformas, aplicaciones, SaaS y sistemas internos diseñados alrededor de tu operación.</p><span>↗</span></article>
+          <article class="cap-row"><small>02</small><h3>Inteligencia artificial</h3><p>Agentes, asistentes y automatizaciones conectados a datos y procesos reales.</p><span>↗</span></article>
+          <article class="cap-row"><small>03</small><h3>Marca &amp; experiencia</h3><p>Identidades e interfaces que comunican valor con claridad y consistencia.</p><span>↗</span></article>
+          <article class="cap-row"><small>04</small><h3>Cloud &amp; operación</h3><p>Arquitectura, integraciones, seguridad y soporte para mantener todo en movimiento.</p><span>↗</span></article>
         </div>
       </div>
     </section>
 
-    <section class="method" id="metodo">
+    <section class="section" id="proyectos">
+      <div class="wrap">
+        <div class="work-head reveal"><div><span class="eyebrow">Trabajo seleccionado</span><h2 class="display section-title">Tecnología en uso.</h2></div><span class="work-count">04 / ECOSISTEMA TEC CAPITAL</span></div>
+        <div class="work-grid">
+          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><img class="work-mark" src="assets/img/projects/avigo.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><img class="work-mark wide" src="assets/img/projects/gymvexa.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><img class="work-mark" src="assets/img/projects/agroclub.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><img class="work-mark" src="assets/img/projects/vision-pecuaria.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="poster-section" id="identidad">
+      <div class="wrap reveal">
+        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el símbolo T tridimensional blanco y negro" width="1734" height="907" loading="lazy"></div>
+        <div class="poster-caption"><span>TEC CAPITAL · Sistema de identidad 2026</span><span>Claridad / Dirección / Tecnología</span></div>
+      </div>
+    </section>
+
+    <section class="section section-rule" id="metodo">
       <div class="wrap method-grid">
-        <div class="method-copy"><p class="kicker blue reveal">Método TEC</p><h2 class="reveal">Claridad antes de <em>velocidad.</em></h2><p class="reveal">Trabajamos cerca de tu equipo, tomamos decisiones con contexto y construimos por etapas que se pueden ver, probar y mejorar.</p></div>
-        <ol class="steps reveal"><li class="step"><small>01</small><div><h3>Entender</h3><p>Mapeamos el reto, las personas y la operación para encontrar la oportunidad correcta.</p></div></li><li class="step"><small>02</small><div><h3>Definir</h3><p>Convertimos lo aprendido en prioridades, arquitectura y una ruta concreta.</p></div></li><li class="step"><small>03</small><div><h3>Construir</h3><p>Diseñamos y desarrollamos en ciclos cortos con avances visibles y medibles.</p></div></li><li class="step"><small>04</small><div><h3>Mejorar</h3><p>Leemos el uso real del producto y lo hacemos crecer junto con el negocio.</p></div></li></ol>
+        <div class="method-intro reveal"><span class="eyebrow">Nuestro método</span><h2 class="display">Pensar.<br>Hacer.<br>Mejorar.</h2><p>Un proceso sin misterio, diseñado para avanzar con decisiones claras y entregables que funcionan.</p></div>
+        <div class="steps reveal">
+          <article class="step"><div><h3>Entendemos el negocio</h3><p>Hablamos con las personas, revisamos los procesos y alineamos el proyecto con un resultado concreto.</p></div></article>
+          <article class="step"><div><h3>Diseñamos la solución</h3><p>Convertimos la complejidad en una experiencia clara, una arquitectura sólida y un plan realista.</p></div></article>
+          <article class="step"><div><h3>Construimos en ciclos</h3><p>Entregamos avances funcionales, probamos temprano y mantenemos visible el progreso.</p></div></article>
+          <article class="step"><div><h3>Evolucionamos contigo</h3><p>Medimos, aprendemos y mejoramos el producto conforme crecen sus usuarios y el negocio.</p></div></article>
+        </div>
       </div>
     </section>
 
-    <section class="clients" id="clientes">
+    <section class="section clients" id="clientes">
       <div class="wrap">
-        <div class="clients-head"><div><p class="kicker reveal">Confianza</p><h2 class="reveal">Equipos con los que avanzamos.</h2></div><p class="reveal">Experiencia aplicada en salud, agro, industria, educación y servicios profesionales.</p></div>
-        <div class="logo-grid reveal"><div class="logo" data-id="01"><img src="assets/clients/agrotec-america.png" alt="Agrotec América" loading="lazy"></div><div class="logo" data-id="02"><img src="assets/clients/bionova.png" alt="Bionova" loading="lazy"></div><div class="logo" data-id="03"><img src="assets/clients/dermalysse.webp" alt="Dermalysse" loading="lazy"></div><div class="logo" data-id="04"><img src="assets/clients/fisioteck.png" alt="Fisioteck" loading="lazy"></div><div class="logo" data-id="05"><img src="assets/clients/icadem.png" alt="ICADEM" loading="lazy"></div><div class="logo" data-id="06"><img src="assets/clients/imdiil.webp" alt="IMDIIL" loading="lazy"></div><div class="logo" data-id="07"><img src="assets/clients/odonteck.png" alt="Odonteck" loading="lazy"></div><div class="logo" data-id="08"><img src="assets/clients/sinergia-agricola.png" alt="Sinergia Agrícola" loading="lazy"></div><div class="logo" data-id="09"><img src="assets/clients/synova-mexico.png" alt="Synova México" loading="lazy"></div><div class="logo" data-id="10"><img src="assets/clients/vision-pecuaria.png" alt="Visión Pecuaria" loading="lazy"></div><div class="logo" data-id="11"><img src="assets/clients/zoorigen.webp" alt="Zoorigen" loading="lazy"></div><div class="logo" data-id="12"><img src="assets/clients/cliente-industria.webp" alt="Cliente industrial" loading="lazy"></div></div>
+        <div class="clients-head reveal"><h2 class="display">Confianza que se construye trabajando.</h2><p>Empresas de salud, educación, agroindustria y servicios han confiado en TEC CAPITAL para crear y operar sus productos digitales.</p></div>
+        <div class="logo-grid reveal">
+          <div class="logo-cell"><img src="assets/clients/icadem.png" alt="ICADEM" width="1200" height="364" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/synova-mexico.png" alt="Synova México" width="464" height="197" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/odonteck.png" alt="OdonTeck" width="456" height="148" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/fisioteck.png" alt="FisioTeck" width="427" height="118" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/bionova.png" alt="Bionova" width="401" height="132" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/sinergia-agricola.png" alt="Sinergia Agrícola" width="1077" height="417" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/agrotec-america.png" alt="Agrotec América" width="1200" height="261" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/vision-pecuaria.png" alt="Visión Pecuaria" width="1039" height="394" loading="lazy" decoding="async"></div>
+        </div>
       </div>
     </section>
 
-    <section class="contact">
-      <div class="wrap contact-grid"><div><p class="kicker reveal">¿Tienes un reto?</p><h2 class="reveal">Hagamos que <em>avance.</em></h2></div><div class="contact-side reveal"><p>Cuéntanos qué quieres transformar. Te ayudamos a darle forma, dirección y una ejecución tecnológica a la altura.</p><a class="button hoverable" href="mailto:contacto@teccapitalweb.com?subject=Quiero%20iniciar%20un%20proyecto">Iniciar una conversación <span>↗</span></a></div></div>
+    <section class="section contact" id="contacto">
+      <div class="wrap">
+        <div class="contact-top"><h2 class="display reveal">Hagamos<br>que pase.</h2><div class="contact-side reveal"><p>Si tienes una idea, un proceso que ya no funciona o un producto que necesita evolucionar, conversemos.</p><a class="btn" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Iniciar conversación</a></div></div>
+        <div class="contact-info reveal"><div class="contact-item"><small>WhatsApp</small><a href="https://wa.me/5212361112213" target="_blank" rel="noopener">+52 236 111 2213</a></div><div class="contact-item"><small>Correo</small><a href="mailto:teccapitalweb@gmail.com">teccapitalweb@gmail.com</a></div><div class="contact-item"><small>Base</small><span>Tehuacán, Puebla · México</span></div></div>
+      </div>
     </section>
   </main>
 
-  <footer><div class="wrap footer"><strong>TEC CAPITAL</strong><div class="footer-links"><a href="#inicio">Inicio</a><a href="#proyectos">Trabajo</a><a href="mailto:contacto@teccapitalweb.com">Contacto</a></div><span>México · 2026</span></div></footer>
+  <footer>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>
 
   <script>
-    const header = document.querySelector('.header');
-    const progress = document.querySelector('.progress');
-    const cursor = document.querySelector('.cursor-dot');
-    const media = document.querySelector('.hero-media img');
-    const menu = document.querySelector('.menu');
-    const navigation = document.querySelector('.nav-links');
+    (() => {
+      const header = document.getElementById('header');
+      const progress = document.getElementById('progress');
+      const toggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('navLinks');
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function updateScroll() {
-      const y = scrollY;
-      const max = document.documentElement.scrollHeight - innerHeight;
-      header.classList.toggle('scrolled', y > 24);
-      progress.style.width = (max > 0 ? y / max * 100 : 0) + '%';
-      if (media && y < innerHeight && !matchMedia('(prefers-reduced-motion: reduce)').matches) media.style.transform = `scale(1) translateY(${y * .035}px)`;
-    }
-    addEventListener('scroll', updateScroll, { passive: true });
-    updateScroll();
+      function scrollState() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.width = `${max > 0 ? scrollY / max * 100 : 0}%`;
+        header.classList.toggle('scrolled', scrollY > 16);
+      }
+      addEventListener('scroll', scrollState, { passive: true });
+      scrollState();
 
-    addEventListener('pointermove', event => {
-      if (!cursor) return;
-      cursor.style.left = event.clientX + 'px';
-      cursor.style.top = event.clientY + 'px';
-    }, { passive: true });
-    document.querySelectorAll('a, button, .project, .service').forEach(el => {
-      el.addEventListener('pointerenter', () => cursor && cursor.classList.add('active'));
-      el.addEventListener('pointerleave', () => cursor && cursor.classList.remove('active'));
-    });
+      function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        nav.classList.toggle('open', open);
+        document.body.classList.toggle('menu-open', open);
+      }
+      toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+      addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
 
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); }
-    }), { threshold: .11, rootMargin: '0px 0px -35px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 
-    menu.addEventListener('click', () => {
-      const open = navigation.classList.toggle('open');
-      menu.setAttribute('aria-expanded', String(open));
-      menu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      document.body.classList.toggle('menu-open', open);
-    });
-    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navigation.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
-    }));
-
-    if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.hoverable').forEach(el => {
-        el.addEventListener('pointermove', event => {
-          const box = el.getBoundingClientRect();
-          el.style.transform = `translate(${(event.clientX - box.left - box.width / 2) * .07}px, ${(event.clientY - box.top - box.height / 2) * .09}px)`;
+      if (!reduced) {
+        const art = document.getElementById('heroArt');
+        const mark = document.getElementById('markScene');
+        art.addEventListener('pointermove', event => {
+          const box = art.getBoundingClientRect();
+          const x = (event.clientX - box.left) / box.width - .5;
+          const y = (event.clientY - box.top) / box.height - .5;
+          mark.style.setProperty('--ry', `${x * 18}deg`);
+          mark.style.setProperty('--rx', `${y * -12}deg`);
         });
-        el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-      });
-    }
+        art.addEventListener('pointerleave', () => {
+          mark.style.setProperty('--ry', '-8deg');
+          mark.style.setProperty('--rx', '1deg');
+        });
+      }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
