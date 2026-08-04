@@ -15,7 +15,7 @@
   <meta name="twitter:title" content="TEC CAPITAL — Diseñamos lo que sigue">
   <meta name="twitter:description" content="Estrategia, software, inteligencia artificial y diseño.">
   <meta name="twitter:image" content="assets/img/brand-editorial.png">
-  <link rel="icon" type="image/png" href="assets/img/logo-t.png">
+  <link rel="icon" type="image/png" href="assets/img/logo-t-hd.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
@@ -81,7 +81,7 @@
     .header.scrolled { border-color: var(--line-soft); background: rgba(242, 239, 232, .9); backdrop-filter: blur(18px); }
     .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 86px; }
     .brand { display: inline-flex; align-items: center; gap: 12px; justify-self: start; position: relative; z-index: 102; }
-    .brand img { width: 45px; height: 35px; object-fit: contain; mix-blend-mode: multiply; }
+    .brand img { width: 30px; height: 42px; object-fit: contain; }
     .brand strong { font-family: var(--display); font-size: .92rem; font-weight: 700; letter-spacing: -.02em; }
     .nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; }
     .nav-links a { position: relative; font-size: .73rem; font-weight: 600; }
@@ -115,13 +115,8 @@
     .hero-art { position: relative; min-height: 650px; perspective: 1100px; }
     .art-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom, transparent, #000 17%, #000 82%, transparent); }
     .art-number { position: absolute; top: 8px; right: 0; font: 300 .66rem var(--mono); color: var(--muted); writing-mode: vertical-rl; }
-    .mark-scene { position: absolute; top: 50%; left: 50%; width: 360px; height: 470px; transform: translate(-50%, -50%) rotateX(var(--rx, 1deg)) rotateY(var(--ry, -8deg)); transform-style: preserve-3d; transition: transform .3s ease-out; }
-    .mark-shadow { position: absolute; left: 20%; right: 2%; bottom: 5%; height: 80px; border-radius: 50%; background: rgba(0, 0, 0, .2); filter: blur(30px); transform: rotateX(72deg) translateZ(-30px); }
-    .mark-black { position: absolute; top: 78px; left: 78px; width: 58px; height: 310px; background: var(--ink); box-shadow: 7px 7px 0 #050607, 14px 14px 32px rgba(0, 0, 0, .2); transform: translateZ(40px); }
-    .mark-black::before { content: ''; position: absolute; top: 0; right: 0; width: 126px; height: 55px; background: var(--ink); }
-    .mark-black::after { content: ''; position: absolute; right: -110px; bottom: 0; width: 112px; height: 48px; background: var(--ink); }
-    .mark-blue { position: absolute; top: 23px; right: 23px; width: 145px; height: 96px; background: var(--blue); clip-path: polygon(0 0, 100% 0, 72% 100%, 0 100%); box-shadow: 0 22px 38px rgba(21, 88, 232, .26); transform: translateZ(78px); }
-    .mark-blue::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(255, 255, 255, .3); clip-path: inherit; }
+    .mark-scene { position: absolute; top: 50%; left: 50%; width: 390px; height: 500px; transform: translate(-50%, -50%) rotateX(var(--rx, 1deg)) rotateY(var(--ry, -8deg)); transform-style: preserve-3d; transition: transform .3s ease-out; }
+    .mark-scene img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(18px 24px 20px rgba(18, 20, 22, .18)); }
     .art-note { position: absolute; padding: 11px 14px; border: 1px solid var(--line); background: rgba(242, 239, 232, .84); backdrop-filter: blur(8px); font: 400 .61rem var(--mono); text-transform: uppercase; }
     .note-a { top: 22%; left: -2%; }
     .note-b { right: -1%; bottom: 24%; }
@@ -176,11 +171,9 @@
     .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
     .work-meta { display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
     .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
-    .work-mark { position: absolute; top: 50%; left: 50%; width: 180px; height: 200px; transform: translate(-50%, -50%) scale(.78); opacity: .07; transition: opacity .4s, transform .5s var(--ease); }
+    .work-mark { position: absolute; top: 50%; left: 50%; width: 180px; height: 230px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; filter: grayscale(1); transform: translate(-50%, -50%) scale(.78); opacity: .07; transition: opacity .4s, transform .5s var(--ease); }
     .work-card:hover .work-mark { opacity: .14; transform: translate(-50%, -50%) scale(1); }
-    .work-mark::before { content: ''; position: absolute; top: 34px; left: 42px; width: 30px; height: 140px; background: currentColor; box-shadow: -32px 0 currentColor; }
-    .work-mark::after { content: ''; position: absolute; top: 22px; right: 22px; width: 72px; height: 48px; background: var(--blue); clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%); }
-    .work-card.blue .work-mark::after { background: #fff; }
+    .work-card.blue .work-mark { filter: brightness(0) invert(1); }
     .work-bottom { position: relative; }
     .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
     .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
@@ -231,7 +224,7 @@
     footer { color: #aaa; background: var(--ink); }
     .footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 92px; font: 400 .59rem var(--mono); text-transform: uppercase; }
     .footer .brand strong { color: var(--paper); }
-    .footer .brand img { filter: invert(1) grayscale(1); mix-blend-mode: screen; }
+    .footer .brand img { filter: brightness(0) invert(1); }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a:hover { color: #fff; }
     .whatsapp { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: flex; align-items: center; gap: 9px; min-height: 48px; padding: 0 18px; color: #fff; background: var(--ink); font: 500 .63rem var(--mono); text-transform: uppercase; transition: background .25s, transform .25s; }
@@ -295,6 +288,7 @@
       .footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 28px 0 90px; }
       .footer-links { flex-wrap: wrap; }
       .whatsapp { right: 14px; bottom: 14px; }
+      .whatsapp { width: 48px; padding: 0; justify-content: center; font-size: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -310,7 +304,7 @@
 
   <header class="header" id="header">
     <div class="wrap nav">
-      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t.png" alt="" width="104" height="81"><strong>TEC CAPITAL</strong></a>
+      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a>
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#capacidades">Capacidades</a>
         <a href="#proyectos">Proyectos</a>
@@ -340,7 +334,7 @@
         <div class="hero-art" id="heroArt" aria-label="Símbolo arquitectónico de TEC CAPITAL" role="img">
           <div class="art-grid" aria-hidden="true"></div>
           <span class="art-number">MÉXICO · 18.4637° N</span>
-          <div class="mark-scene" id="markScene" aria-hidden="true"><div class="mark-shadow"></div><div class="mark-black"></div><div class="mark-blue"></div></div>
+          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"></div>
           <span class="art-note note-a">Estrategia / 01</span>
           <span class="art-note note-b">Ejecución / 02</span>
           <div class="art-caption"><span>Objeto digital</span><span>En movimiento</span></div>
@@ -440,7 +434,7 @@
   </main>
 
   <footer>
-    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t.png" alt="" width="104" height="81"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
   </footer>
 
   <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>
