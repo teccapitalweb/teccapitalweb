@@ -160,6 +160,22 @@
     .cap-row:hover small, .cap-row:hover p { color: #fff; }
     .cap-row:hover span { transform: rotate(45deg); }
 
+    /* Outcomes */
+    .outcomes { border-bottom: 1px solid var(--line); background: var(--paper-deep); }
+    .outcomes-head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: end; margin-bottom: 62px; }
+    .outcomes-head .section-title { margin-bottom: 0; }
+    .outcomes-head .section-copy { justify-self: end; }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .outcome-card { position: relative; min-height: 270px; padding: 28px; overflow: hidden; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, .24); transition: color .4s, background .4s, transform .4s var(--ease); }
+    .outcome-card::before { content: ''; position: absolute; right: -75px; bottom: -75px; width: 165px; height: 165px; border: 1px solid currentColor; border-radius: 50%; opacity: .13; transition: transform .55s var(--ease), opacity .4s; }
+    .outcome-card:hover { z-index: 2; color: #fff; background: var(--blue); transform: translateY(-6px); }
+    .outcome-card:hover::before { opacity: .35; transform: scale(1.35); }
+    .outcome-card small { display: block; margin-bottom: 72px; color: var(--blue); font: 400 .62rem var(--mono); transition: color .35s; }
+    .outcome-card:hover small { color: rgba(255, 255, 255, .7); }
+    .outcome-card h3 { margin: 0 0 12px; font-family: var(--display); font-size: 1.55rem; letter-spacing: -.035em; }
+    .outcome-card p { max-width: 330px; margin: 0; color: var(--muted); font-size: .82rem; transition: color .35s; }
+    .outcome-card:hover p { color: rgba(255, 255, 255, .76); }
+
     /* Work */
     .work-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 58px; }
     .work-head .section-title { margin-bottom: 0; }
@@ -200,6 +216,22 @@
     .step h3 { margin: 0 0 14px; font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.7rem); font-weight: 500; letter-spacing: -.04em; }
     .step p { max-width: 550px; margin: 0; color: var(--muted); font-size: .9rem; }
 
+    /* Engagement */
+    .engagement { color: var(--paper); background: var(--ink); }
+    .engagement-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 62px; }
+    .engagement-head h2 { margin: 0; font-size: clamp(3.2rem, 6.4vw, 6.7rem); }
+    .engagement-head p { max-width: 520px; justify-self: end; margin: 0; color: #979a99; }
+    .engagement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .engagement-card { position: relative; min-height: 420px; display: flex; flex-direction: column; padding: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .2); transition: border-color .35s, transform .4s var(--ease); }
+    .engagement-card::after { content: attr(data-index); position: absolute; right: 22px; bottom: -24px; color: rgba(255, 255, 255, .055); font: 600 10rem/1 var(--display); letter-spacing: -.08em; transition: transform .45s var(--ease), color .35s; }
+    .engagement-card:hover { border-color: var(--blue); transform: translateY(-7px); }
+    .engagement-card:hover::after { color: rgba(35, 96, 255, .35); transform: translateY(-10px); }
+    .engagement-card small { color: #6d7178; font: 400 .62rem var(--mono); text-transform: uppercase; }
+    .engagement-card h3 { position: relative; z-index: 1; margin: auto 0 18px; font-family: var(--display); font-size: clamp(2rem, 3.3vw, 3.4rem); font-weight: 500; line-height: .96; letter-spacing: -.045em; }
+    .engagement-card p { position: relative; z-index: 1; max-width: 360px; min-height: 62px; margin: 0 0 28px; color: #9a9d9d; font-size: .84rem; }
+    .engagement-list { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 7px; padding: 0; margin: 0; list-style: none; }
+    .engagement-list li { padding: 7px 9px; border: 1px solid rgba(255, 255, 255, .18); font: 400 .56rem var(--mono); text-transform: uppercase; }
+
     /* Clients */
     .clients { background: var(--paper-deep); }
     .clients-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 60px; }
@@ -210,6 +242,26 @@
     .logo-cell:hover { background: var(--white); }
     .logo-cell img { max-width: 170px; max-height: 68px; object-fit: contain; filter: grayscale(1); opacity: .72; transition: filter .3s, opacity .3s, transform .3s; }
     .logo-cell:hover img { filter: none; opacity: 1; transform: scale(1.04); }
+
+    /* FAQ */
+    .faq { border-top: 1px solid var(--line); }
+    .faq-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(60px, 10vw, 150px); }
+    .faq-intro { position: sticky; top: 128px; align-self: start; }
+    .faq-intro h2 { margin: 0 0 22px; font-size: clamp(3rem, 6vw, 6rem); }
+    .faq-intro p { max-width: 420px; color: var(--muted); }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; display: grid; grid-template-columns: 42px 1fr 28px; gap: 16px; align-items: center; padding: 27px 0; border: 0; background: transparent; text-align: left; cursor: pointer; }
+    .faq-question small { color: var(--blue); font: 400 .62rem var(--mono); }
+    .faq-question strong { font-family: var(--display); font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.025em; }
+    .faq-question i { position: relative; width: 22px; height: 22px; font-style: normal; }
+    .faq-question i::before, .faq-question i::after { content: ''; position: absolute; top: 10px; left: 3px; width: 16px; height: 1px; background: var(--ink); transition: transform .3s var(--ease); }
+    .faq-question i::after { transform: rotate(90deg); }
+    .faq-question[aria-expanded="true"] i::after { transform: rotate(0); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+    .faq-answer > div { overflow: hidden; }
+    .faq-answer p { max-width: 650px; margin: 0 28px 28px 58px; color: var(--muted); font-size: .9rem; }
+    .faq-question[aria-expanded="true"] + .faq-answer { grid-template-rows: 1fr; }
 
     /* Contact and footer */
     .contact { color: #fff; background: var(--blue); }
@@ -249,9 +301,16 @@
       .cap-head, .clients-head, .contact-top { grid-template-columns: 1fr; }
       .cap-head { gap: 25px; }
       .cap-row { grid-template-columns: 55px 1fr .9fr 35px; }
+      .outcomes-head, .engagement-head { grid-template-columns: 1fr; }
+      .outcomes-head .section-copy, .engagement-head p { justify-self: start; }
+      .outcome-grid { grid-template-columns: repeat(2, 1fr); }
+      .engagement-grid { grid-template-columns: 1fr; }
+      .engagement-card { min-height: 350px; }
       .work-card:nth-child(n) { grid-column: span 6; }
       .logo-grid { grid-template-columns: repeat(3, 1fr); }
       .clients-head p { justify-self: start; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-intro { position: static; }
       .contact-side { max-width: 560px; }
     }
 
@@ -276,6 +335,10 @@
       .principle small { margin-bottom: 26px; }
       .cap-row { grid-template-columns: 38px 1fr 28px; gap: 12px; min-height: 125px; }
       .cap-row p { display: none; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome-card { min-height: 230px; }
+      .outcome-card small { margin-bottom: 52px; }
+      .engagement-card { min-height: 330px; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card:nth-child(n) { grid-column: 1 / -1; min-height: 340px; }
       .work-mark { top: 45.5%; width: min(58%, 230px); height: 195px; }
@@ -384,6 +447,23 @@
       </div>
     </section>
 
+    <section class="section outcomes" id="entregables">
+      <div class="wrap">
+        <div class="outcomes-head reveal">
+          <div><span class="eyebrow">Lo que construimos contigo</span><h2 class="display section-title">Más que<br>una pantalla.</h2></div>
+          <p class="section-copy">Cada proyecto deja herramientas concretas para decidir mejor, operar con menos fricción y seguir avanzando después del lanzamiento.</p>
+        </div>
+        <div class="outcome-grid">
+          <article class="outcome-card reveal"><small>01 / DIRECCIÓN</small><h3>Ruta de producto</h3><p>Prioridades, alcance y decisiones ordenadas alrededor de un objetivo de negocio.</p></article>
+          <article class="outcome-card reveal"><small>02 / EXPERIENCIA</small><h3>Prototipo validable</h3><p>Una experiencia que se puede recorrer, probar y mejorar antes de construirla completa.</p></article>
+          <article class="outcome-card reveal"><small>03 / CONSISTENCIA</small><h3>Sistema de diseño</h3><p>Componentes y reglas para que el producto mantenga claridad mientras crece.</p></article>
+          <article class="outcome-card reveal"><small>04 / OPERACIÓN</small><h3>Software funcional</h3><p>Herramientas conectadas con la forma real en que trabaja tu equipo.</p></article>
+          <article class="outcome-card reveal"><small>05 / EFICIENCIA</small><h3>Flujos automatizados</h3><p>Procesos repetitivos convertidos en movimientos simples, visibles y medibles.</p></article>
+          <article class="outcome-card reveal"><small>06 / EVOLUCIÓN</small><h3>Base para crecer</h3><p>Arquitectura, datos y documentación preparados para el siguiente paso.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="proyectos">
       <div class="wrap">
         <div class="work-head reveal"><div><span class="eyebrow">Trabajo seleccionado</span><h2 class="display section-title">Tecnología en uso.</h2></div><span class="work-count">04 / ECOSISTEMA TEC CAPITAL</span></div>
@@ -415,6 +495,17 @@
       </div>
     </section>
 
+    <section class="section engagement" id="colaboracion">
+      <div class="wrap">
+        <div class="engagement-head reveal"><h2 class="display">Tres formas<br>de empezar.</h2><p>No todos los retos necesitan el mismo punto de entrada. Elegimos contigo la modalidad que da claridad y movimiento sin agregar estructura innecesaria.</p></div>
+        <div class="engagement-grid">
+          <article class="engagement-card reveal" data-index="1"><small>Para convertir una idea en dirección</small><h3>Sprint de definición</h3><p>Ordenamos el reto, aterrizamos el producto y dejamos una ruta concreta para tomar la siguiente decisión.</p><ul class="engagement-list"><li>Diagnóstico</li><li>Mapa de producto</li><li>Prototipo</li></ul></article>
+          <article class="engagement-card reveal" data-index="2"><small>Para lanzar una solución completa</small><h3>Producto de punta a punta</h3><p>Diseñamos y construimos el sistema desde la estrategia hasta una versión lista para operar.</p><ul class="engagement-list"><li>UX/UI</li><li>Desarrollo</li><li>Integraciones</li></ul></article>
+          <article class="engagement-card reveal" data-index="3"><small>Para mejorar lo que ya está vivo</small><h3>Evolución continua</h3><p>Nos integramos al ritmo del producto para optimizar, automatizar y sumar nuevas capacidades.</p><ul class="engagement-list"><li>Datos</li><li>IA</li><li>Optimización</li></ul></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section clients" id="clientes">
       <div class="wrap">
         <div class="clients-head reveal"><h2 class="display">Confianza que se construye trabajando.</h2><p>Empresas de salud, educación, agroindustria y servicios han confiado en TEC CAPITAL para crear y operar sus productos digitales.</p></div>
@@ -427,6 +518,23 @@
           <div class="logo-cell"><img src="assets/clients/sinergia-agricola.png" alt="Sinergia Agrícola" width="1077" height="417" loading="lazy" decoding="async"></div>
           <div class="logo-cell"><img src="assets/clients/agrotec-america.png" alt="Agrotec América" width="1200" height="261" loading="lazy" decoding="async"></div>
           <div class="logo-cell"><img src="assets/clients/vision-pecuaria.png" alt="Visión Pecuaria" width="1039" height="394" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/dermalysse.webp" alt="Dermalysse" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/imdiil.webp" alt="IMDIIL" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/zoorigen.webp" alt="Zoorigen" loading="lazy" decoding="async"></div>
+          <div class="logo-cell"><img src="assets/clients/cliente-industria.webp" alt="Empresa del sector industrial" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="preguntas">
+      <div class="wrap faq-grid">
+        <div class="faq-intro reveal"><span class="eyebrow">Preguntas frecuentes</span><h2 class="display">Antes de<br>empezar.</h2><p>Respuestas claras para saber cómo se ve un proyecto con TEC CAPITAL desde el primer contacto.</p></div>
+        <div class="faq-list reveal">
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><small>01</small><strong>¿Con qué tipo de proyectos trabajan?</strong><i aria-hidden="true"></i></button><div class="faq-answer"><div><p>Productos digitales, plataformas internas, automatizaciones, experiencias de marca y sistemas que conectan datos con la operación. El punto común es que exista un reto real que la tecnología pueda resolver mejor.</p></div></div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><small>02</small><strong>¿Necesito tener todo definido?</strong><i aria-hidden="true"></i></button><div class="faq-answer"><div><p>No. Podemos empezar con una idea, un proceso que está fallando o un producto que necesita evolucionar. La primera etapa sirve precisamente para convertir la incertidumbre en una ruta clara.</p></div></div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><small>03</small><strong>¿Diseñan y también desarrollan?</strong><i aria-hidden="true"></i></button><div class="faq-answer"><div><p>Sí. Estrategia, diseño e ingeniería trabajan como un solo sistema. Esto evita que la experiencia se piense por un lado y la tecnología se resuelva por otro.</p></div></div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><small>04</small><strong>¿Pueden mejorar un producto existente?</strong><i aria-hidden="true"></i></button><div class="faq-answer"><div><p>Sí. Revisamos la experiencia, la arquitectura y la operación actual para encontrar mejoras con impacto. Podemos intervenir una parte específica o construir una evolución completa.</p></div></div></article>
+          <article class="faq-item"><button class="faq-question" type="button" aria-expanded="false"><small>05</small><strong>¿Qué pasa después del lanzamiento?</strong><i aria-hidden="true"></i></button><div class="faq-answer"><div><p>El producto puede continuar con acompañamiento, soporte y ciclos de evolución. Medimos el uso real, priorizamos mejoras y sumamos capacidades conforme cambian el negocio y sus usuarios.</p></div></div></article>
         </div>
       </div>
     </section>
@@ -492,7 +600,25 @@
           mark.style.setProperty('--ry', '-8deg');
           mark.style.setProperty('--rx', '1deg');
         });
+
+        document.querySelectorAll('.work-card, .outcome-card, .engagement-card').forEach(card => {
+          card.addEventListener('pointermove', event => {
+            const box = card.getBoundingClientRect();
+            const x = (event.clientX - box.left) / box.width - .5;
+            const y = (event.clientY - box.top) / box.height - .5;
+            card.style.transform = `perspective(1000px) translateY(-7px) rotateX(${y * -2.2}deg) rotateY(${x * 2.2}deg)`;
+          });
+          card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+        });
       }
+
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+          const open = question.getAttribute('aria-expanded') === 'true';
+          document.querySelectorAll('.faq-question').forEach(item => item.setAttribute('aria-expanded', 'false'));
+          question.setAttribute('aria-expanded', String(!open));
+        });
+      });
 
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
