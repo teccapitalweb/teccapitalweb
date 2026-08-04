@@ -81,7 +81,7 @@
     .header.scrolled { border-color: var(--line-soft); background: rgba(242, 239, 232, .9); backdrop-filter: blur(18px); }
     .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 86px; }
     .brand { display: inline-flex; align-items: center; gap: 12px; justify-self: start; position: relative; z-index: 102; }
-    .brand img { width: 30px; height: 42px; object-fit: contain; }
+    .brand img { width: 38px; height: 42px; object-fit: contain; }
     .brand strong { font-family: var(--display); font-size: .92rem; font-weight: 700; letter-spacing: -.02em; }
     .nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; }
     .nav-links a { position: relative; font-size: .73rem; font-weight: 600; }
@@ -171,9 +171,9 @@
     .work-card.blue { color: #fff; border-color: var(--blue); background: var(--blue); }
     .work-meta { display: flex; justify-content: space-between; gap: 20px; font: 400 .61rem var(--mono); text-transform: uppercase; }
     .work-card.blue .work-meta { color: rgba(255, 255, 255, .68); }
-    .work-mark { position: absolute; top: 50%; left: 50%; width: 210px; height: 260px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; filter: grayscale(1); transform: translate(-50%, -50%) scale(.86); opacity: .52; transition: opacity .4s, transform .5s var(--ease); }
-    .work-card:hover .work-mark { opacity: .72; transform: translate(-50%, -50%) scale(1); }
-    .work-card.blue .work-mark { background-image: url('assets/img/logo-t-white.png'); filter: none; opacity: .9; }
+    .work-mark { position: absolute; top: 50%; left: 50%; width: 210px; height: 260px; background: url('assets/img/logo-t-hd.png') center / contain no-repeat; transform: translate(-50%, -50%) scale(.86); opacity: 1; transition: transform .5s var(--ease); }
+    .work-card:hover .work-mark { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .work-card.blue .work-mark { background-image: url('assets/img/logo-t-hd.png'); filter: none; opacity: 1; }
     .work-card.blue:hover .work-mark { opacity: 1; }
     .work-bottom { position: relative; }
     .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
@@ -305,7 +305,7 @@
 
   <header class="header" id="header">
     <div class="wrap nav">
-      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a>
+      <a class="brand" href="#inicio" aria-label="TEC CAPITAL, inicio"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a>
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#capacidades">Capacidades</a>
         <a href="#proyectos">Proyectos</a>
@@ -335,7 +335,7 @@
         <div class="hero-art" id="heroArt" aria-label="Símbolo arquitectónico de TEC CAPITAL" role="img">
           <div class="art-grid" aria-hidden="true"></div>
           <span class="art-number">MÉXICO · 18.4637° N</span>
-          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="652" height="827"></div>
+          <div class="mark-scene" id="markScene" aria-hidden="true"><img src="assets/img/logo-t-hd.png" alt="" width="808" height="853"></div>
           <span class="art-note note-a">Estrategia / 01</span>
           <span class="art-note note-b">Ejecución / 02</span>
           <div class="art-caption"><span>Objeto digital</span><span>En movimiento</span></div>
@@ -393,7 +393,7 @@
 
     <section class="poster-section" id="identidad">
       <div class="wrap reveal">
-        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el símbolo T blanco sobre azul" width="1734" height="907" loading="lazy"></div>
+        <div class="poster-frame"><img src="assets/img/brand-editorial-white.png" alt="Composición editorial de TEC CAPITAL con el símbolo T tridimensional blanco y negro" width="1734" height="907" loading="lazy"></div>
         <div class="poster-caption"><span>TEC CAPITAL · Sistema de identidad 2026</span><span>Claridad / Dirección / Tecnología</span></div>
       </div>
     </section>
@@ -435,7 +435,7 @@
   </main>
 
   <footer>
-    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="652" height="827"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
+    <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
   </footer>
 
   <a class="whatsapp" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Conversemos</a>
