@@ -104,6 +104,7 @@
     .hero-label::before { content: ''; width: 30px; height: 1px; background: var(--ink); }
     .hero h1 { max-width: 940px; font-size: clamp(4.6rem, 10.4vw, 10.7rem); }
     .hero-line { display: block; overflow: hidden; }
+    .hero-line:last-child { margin-bottom: -.12em; padding-bottom: .12em; }
     .hero-word { display: block; transform: translateY(112%); animation: intro .95s var(--ease) forwards; }
     .hero-line:nth-child(2) .hero-word { color: var(--blue); animation-delay: .12s; }
     @keyframes intro { to { transform: none; } }
