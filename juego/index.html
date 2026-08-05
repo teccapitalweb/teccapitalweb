@@ -103,7 +103,7 @@
     box-shadow:inset 0 0 0 1px rgba(18,20,22,.07), 0 6px 14px -7px rgba(21,88,232,.45);
     transition:background .3s, box-shadow .3s;
   }
-  .icon-badge svg{width:52%; height:52%; stroke:var(--blue-dark); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .icon-badge svg{width:62%; height:62%; stroke:var(--blue-dark); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
   .card.matched .icon-badge{
     background:radial-gradient(circle at 32% 28%, #5680f2, var(--blue-dark) 100%);
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.25), 0 0 0 4px rgba(21,88,232,.16), 0 10px 20px -6px rgba(13,65,181,.55);
@@ -229,16 +229,16 @@
 
 <script>
 (() => {
-  // 8 iconos bold/duotone, coherentes con la marca (azul sobre badge degradado)
+  // 8 iconos universales y amigables (nada de programación)
   const icons = [
-    '<path d="M12 3c2.9 1.1 5.2 4.3 5.2 8.2 0 2.5-.9 4.5-1.9 5.9l-3.3-2-3.3 2c-1-1.4-1.9-3.4-1.9-5.9C6.8 7.3 9.1 4.1 12 3Z"/><circle cx="12" cy="10.4" r="1.5" fill="currentColor" stroke="none"/><path d="M9.6 17.3 8 21l2.3-.9M14.4 17.3 16 21l-2.3-.9"/>',   // cohete
-    '<path d="M13 2 5 14h5l-1 8 8-12h-5l1-8Z" stroke-linejoin="round"/>',                                                                                                                                                              // rayo
-    '<path d="M7.6 18a4 4 0 1 1 .6-7.96A5 5 0 0 1 18 8.6 4 4 0 0 1 17 18H7.6Z"/>',                                                                                                                                                     // nube
-    '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9.7 9.7h4.6v4.6H9.7z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/>',                                                                          // chip
-    '<path d="m8 6-5.5 6L8 18M16 6l5.5 6L16 18"/>',                                                                                                                                                                                    // código
-    '<circle cx="12" cy="12" r="8.3"/><circle cx="12" cy="12" r="4.4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>',                                                                                             // objetivo
-    '<path d="M6 3h12l3.5 6L12 21 2.5 9 6 3Z"/><path d="M2.5 9h19M9 3l3 6-3 12M15 3l-3 6 3 12"/>',                                                                                                                                     // diamante
-    '<path d="M12 2.5 4 6v6c0 5.2 3.6 8.6 8 9.5 4.4-.9 8-4.3 8-9.5V6l-8-3.5Z"/><path d="m8.7 12 2.3 2.3 4.3-4.3"/>'                                                                                                                    // escudo
+    '<path d="M12 3.2l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6L3.3 9.6l6-.9L12 3.2Z" stroke-linejoin="round"/>',                                                                       // estrella
+    '<path d="M12 20.3S4.2 15.4 4.2 10C4.2 7.3 6.3 5.2 8.8 5.2c1.4 0 2.6.7 3.2 1.7.6-1 1.8-1.7 3.2-1.7 2.5 0 4.6 2.1 4.6 4.8 0 5.4-7.8 10.3-7.8 10.3Z" stroke-linejoin="round"/>',        // corazón
+    '<path d="M3.8 8.2 6.9 17.5h10.2l3.1-9.3-4.9 3.2L12 5.6 8.7 11.4 3.8 8.2Z" stroke-linejoin="round"/><path d="M6.9 20h10.2"/>',                                                          // corona
+    '<path d="M8.2 4h7.6v6a3.8 3.8 0 0 1-7.6 0V4Z"/><path d="M8.2 5.5H5.1a3.1 3.1 0 0 0 3.2 3.6M15.8 5.5h3.1a3.1 3.1 0 0 1-3.2 3.6"/><path d="M12 13.8v2.7M8.8 20h6.4M10 16.5h4l.8 3.5H9.2l.8-3.5Z" stroke-linejoin="round"/>',   // trofeo
+    '<path d="M20 13.6A8 8 0 1 1 10.4 4 6.6 6.6 0 0 0 20 13.6Z" stroke-linejoin="round"/>',                                                                                                 // luna
+    '<circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12H5M19 12h2.2M5.5 5.5 7 7M17 17l1.5 1.5M18.5 5.5 17 7M7 17l-1.5 1.5"/>',                                            // sol
+    '<path d="M9.3 18.3V6.2L19 4.2v12.1"/><circle cx="7" cy="18.3" r="2.3"/><circle cx="16.7" cy="16.3" r="2.3"/>',                                                                          // música
+    '<path d="M4.5 9.2h15v3.6h-15zM6 12.8h12V20H6zM12 9.2V20" stroke-linejoin="round"/><path d="M12 9.2c-3.8 0-4.9-1.4-4.9-2.9a2 2 0 0 1 3.9-.6c.9 1.2 1 3.5 1 3.5Zm0 0c3.8 0 4.9-1.4 4.9-2.9a2 2 0 0 0-3.9-.6c-.9 1.2-1 3.5-1 3.5Z"/>'  // regalo
   ];
 
   const board = document.getElementById('board');
