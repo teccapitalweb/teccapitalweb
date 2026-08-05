@@ -37,9 +37,21 @@
   header{padding:22px 0 10px;}
   .brand{display:inline-flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:-.01em;}
   .brand img{width:26px; height:26px;}
-  .back{margin-left:auto; font:500 .68rem var(--mono); text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:inline-flex; align-items:center; gap:6px;}
+  .header-actions{margin-left:auto; display:flex; align-items:center; gap:16px;}
+  .back{font:500 .68rem var(--mono); text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:inline-flex; align-items:center; gap:6px;}
   .back:hover{color:var(--ink);}
   header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .sound-toggle{
+    display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px;
+    border:1px solid var(--line); border-radius:50%; background:var(--white); flex-shrink:0;
+    transition:border-color .2s, background .2s, transform .2s;
+  }
+  .sound-toggle:hover{border-color:var(--ink); transform:translateY(-1px);}
+  .sound-toggle svg{width:16px; height:16px; stroke:var(--ink); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .sound-toggle .icon-off{display:none;}
+  .sound-toggle.is-muted .icon-on{display:none;}
+  .sound-toggle.is-muted .icon-off{display:block;}
+  .sound-toggle.is-muted{background:var(--paper-deep);}
 
   main{flex:1; padding:18px 0 60px;}
 
@@ -64,23 +76,45 @@
   }
   .card button{
     all:unset; position:absolute; inset:0; display:block; transform-style:preserve-3d;
-    transition:transform .5s var(--ease); border-radius:6px;
+    transition:transform .5s var(--ease); border-radius:10px;
   }
   .card.flipped button, .card.matched button{transform:rotateY(180deg);}
   .face{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    backface-visibility:hidden; border-radius:6px; border:1px solid var(--line);
+    backface-visibility:hidden; border-radius:10px; border:1px solid var(--line);
+    box-shadow:0 3px 10px -4px rgba(18,20,22,.25);
+    overflow:hidden;
   }
   .face-back{
-    background:var(--ink); color:var(--paper);
+    background:linear-gradient(155deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color:var(--paper);
   }
-  .face-back::after{content:'TC'; font-family:var(--mono); font-size:.8rem; letter-spacing:.1em; opacity:.55;}
+  .face-back::before{
+    content:''; position:absolute; inset:9%; border:1px solid rgba(242,239,232,.14); border-radius:6px;
+  }
+  .face-back::after{content:'TC'; font-family:var(--mono); font-size:.8rem; letter-spacing:.14em; opacity:.6;}
+  .face-back .dot{position:absolute; bottom:18%; width:5px; height:5px; border-radius:50%; background:var(--blue);}
   .face-front{
     background:var(--white); transform:rotateY(180deg);
   }
-  .face-front svg{width:46%; height:46%; stroke:var(--ink); fill:none; stroke-width:1.6;}
-  .card.matched .face-front{background:var(--blue);}
-  .card.matched .face-front svg{stroke:#fff;}
+  .icon-badge{
+    width:64%; height:64%; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 32% 28%, #ffffff, #dde8fc 55%, #c2d4f7 100%);
+    box-shadow:inset 0 0 0 1px rgba(18,20,22,.07), 0 6px 14px -7px rgba(21,88,232,.45);
+    transition:background .3s, box-shadow .3s;
+  }
+  .icon-badge svg{width:52%; height:52%; stroke:var(--blue-dark); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .card.matched .icon-badge{
+    background:radial-gradient(circle at 32% 28%, #5680f2, var(--blue-dark) 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.25), 0 0 0 4px rgba(21,88,232,.16), 0 10px 20px -6px rgba(13,65,181,.55);
+    animation:matchPulse .45s var(--ease);
+  }
+  .card.matched .icon-badge svg{stroke:#fff;}
+  @keyframes matchPulse{
+    0%{transform:scale(.86);}
+    55%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+  }
   .card:not(.flipped):not(.matched) button:active{transform:scale(.96);}
 
   .again{
@@ -120,6 +154,16 @@
   .replay{margin-top:14px; font:500 .68rem var(--mono); text-transform:uppercase; letter-spacing:.06em; color:var(--muted); text-decoration:underline; text-underline-offset:3px;}
   .replay:hover{color:var(--ink);}
 
+  .confetti-layer{position:fixed; inset:0; z-index:210; pointer-events:none; overflow:hidden;}
+  .confetti-piece{
+    position:absolute; top:-12px; width:7px; height:13px; opacity:.95; border-radius:1px;
+    animation-name:confettiFall; animation-timing-function:cubic-bezier(.36,.15,.66,.9); animation-fill-mode:forwards;
+  }
+  @keyframes confettiFall{
+    0%{transform:translate(0,0) rotate(0deg); opacity:1;}
+    100%{transform:translate(var(--drift),108vh) rotate(var(--rot)); opacity:.85;}
+  }
+
   @media (max-width:480px){
     .board{gap:8px;}
     .stat{padding:10px 6px;}
@@ -131,7 +175,13 @@
 <header>
   <div class="wrap">
     <a class="brand" href="../index.html"><img src="../assets/img/logo-t-hd.png" alt=""> TEC CAPITAL</a>
-    <a class="back" href="../index.html#contacto">← Volver al sitio</a>
+    <div class="header-actions">
+      <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Silenciar sonido">
+        <svg class="icon-on" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+        <svg class="icon-off" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+      </button>
+      <a class="back" href="../index.html#contacto">← Volver al sitio</a>
+    </div>
   </div>
 </header>
 
@@ -175,18 +225,20 @@
   </div>
 </div>
 
+<div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
 <script>
 (() => {
-  // 8 iconos de línea, estilo minimal, coherentes con la marca
+  // 8 iconos bold/duotone, coherentes con la marca (azul sobre badge degradado)
   const icons = [
-    '<path d="M8 4 3 12l5 8"/><path d="M16 4l5 8-5 8"/>',                                   // code
-    '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',                                  // reloj / velocidad
-    '<path d="M4 17l4-8 4 5 3-4 5 7"/>',                                                       // gráfica
-    '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/>',                 // chip
-    '<path d="M12 3l2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/>',                    // spark
-    '<path d="M4 20 20 4M4 4l16 16"/><circle cx="12" cy="12" r="9"/>',                          // target/red
-    '<path d="M6 3v6l-3 3 3 3v6M18 3v6l3 3-3 3v6"/>',                                           // brackets
-    '<path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/>'                                        // escudo
+    '<path d="M12 3c2.9 1.1 5.2 4.3 5.2 8.2 0 2.5-.9 4.5-1.9 5.9l-3.3-2-3.3 2c-1-1.4-1.9-3.4-1.9-5.9C6.8 7.3 9.1 4.1 12 3Z"/><circle cx="12" cy="10.4" r="1.5" fill="currentColor" stroke="none"/><path d="M9.6 17.3 8 21l2.3-.9M14.4 17.3 16 21l-2.3-.9"/>',   // cohete
+    '<path d="M13 2 5 14h5l-1 8 8-12h-5l1-8Z" stroke-linejoin="round"/>',                                                                                                                                                              // rayo
+    '<path d="M7.6 18a4 4 0 1 1 .6-7.96A5 5 0 0 1 18 8.6 4 4 0 0 1 17 18H7.6Z"/>',                                                                                                                                                     // nube
+    '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9.7 9.7h4.6v4.6H9.7z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/>',                                                                          // chip
+    '<path d="m8 6-5.5 6L8 18M16 6l5.5 6L16 18"/>',                                                                                                                                                                                    // código
+    '<circle cx="12" cy="12" r="8.3"/><circle cx="12" cy="12" r="4.4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/>',                                                                                             // objetivo
+    '<path d="M6 3h12l3.5 6L12 21 2.5 9 6 3Z"/><path d="M2.5 9h19M9 3l3 6-3 12M15 3l-3 6 3 12"/>',                                                                                                                                     // diamante
+    '<path d="M12 2.5 4 6v6c0 5.2 3.6 8.6 8 9.5 4.4-.9 8-4.3 8-9.5V6l-8-3.5Z"/><path d="m8.7 12 2.3 2.3 4.3-4.3"/>'                                                                                                                    // escudo
   ];
 
   const board = document.getElementById('board');
@@ -194,6 +246,71 @@
   const timeEl = document.getElementById('time');
   const pairsEl = document.getElementById('pairs');
   const overlay = document.getElementById('overlay');
+  const confettiLayer = document.getElementById('confettiLayer');
+  const soundToggle = document.getElementById('soundToggle');
+
+  // --- Motor de sonido (Web Audio API, sin archivos externos) ---
+  const Sound = (() => {
+    let ctx = null;
+    let muted = localStorage.getItem('tc-game-muted') === '1';
+    soundToggle.classList.toggle('is-muted', muted);
+    soundToggle.setAttribute('aria-pressed', String(muted));
+
+    function getCtx(){
+      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
+    function tone(freq, start, duration, type, peak){
+      if (muted) return;
+      try {
+        const c = getCtx();
+        const osc = c.createOscillator();
+        const gain = c.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, c.currentTime + start);
+        gain.gain.setValueAtTime(0, c.currentTime + start);
+        gain.gain.linearRampToValueAtTime(peak, c.currentTime + start + .015);
+        gain.gain.exponentialRampToValueAtTime(.0001, c.currentTime + start + duration);
+        osc.connect(gain).connect(c.destination);
+        osc.start(c.currentTime + start);
+        osc.stop(c.currentTime + start + duration + .03);
+      } catch (e) { /* audio no disponible, se ignora */ }
+    }
+    return {
+      flip(){ tone(520, 0, .09, 'triangle', .12); },
+      match(){ tone(660, 0, .12, 'sine', .16); tone(880, .09, .2, 'sine', .14); },
+      miss(){ tone(180, 0, .18, 'sawtooth', .09); },
+      win(){ [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, i * .11, .24, 'triangle', .15)); },
+      toggleMute(){
+        muted = !muted;
+        localStorage.setItem('tc-game-muted', muted ? '1' : '0');
+        soundToggle.classList.toggle('is-muted', muted);
+        soundToggle.setAttribute('aria-pressed', String(muted));
+        if (!muted) getCtx();
+        return muted;
+      }
+    };
+  })();
+  soundToggle.addEventListener('click', () => Sound.toggleMute());
+
+  function launchConfetti(){
+    const colors = ['#1558e8', '#0d41b5', '#f2efe8', '#ffffff'];
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 30; i++){
+      const p = document.createElement('span');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[i % colors.length];
+      p.style.animationDelay = (Math.random() * .35) + 's';
+      p.style.animationDuration = (1.5 + Math.random() * 1.1) + 's';
+      p.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+      p.style.setProperty('--drift', (Math.random() * 90 - 45) + 'px');
+      frag.appendChild(p);
+    }
+    confettiLayer.appendChild(frag);
+    setTimeout(() => { confettiLayer.innerHTML = ''; }, 3200);
+  }
 
   let cards = [], flipped = [], matched = 0, moves = 0, seconds = 0, timer = null, lock = false, started = false;
 
@@ -230,8 +347,8 @@
       cardEl.dataset.idx = idx;
       cardEl.innerHTML = `
         <button type="button" aria-label="Carta">
-          <span class="face face-back"></span>
-          <span class="face face-front"><svg viewBox="0 0 24 24">${item.svg}</svg></span>
+          <span class="face face-back"><span class="dot"></span></span>
+          <span class="face face-front"><span class="icon-badge"><svg viewBox="0 0 24 24">${item.svg}</svg></span></span>
         </button>`;
       cardEl.querySelector('button').addEventListener('click', () => flipCard(cardEl));
       board.appendChild(cardEl);
@@ -243,6 +360,7 @@
     if (!started){ started = true; timer = setInterval(tick, 1000); }
 
     cardEl.classList.add('flipped');
+    Sound.flip();
     flipped.push(cardEl);
 
     if (flipped.length === 2){
@@ -254,6 +372,7 @@
         setTimeout(() => {
           a.classList.add('matched');
           b.classList.add('matched');
+          Sound.match();
           matched++;
           pairsEl.textContent = matched + '/8';
           flipped = [];
@@ -262,6 +381,7 @@
         }, 350);
       } else {
         setTimeout(() => {
+          Sound.miss();
           a.classList.remove('flipped');
           b.classList.remove('flipped');
           flipped = [];
@@ -283,7 +403,8 @@
     document.getElementById('wa1').href = `https://wa.me/5212361112213?text=${msg}`;
     document.getElementById('wa2').href = `https://wa.me/5212381479821?text=${msg}`;
 
-    setTimeout(() => overlay.classList.add('show'), 400);
+    Sound.win();
+    setTimeout(() => { overlay.classList.add('show'); launchConfetti(); }, 400);
   }
 
   document.getElementById('restartBtn').addEventListener('click', buildBoard);
