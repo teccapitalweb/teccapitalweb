@@ -195,10 +195,38 @@
     .work-card:hover .work-mark { transform: translate(-50%, -52%) scale(1.04); filter: drop-shadow(0 25px 22px rgba(18, 20, 22, .22)); }
     .work-card.blue .work-mark { filter: drop-shadow(0 18px 16px rgba(4, 18, 54, .3)); }
     .work-card.blue:hover .work-mark { filter: drop-shadow(0 25px 22px rgba(4, 18, 54, .4)); }
-    .work-bottom { position: relative; z-index: 2; }
+    .work-bottom { position: relative; z-index: 2; padding-right: 92px; }
     .work-bottom h3 { margin: 0 0 9px; font-family: var(--display); font-size: clamp(2rem, 4vw, 4.2rem); font-weight: 500; line-height: .95; letter-spacing: -.05em; }
     .work-bottom p { max-width: 420px; margin: 0; color: var(--muted); font-size: .83rem; }
     .work-card.blue .work-bottom p { color: rgba(255, 255, 255, .7); }
+    .case-trigger { position: absolute; inset: 0; z-index: 5; border: 0; background: transparent; cursor: pointer; }
+    .case-trigger:focus-visible { outline: 3px solid var(--ink); outline-offset: -6px; }
+    .work-card.blue .case-trigger:focus-visible { outline-color: #fff; }
+    .case-hint { position: absolute; right: 25px; bottom: 25px; z-index: 4; display: inline-flex; align-items: center; gap: 8px; font: 500 .57rem var(--mono); text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s var(--ease); pointer-events: none; }
+    .work-card:hover .case-hint, .work-card:focus-within .case-hint { opacity: 1; transform: none; }
+
+    .case-dialog { width: min(1180px, calc(100% - 36px)); max-height: calc(100svh - 36px); padding: 0; overflow: auto; border: 0; color: var(--ink); background: var(--paper); box-shadow: 0 35px 110px rgba(0, 0, 0, .3); }
+    .case-dialog::backdrop { background: rgba(18, 20, 22, .72); backdrop-filter: blur(8px); }
+    .case-dialog[open] { animation: dialogIn .45s var(--ease); }
+    .case-close { position: sticky; z-index: 8; top: 18px; float: right; width: 46px; height: 46px; margin: 18px 18px -64px 0; border: 1px solid var(--line); color: var(--ink); background: rgba(242, 239, 232, .9); font-size: 1.35rem; cursor: pointer; backdrop-filter: blur(10px); }
+    .case-layout { display: grid; grid-template-columns: .9fr 1.1fr; min-height: 700px; }
+    .case-visual { position: relative; min-height: 620px; display: grid; place-items: center; overflow: hidden; color: #fff; background: var(--blue); }
+    .case-visual::before { content: ''; position: absolute; width: 430px; height: 430px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%; box-shadow: 0 0 0 70px rgba(255,255,255,.05), 0 0 0 140px rgba(255,255,255,.035); }
+    .case-visual img { position: relative; z-index: 2; width: min(70%, 390px); max-height: 430px; object-fit: contain; filter: drop-shadow(0 28px 25px rgba(6, 18, 48, .28)); }
+    .case-visual span { position: absolute; z-index: 3; right: 22px; bottom: 20px; font: 400 .58rem var(--mono); text-transform: uppercase; }
+    .case-content { padding: clamp(42px, 6vw, 82px); }
+    .case-content .eyebrow { margin-bottom: 38px; }
+    .case-content h2 { margin: 0 0 22px; font-size: clamp(3.4rem, 7vw, 7rem); }
+    .case-lead { max-width: 600px; margin: 0 0 55px; color: var(--muted); font-size: 1rem; }
+    .case-detail-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+    .case-detail { padding: 24px 24px 30px 0; }
+    .case-detail + .case-detail { padding-left: 24px; border-left: 1px solid var(--line); }
+    .case-detail small { display: block; margin-bottom: 12px; color: var(--blue); font: 400 .58rem var(--mono); text-transform: uppercase; }
+    .case-detail p { margin: 0; color: var(--muted); font-size: .83rem; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+    .case-tags span { padding: 8px 10px; border: 1px solid var(--line); font: 400 .56rem var(--mono); text-transform: uppercase; }
+
+    @keyframes dialogIn { from { opacity: 0; transform: translateY(20px) scale(.985); } }
 
     /* Brand poster */
     .poster-section { padding: 0 0 clamp(92px, 10vw, 150px); }
@@ -293,6 +321,23 @@
     .faq-answer p { max-width: 650px; margin: 0 28px 28px 58px; color: var(--muted); font-size: .9rem; }
     .faq-question[aria-expanded="true"] + .faq-answer { grid-template-rows: 1fr; }
 
+    /* Project brief */
+    .brief { border-top: 1px solid var(--line); background: var(--paper-deep); }
+    .brief-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(60px, 9vw, 130px); }
+    .brief-intro { align-self: start; position: sticky; top: 128px; }
+    .brief-intro h2 { margin: 0 0 24px; font-size: clamp(3.2rem, 6vw, 6.4rem); }
+    .brief-intro p { max-width: 420px; color: var(--muted); }
+    .brief-form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 18px; padding-top: 4px; }
+    .field { display: flex; flex-direction: column; gap: 10px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font: 500 .58rem var(--mono); color: var(--muted); text-transform: uppercase; }
+    .field input, .field select, .field textarea { width: 100%; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 13px 0 16px; color: var(--ink); background: transparent; font: 500 1rem var(--sans); outline: none; transition: border-color .25s; }
+    .field textarea { min-height: 125px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); }
+    .field input::placeholder, .field textarea::placeholder { color: #9b9b98; }
+    .brief-submit { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 18px; }
+    .brief-submit p { max-width: 410px; margin: 0; color: var(--muted); font-size: .7rem; }
+
     /* Contact and footer */
     .contact { color: #fff; background: var(--blue); }
     .contact-top { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: end; }
@@ -337,6 +382,8 @@
       .engagement-grid { grid-template-columns: 1fr; }
       .engagement-card { min-height: 350px; }
       .work-card:nth-child(n) { grid-column: span 6; }
+      .case-layout { grid-template-columns: 1fr; }
+      .case-visual { min-height: 480px; }
       .logo-grid { grid-template-columns: repeat(3, 1fr); }
       .clients-head p { justify-self: start; }
       .diagnostic-head { grid-template-columns: 1fr; }
@@ -347,6 +394,8 @@
       .diagnostic-result { min-height: 520px; }
       .faq-grid { grid-template-columns: 1fr; }
       .faq-intro { position: static; }
+      .brief-grid { grid-template-columns: 1fr; }
+      .brief-intro { position: static; }
       .contact-side { max-width: 560px; }
     }
 
@@ -377,6 +426,12 @@
       .engagement-card { min-height: 330px; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card:nth-child(n) { grid-column: 1 / -1; min-height: 340px; }
+      .case-hint { opacity: 1; transform: none; }
+      .case-dialog { width: calc(100% - 18px); max-height: calc(100svh - 18px); }
+      .case-visual { min-height: 350px; }
+      .case-content { padding: 38px 22px; }
+      .case-detail-grid { grid-template-columns: 1fr; }
+      .case-detail + .case-detail { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
       .work-mark { top: 45.5%; width: min(58%, 230px); height: 195px; }
       .work-mark.wide { width: min(76%, 290px); }
       .work-head { display: block; }
@@ -390,6 +445,10 @@
       .diagnostic-result { min-height: 500px; padding: 28px 22px; }
       .diagnostic-meta { grid-template-columns: 1fr; }
       .diagnostic-meta div + div { padding-left: 0; border-left: 0; }
+      .brief-form { grid-template-columns: 1fr; }
+      .field.full, .brief-submit { grid-column: 1; }
+      .brief-submit { align-items: stretch; flex-direction: column; }
+      .brief-submit .btn { width: 100%; }
       .contact h2 { font-size: clamp(4rem, 20vw, 6.5rem); }
       .contact-info { grid-template-columns: 1fr; margin-top: 65px; }
       .contact-item, .contact-item + .contact-item { padding: 20px 0; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, .35); }
@@ -507,10 +566,10 @@
       <div class="wrap">
         <div class="work-head reveal"><div><span class="eyebrow">Trabajo seleccionado</span><h2 class="display section-title">Tecnología en uso.</h2></div><span class="work-count">04 / ECOSISTEMA TEC CAPITAL</span></div>
         <div class="work-grid">
-          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><img class="work-mark" src="assets/img/projects/avigo.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div></article>
-          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><img class="work-mark wide" src="assets/img/projects/gymvexa.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div></article>
-          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><img class="work-mark" src="assets/img/projects/agroclub.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div></article>
-          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><img class="work-mark" src="assets/img/projects/vision-pecuaria.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Industria avícola</span><span>01 — 26</span></div><img class="work-mark" src="assets/img/projects/avigo.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AviGo</h3><p>Una operación pecuaria más visible, conectada y fácil de dirigir.</p></div><span class="case-hint">Explorar caso ↗</span><button class="case-trigger" type="button" data-case="avigo" aria-label="Explorar el caso AviGo"></button></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>SaaS · Fitness</span><span>02 — 26</span></div><img class="work-mark wide" src="assets/img/projects/gymvexa.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Gymvexa</h3><p>Gestión integral para gimnasios que quieren crecer sin perder el control.</p></div><span class="case-hint">Explorar caso ↗</span><button class="case-trigger" type="button" data-case="gymvexa" aria-label="Explorar el caso Gymvexa"></button></article>
+          <article class="work-card blue reveal"><div class="work-meta"><span>Agro · Datos</span><span>03 — 26</span></div><img class="work-mark" src="assets/img/projects/agroclub.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>AgroClub</h3><p>Mercado, comunidad e inteligencia comercial para el campo mexicano.</p></div><span class="case-hint">Explorar caso ↗</span><button class="case-trigger" type="button" data-case="agroclub" aria-label="Explorar el caso AgroClub"></button></article>
+          <article class="work-card reveal"><div class="work-meta"><span>Conocimiento · Club</span><span>04 — 26</span></div><img class="work-mark" src="assets/img/projects/vision-pecuaria.png" alt="" width="1254" height="1254" loading="lazy" decoding="async"><div class="work-bottom"><h3>Visión Pecuaria</h3><p>Consultoría y conocimiento especializado en una experiencia digital premium.</p></div><span class="case-hint">Explorar caso ↗</span><button class="case-trigger" type="button" data-case="vision" aria-label="Explorar el caso Visión Pecuaria"></button></article>
         </div>
       </div>
     </section>
@@ -598,6 +657,20 @@
       </div>
     </section>
 
+    <section class="section brief" id="brief">
+      <div class="wrap brief-grid">
+        <div class="brief-intro reveal"><span class="eyebrow">Tu proyecto en pocas palabras</span><h2 class="display">Cuéntanos<br>lo esencial.</h2><p>Responde lo básico y prepararemos un mensaje claro para iniciar la conversación por WhatsApp.</p></div>
+        <form class="brief-form reveal" id="projectBrief">
+          <div class="field"><label for="briefName">Tu nombre</label><input id="briefName" name="name" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" required></div>
+          <div class="field"><label for="briefCompany">Empresa o proyecto</label><input id="briefCompany" name="company" type="text" autocomplete="organization" placeholder="Nombre de tu empresa"></div>
+          <div class="field"><label for="briefGoal">¿Qué quieres mover?</label><select id="briefGoal" name="goal" required><option value="">Selecciona una opción</option><option>Lanzar un producto nuevo</option><option>Ordenar o digitalizar una operación</option><option>Aplicar inteligencia artificial</option><option>Mejorar un producto existente</option><option>Crear una marca o experiencia</option></select></div>
+          <div class="field"><label for="briefStage">¿En qué punto estás?</label><select id="briefStage" name="stage" required><option value="">Selecciona una opción</option><option>Solo tengo la idea</option><option>Ya tengo información y procesos</option><option>Existe un prototipo</option><option>El producto ya está funcionando</option></select></div>
+          <div class="field full"><label for="briefMessage">El reto principal</label><textarea id="briefMessage" name="message" placeholder="Cuéntanos brevemente qué está pasando y qué te gustaría mejorar" required></textarea></div>
+          <div class="brief-submit"><p>Al continuar se abrirá WhatsApp con tus respuestas. Podrás revisar y editar el mensaje antes de enviarlo.</p><button class="btn btn-blue" type="submit">Preparar mensaje</button></div>
+        </form>
+      </div>
+    </section>
+
     <section class="section contact" id="contacto">
       <div class="wrap">
         <div class="contact-top"><h2 class="display reveal">Hagamos<br>que pase.</h2><div class="contact-side reveal"><p>Si tienes una idea, un proceso que ya no funciona o un producto que necesita evolucionar, conversemos.</p><a class="btn" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20quiero%20platicarles%20un%20proyecto" target="_blank" rel="noopener">Iniciar conversación</a></div></div>
@@ -605,6 +678,14 @@
       </div>
     </section>
   </main>
+
+  <dialog class="case-dialog" id="caseDialog" aria-labelledby="caseTitle">
+    <button class="case-close" id="caseClose" type="button" aria-label="Cerrar caso">×</button>
+    <div class="case-layout">
+      <div class="case-visual"><img id="caseImage" src="assets/img/projects/avigo.png" alt=""><span id="caseIndex">Caso seleccionado / 01</span></div>
+      <div class="case-content"><span class="eyebrow" id="caseSector">Industria avícola</span><h2 class="display" id="caseTitle">AviGo</h2><p class="case-lead" id="caseLead">Una operación pecuaria más visible, conectada y fácil de dirigir.</p><div class="case-detail-grid"><div class="case-detail"><small>El reto</small><p id="caseChallenge">Concentrar información operativa dispersa y convertirla en decisiones claras para el equipo.</p></div><div class="case-detail"><small>El sistema</small><p id="caseSystem">Una experiencia digital que organiza la operación, facilita el seguimiento y hace visible lo importante.</p></div></div><div class="case-tags" id="caseTags"><span>Estrategia</span><span>Producto digital</span><span>Datos</span></div></div>
+    </div>
+  </dialog>
 
   <footer>
     <div class="wrap footer"><a class="brand" href="#inicio"><img src="assets/img/logo-t-white.png" alt="" width="808" height="853"><strong>TEC CAPITAL</strong></a><div class="footer-links"><a href="#capacidades">Capacidades</a><a href="#proyectos">Proyectos</a><a href="#contacto">Contacto</a></div><span>© <span id="year">2026</span></span></div>
@@ -740,6 +821,78 @@
           diagnosticResult.classList.remove('changing');
         }, reduced ? 0 : 170);
       }));
+
+      const caseStudies = {
+        avigo: {
+          index: 'Caso seleccionado / 01', sector: 'Industria avícola', title: 'AviGo', image: 'assets/img/projects/avigo.png',
+          lead: 'Una operación pecuaria más visible, conectada y fácil de dirigir.',
+          challenge: 'Concentrar información operativa dispersa y convertirla en decisiones claras para el equipo.',
+          system: 'Una experiencia digital que organiza la operación, facilita el seguimiento y hace visible lo importante.',
+          tags: ['Estrategia', 'Producto digital', 'Datos']
+        },
+        gymvexa: {
+          index: 'Caso seleccionado / 02', sector: 'SaaS · Fitness', title: 'Gymvexa', image: 'assets/img/projects/gymvexa.png',
+          lead: 'Gestión integral para gimnasios que quieren crecer sin perder el control.',
+          challenge: 'Reunir clientes, planes y operación diaria en una herramienta clara para el equipo del gimnasio.',
+          system: 'Una plataforma central que simplifica el seguimiento y prepara la operación para crecer con orden.',
+          tags: ['SaaS', 'UX/UI', 'Operación']
+        },
+        agroclub: {
+          index: 'Caso seleccionado / 03', sector: 'Agro · Datos', title: 'AgroClub', image: 'assets/img/projects/agroclub.png',
+          lead: 'Mercado, comunidad e inteligencia comercial para el campo mexicano.',
+          challenge: 'Conectar información de mercado, relaciones y conocimiento dentro de un ecosistema útil para el sector.',
+          system: 'Una experiencia que reúne comunidad, oportunidades e información para facilitar mejores decisiones comerciales.',
+          tags: ['Agro', 'Comunidad', 'Inteligencia comercial']
+        },
+        vision: {
+          index: 'Caso seleccionado / 04', sector: 'Conocimiento · Club', title: 'Visión Pecuaria', image: 'assets/img/projects/vision-pecuaria.png',
+          lead: 'Consultoría y conocimiento especializado en una experiencia digital premium.',
+          challenge: 'Transformar experiencia especializada en una propuesta digital clara, accesible y con identidad propia.',
+          system: 'Un entorno de contenido y consultoría que organiza el conocimiento y refuerza su valor profesional.',
+          tags: ['Contenido', 'Experiencia premium', 'Identidad']
+        }
+      };
+      const caseDialog = document.getElementById('caseDialog');
+      const caseElements = {
+        index: document.getElementById('caseIndex'), sector: document.getElementById('caseSector'), title: document.getElementById('caseTitle'),
+        image: document.getElementById('caseImage'), lead: document.getElementById('caseLead'), challenge: document.getElementById('caseChallenge'),
+        system: document.getElementById('caseSystem'), tags: document.getElementById('caseTags')
+      };
+      let lastCaseTrigger = null;
+      document.querySelectorAll('.case-trigger').forEach(trigger => trigger.addEventListener('click', () => {
+        const study = caseStudies[trigger.dataset.case];
+        lastCaseTrigger = trigger;
+        caseElements.index.textContent = study.index;
+        caseElements.sector.textContent = study.sector;
+        caseElements.title.textContent = study.title;
+        caseElements.image.src = study.image;
+        caseElements.image.alt = `Identidad visual de ${study.title}`;
+        caseElements.lead.textContent = study.lead;
+        caseElements.challenge.textContent = study.challenge;
+        caseElements.system.textContent = study.system;
+        caseElements.tags.replaceChildren(...study.tags.map(tag => {
+          const element = document.createElement('span');
+          element.textContent = tag;
+          return element;
+        }));
+        caseDialog.showModal();
+      }));
+      document.getElementById('caseClose').addEventListener('click', () => caseDialog.close());
+      caseDialog.addEventListener('click', event => { if (event.target === caseDialog) caseDialog.close(); });
+      caseDialog.addEventListener('close', () => { if (lastCaseTrigger) lastCaseTrigger.focus(); });
+
+      document.getElementById('projectBrief').addEventListener('submit', event => {
+        event.preventDefault();
+        const values = new FormData(event.currentTarget);
+        const message = [
+          `Hola TEC CAPITAL, soy ${values.get('name')}.`,
+          values.get('company') ? `Empresa o proyecto: ${values.get('company')}.` : '',
+          `Quiero: ${values.get('goal')}.`,
+          `Actualmente: ${values.get('stage')}.`,
+          `El reto principal es: ${values.get('message')}`
+        ].filter(Boolean).join('\n');
+        window.open(`https://wa.me/5212361112213?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+      });
 
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
