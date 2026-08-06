@@ -3,235 +3,886 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f2efe8">
-<title>Demo — Trazabilidad de huevo | TEC CAPITAL</title>
-<meta name="description" content="Escanea el código de tu huevo y conoce su origen, su proceso y su granja. Demostración construida por TEC CAPITAL.">
+<meta name="theme-color" content="#3E4A1A">
+<title>Medidor de Frescura — Distribuidor de Huevos Tehuacán</title>
+<meta name="description" content="Escribe el código impreso en tu huevo y descubre exactamente qué tan fresco está, de qué granja viene y hasta cuándo lo puedes consumir.">
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="../assets/img/logo-t-hd.png">
+<meta property="og:title" content="¿Qué tan fresco está tu huevo?">
+<meta property="og:description" content="Distribuidor de Huevos Tehuacán — trazabilidad real, huevo por huevo.">
+<link rel="icon" type="image/png" href="../assets/img/tehuacan/emblema.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,900&display=swap" rel="stylesheet">
 <style>
-  /* ============================================================
-     DEMO — Trazabilidad de huevo (QR de stand, Congreso Avícola)
-     Página independiente, NO enlazada en el menú principal.
-     PENDIENTE (mañana): nombre de marca, logo real y foto de granja.
-     Buscar "PLACEHOLDER" para ubicar todo lo que falta por definir.
-     ============================================================ */
-  :root{
-    --paper:#f2efe8; --paper-deep:#e7e3db; --white:#faf9f6;
-    --ink:#121416; --ink-soft:#282c30; --muted:#6f726f;
-    --line:rgba(18,20,22,.16); --line-soft:rgba(18,20,22,.1);
-    --yolk:#e2892b;         /* PLACEHOLDER: color de acento — hoy "amarillo yema", mañana puede ser el color de marca */
-    --yolk-dark:#b8681a;
-    --sans:'Manrope',sans-serif; --display:'Urbanist',sans-serif; --mono:'DM Mono',monospace;
-    --wrap:900px; --ease:cubic-bezier(.2,.76,.22,1);
-  }
-  *,*::before,*::after{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0; min-width:320px; overflow-x:hidden;
-    color:var(--ink); background:var(--paper); font-family:var(--sans);
-    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit; text-decoration:none;}
-  img{display:block; max-width:100%;}
-  ::selection{color:#fff; background:var(--yolk);}
-  :focus-visible{outline:2px solid var(--yolk); outline-offset:3px;}
-  .wrap{width:min(var(--wrap), calc(100% - 40px)); margin-inline:auto;}
-  .section{padding:clamp(56px,8vw,96px) 0;}
-  .eyebrow{display:inline-flex; align-items:center; gap:10px; margin-bottom:18px; font:500 .68rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
-  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--yolk);}
-  .display{margin:0; font-family:var(--display); font-weight:600; letter-spacing:-.045em; line-height:.98;}
-  em{color:var(--yolk); font-style:normal;}
+/* ============================================================================
+   MEDIDOR DE FRESCURA · Distribuidor de Huevos Tehuacán
+   Demo para el Congreso Avícola — construida por TEC CAPITAL
 
-  /* Aviso de demo */
-  .demo-flag{position:fixed; top:12px; left:50%; z-index:150; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--ink); border-radius:100px; background:var(--paper); font:500 .6rem var(--mono); letter-spacing:.06em; text-transform:uppercase; box-shadow:0 8px 20px rgba(18,20,22,.14);}
-  .demo-flag i{width:6px; height:6px; border-radius:50%; background:var(--yolk); animation:blink 2.2s infinite;}
-  @keyframes blink{50%{opacity:.25;}}
+   Código del cascarón:  DDD-PG
+     DDD = día juliano de postura (001 = 1 ene … 366 = 31 dic)
+     P   = parvada (A–F)   ·   G = granja (T, A, M, S, Z)
+   Código de demostración para el stand: 000-DT (siempre da huevo de 2 días)
 
-  /* Header */
-  header{padding:64px 0 12px;}
-  header .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px;}
-  .brand{display:inline-flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:.95rem; letter-spacing:-.01em;}
-  .brand img{width:24px; height:24px;}
-  .back{font:500 .66rem var(--mono); text-transform:uppercase; letter-spacing:.05em; color:var(--muted);}
-  .back:hover{color:var(--ink);}
+   Rutas de entrada:
+     /origen/            → el visitante teclea el código
+     /origen/?c=218AT    → el QR del huevo trae el código y se autoevalúa
+   ============================================================================ */
 
-  /* Hero */
-  .hero{padding-top:20px; text-align:center;}
-  .hero .eyebrow{justify-content:center;}
-  .hero h1{font-size:clamp(2.4rem,7vw,4.6rem); max-width:760px; margin:0 auto 20px;}
-  .hero p.lead{max-width:520px; margin:0 auto; color:var(--muted); font-size:clamp(1rem,1.6vw,1.14rem);}
+:root{
+  /* Paleta muestreada del logo */
+  --verde:#3E4A1A; --verde-mid:#556520; --verde-soft:#8A9B5C; --verde-pale:#DCE3C4;
+  --cafe:#8F5418; --dorado:#E0A343;
+  --crema:#FBF6EA; --crema-deep:#F1E9D6; --blanco:#FFFDF8;
+  --tinta:#241E14; --tinta-soft:#6B6152;
+  --linea:rgba(62,74,26,.18); --linea-soft:rgba(62,74,26,.09);
+  /* Estados */
+  --ok:#4E7A2A; --bien:#7C9430; --pronto:#D89A2E; --malo:#A8442A;
+  --display:'Bitter',Georgia,serif; --body:'Nunito Sans',system-ui,sans-serif;
+  --wrap:1100px; --radio:16px; --ease:cubic-bezier(.2,.76,.22,1);
+}
 
-  /* Ficha de lote (datos dinámicos vía QR) */
-  .lote-card{margin:44px auto 0; max-width:640px; border:1px solid var(--ink); background:var(--white); text-align:left;}
-  .lote-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 22px; border-bottom:1px solid var(--line); background:var(--ink); color:var(--paper);}
-  .lote-head span{font:500 .62rem var(--mono); letter-spacing:.1em; text-transform:uppercase;}
-  .lote-head strong{font-family:var(--display); font-size:.95rem;}
-  .lote-grid{display:grid; grid-template-columns:repeat(4,1fr);}
-  .lote-item{padding:20px 18px; border-right:1px solid var(--line);}
-  .lote-item:last-child{border-right:0;}
-  .lote-item small{display:block; margin-bottom:8px; font:400 .58rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
-  .lote-item strong{font-family:var(--display); font-size:1.15rem; letter-spacing:-.02em;}
-  .lote-note{padding:12px 22px; border-top:1px dashed var(--line); font:400 .68rem var(--mono); color:var(--muted); text-align:center;}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; min-width:320px; overflow-x:hidden; color:var(--tinta); background:var(--crema);
+  font-family:var(--body); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; cursor:pointer;}
+img{display:block; max-width:100%;}
+::selection{color:#fff; background:var(--verde);}
+:focus-visible{outline:2.5px solid var(--dorado); outline-offset:3px;}
+.wrap{width:min(var(--wrap),calc(100% - 40px)); margin-inline:auto;}
+.section{padding:clamp(60px,8vw,110px) 0;}
+h1,h2,h3{font-family:var(--display); font-weight:800; letter-spacing:-.02em; line-height:1.05; margin:0;}
+.kicker{display:inline-flex; align-items:center; gap:9px; margin-bottom:16px;
+  font-size:.7rem; font-weight:900; letter-spacing:.16em; text-transform:uppercase; color:var(--cafe);}
+.kicker::before{content:''; width:22px; height:2px; background:var(--dorado);}
 
-  /* Proceso */
-  .process{border-top:1px solid var(--line);}
-  .process-head{text-align:center; max-width:640px; margin:0 auto 50px;}
-  .process-head h2{font-size:clamp(2rem,4.6vw,3.2rem); margin:0 0 14px;}
-  .process-head p{color:var(--muted); margin:0;}
-  .steps{counter-reset:steps; border-top:1px solid var(--line); max-width:760px; margin:0 auto;}
-  .step{counter-increment:steps; display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-bottom:1px solid var(--line);}
-  .step::before{content:'0' counter(steps); font:400 .68rem var(--mono); color:var(--yolk);}
-  .step h3{margin:0 0 8px; font-family:var(--display); font-size:clamp(1.2rem,2.4vw,1.5rem); font-weight:600; letter-spacing:-.02em;}
-  .step p{margin:0; max-width:520px; color:var(--muted); font-size:.9rem;}
+/* Aparición al hacer scroll */
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+.reveal.in{opacity:1; transform:none;}
 
-  /* Por qué importa */
-  .why{background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .why-head{text-align:center; max-width:640px; margin:0 auto 44px;}
-  .why-head h2{font-size:clamp(2rem,4.6vw,3.2rem); margin:0 0 14px;}
-  .why-head p{color:var(--muted); margin:0;}
-  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-  .why-card{padding:26px; border:1px solid var(--line); background:var(--white);}
-  .why-card small{display:block; margin-bottom:34px; color:var(--yolk); font:400 .6rem var(--mono); text-transform:uppercase;}
-  .why-card h3{margin:0 0 10px; font-family:var(--display); font-size:1.2rem; letter-spacing:-.02em;}
-  .why-card p{margin:0; color:var(--muted); font-size:.84rem;}
+/* ---------- Encabezado ---------- */
+.site-head{position:sticky; top:0; z-index:80; background:rgba(251,246,234,.9);
+  backdrop-filter:blur(16px); border-bottom:1px solid var(--linea-soft);}
+.site-head .wrap{display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:76px;}
+.marca{display:flex; align-items:center; gap:12px;}
+.marca img{width:54px; height:auto;}
+.marca b{display:block; font-family:var(--display); font-weight:800; font-size:.95rem; line-height:1.1; color:var(--verde);}
+.marca span{display:block; font-size:.6rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--cafe);}
+.head-wa{display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border-radius:100px;
+  background:var(--verde); color:var(--crema); font-weight:900; font-size:.78rem; letter-spacing:.02em;
+  transition:background .25s, transform .2s ease; box-shadow:0 8px 22px -12px rgba(62,74,26,.7);}
+.head-wa:hover{background:var(--verde-mid); transform:translateY(-2px);}
+.head-wa svg{width:16px; height:16px; fill:currentColor; flex-shrink:0;}
 
-  /* CTA de cierre (pitch para el stand) */
-  .pitch{color:var(--paper); background:var(--ink);}
-  .pitch-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;}
-  .pitch h2{font-size:clamp(2rem,4.6vw,3.4rem); margin:0 0 16px;}
-  .pitch p{max-width:460px; margin:0 0 28px; color:#a7aaaa;}
-  .btn{display:inline-flex; align-items:center; gap:12px; min-height:52px; padding:0 22px; border:1px solid var(--yolk); background:var(--yolk); color:#fff; font:600 .78rem var(--sans); transition:background .25s, transform .25s var(--ease);}
-  .btn:hover{background:var(--yolk-dark); transform:translateY(-3px);}
-  .pitch-side{padding:24px; border:1px solid rgba(255,255,255,.18);}
-  .pitch-side small{display:block; margin-bottom:12px; font:400 .6rem var(--mono); color:#a7aaaa; text-transform:uppercase;}
-  .pitch-side p{margin:0; color:#d6d7d6; font-size:.86rem;}
+/* ---------- Hero ---------- */
+.hero{position:relative; overflow:hidden; padding-top:clamp(40px,6vw,70px);}
+.hero::before{content:''; position:absolute; top:-200px; right:-160px; width:580px; height:580px;
+  border-radius:50%; background:radial-gradient(circle,rgba(224,163,67,.18),transparent 66%); pointer-events:none;}
+.hero::after{content:''; position:absolute; bottom:-220px; left:-180px; width:520px; height:520px;
+  border-radius:50%; background:radial-gradient(circle,rgba(138,155,92,.14),transparent 66%); pointer-events:none;}
+.hero-grid{position:relative; display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(30px,5vw,60px); align-items:center;}
+.hero h1{font-size:clamp(2.4rem,5.8vw,4.3rem);}
+.hero h1 em{font-style:normal; color:var(--cafe); position:relative; white-space:nowrap;}
+.hero h1 em::after{content:''; position:absolute; left:0; right:0; bottom:.06em; height:.28em;
+  background:rgba(224,163,67,.35); z-index:-1; border-radius:3px;}
+.hero .lead{max-width:440px; margin:18px 0 0; color:var(--tinta-soft); font-size:1.05rem;}
 
-  footer{padding:26px 0 40px;}
-  .footer{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding-top:22px; border-top:1px solid var(--line); font:400 .62rem var(--mono); color:var(--muted); text-transform:uppercase;}
-  .footer a:hover{color:var(--ink);}
+/* Caja de captura */
+.checker{margin-top:28px; padding:24px; border:1.5px solid var(--linea); border-radius:var(--radio);
+  background:var(--blanco); box-shadow:0 18px 46px -28px rgba(62,74,26,.55);}
+.checker label{display:block; margin-bottom:10px; font-size:.68rem; font-weight:900;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--verde);}
+.code-row{display:flex; gap:10px;}
+#codeInput{flex:1; min-width:0; padding:15px 16px; border:1.5px solid var(--linea); border-radius:11px;
+  background:var(--crema); color:var(--verde); font-family:var(--display); font-weight:700;
+  font-size:1.45rem; letter-spacing:.18em; text-align:center; text-transform:uppercase; outline:none;
+  transition:border-color .2s, background .2s, box-shadow .2s;}
+#codeInput::placeholder{color:#BCB39E; letter-spacing:.18em;}
+#codeInput:focus{border-color:var(--verde-soft); background:var(--blanco); box-shadow:0 0 0 4px rgba(138,155,92,.18);}
+.btn-check{position:relative; overflow:hidden; padding:0 26px; border:0; border-radius:11px;
+  background:var(--verde); color:var(--crema); font-weight:900; font-size:.82rem;
+  letter-spacing:.06em; text-transform:uppercase; transition:background .2s, transform .15s ease;}
+.btn-check::after{content:''; position:absolute; top:0; bottom:0; left:-70%; width:45%;
+  background:linear-gradient(100deg,transparent,rgba(255,253,248,.28),transparent);
+  animation:shine 3.4s var(--ease) infinite;}
+@keyframes shine{0%,55%{left:-70%;} 85%,100%{left:130%;}}
+.btn-check:hover{background:var(--verde-mid); transform:translateY(-2px);}
+.btn-check:active{transform:translateY(0) scale(.98);}
+.hint{margin:13px 0 0; font-size:.79rem; color:var(--tinta-soft);}
+.try{border:0; padding:0; background:none; color:var(--verde); font-weight:800;
+  font-size:.79rem; text-decoration:underline; text-underline-offset:3px;}
+.try:hover{color:var(--cafe);}
 
-  @media (max-width:780px){
-    .lote-grid{grid-template-columns:repeat(2,1fr);}
-    .lote-item:nth-child(2){border-right:0;}
-    .lote-item{border-bottom:1px solid var(--line);}
-    .why-grid{grid-template-columns:1fr;}
-    .pitch-inner{grid-template-columns:1fr;}
-  }
-  @media (max-width:480px){
-    header{padding-top:52px;}
-    .step{grid-template-columns:36px 1fr; gap:12px;}
-    .demo-flag{font-size:.55rem; padding:7px 12px;}
-  }
+/* ---------- Mascota ---------- */
+.mascot-stage{position:relative; display:grid; place-items:center; min-height:420px;}
+.mascot{width:min(76%,340px); filter:drop-shadow(0 30px 26px rgba(62,74,26,.25));
+  animation:bob 4.2s ease-in-out infinite; transform-origin:50% 92%;}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg);} 50%{transform:translateY(-13px) rotate(1.2deg);}}
+.mascot-shadow{position:absolute; bottom:8%; left:50%; width:46%; height:26px; transform:translateX(-50%);
+  border-radius:50%; background:radial-gradient(ellipse,rgba(62,74,26,.22),transparent 70%);
+  animation:shrink 4.2s ease-in-out infinite;}
+@keyframes shrink{0%,100%{transform:translateX(-50%) scaleX(1);} 50%{transform:translateX(-50%) scaleX(.82); opacity:.75;}}
+.float-chip{position:absolute; z-index:3; padding:9px 14px; border:1.5px solid var(--linea); border-radius:100px;
+  background:var(--blanco); font-size:.66rem; font-weight:900; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--verde); box-shadow:0 10px 26px -16px rgba(62,74,26,.6);
+  animation:chipfloat 5s ease-in-out infinite;}
+.float-chip.a{top:9%; left:0; animation-delay:.4s;}
+.float-chip.b{top:38%; right:-3%; animation-delay:1.5s;}
+.float-chip.c{bottom:9%; left:4%; animation-delay:2.6s;}
+.float-chip i{font-style:normal; color:var(--dorado);}
+@keyframes chipfloat{0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);}}
+/* Parpadeo de la mascota */
+.lids rect{transform-origin:center; transform:scaleY(0); animation:blink 4.6s infinite;}
+@keyframes blink{0%,94%,100%{transform:scaleY(0);} 96.5%{transform:scaleY(1);}}
+.mascot.sad .lids rect{animation:none;}
+
+/* ---------- Panel de resultado ---------- */
+.result{position:relative; margin-top:38px; border:1.5px solid var(--linea); border-radius:var(--radio);
+  background:var(--blanco); overflow:hidden; opacity:0; transform:translateY(16px);
+  box-shadow:0 26px 60px -36px rgba(62,74,26,.6);
+  transition:opacity .55s var(--ease), transform .55s var(--ease); display:none;}
+.result.show{display:block; opacity:1; transform:none;}
+.result-top{display:grid; grid-template-columns:290px 1fr 130px; gap:34px; align-items:center; padding:34px 36px;}
+.gauge{width:290px;}
+.gauge svg{width:100%; height:auto; overflow:visible;}
+.gauge-arc{fill:none; stroke-linecap:round;}
+.gauge-track{stroke:var(--crema-deep);}
+.gauge-fill{transition:stroke-dashoffset 1.15s var(--ease), stroke .5s;}
+/* transform-box:view-box → el origen se lee en unidades del viewBox, no en px CSS */
+.marker{transform-box:view-box; transform-origin:160px 158px; transform:rotate(-90deg);
+  transition:transform 1.15s var(--ease);}
+.marker circle{transition:fill .5s;}
+.tick{stroke:#CBC2AB; stroke-width:2;}
+.gauge-num{font-family:var(--display); font-weight:900; font-size:3rem; fill:var(--ok); transition:fill .5s;}
+.gauge-cap{font-family:var(--body); font-weight:800; font-size:.7rem; letter-spacing:.12em;
+  text-transform:uppercase; fill:var(--tinta-soft);}
+.gauge-end{font-family:var(--body); font-weight:700; font-size:.62rem; fill:#B0A791;}
+.verdict .chip{display:inline-flex; align-items:center; gap:7px; margin-bottom:11px; padding:6px 13px;
+  border-radius:100px; font-size:.66rem; font-weight:900; letter-spacing:.1em; text-transform:uppercase;}
+.verdict .chip::before{content:''; width:7px; height:7px; border-radius:50%; background:currentColor;}
+.verdict h2{font-size:clamp(1.6rem,3.2vw,2.4rem); margin-bottom:8px;}
+.verdict .sub{display:block; margin-bottom:10px; font-size:.8rem; font-weight:800; color:var(--cafe);
+  letter-spacing:.04em;}
+.verdict p{max-width:520px; margin:0; color:var(--tinta-soft); font-size:.95rem;}
+.mini-mascot{width:120px; justify-self:center;}
+.mini-mascot svg{width:100%; height:auto; filter:drop-shadow(0 10px 12px rgba(62,74,26,.2));}
+.result.show .mini-mascot svg{animation:pop .6s var(--ease);}
+@keyframes pop{0%{transform:scale(.6) rotate(-8deg);} 65%{transform:scale(1.1) rotate(3deg);} 100%{transform:scale(1);}}
+
+.ficha{display:grid; grid-template-columns:repeat(4,1fr); border-top:1.5px solid var(--linea); background:var(--crema);}
+.ficha > div{padding:17px 20px; border-right:1px solid var(--linea-soft);}
+.ficha > div:last-child{border-right:0;}
+.ficha small{display:block; margin-bottom:5px; font-size:.6rem; font-weight:900;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--tinta-soft);}
+.ficha b{font-family:var(--display); font-weight:700; font-size:1.04rem; color:var(--verde);}
+
+/* Dato curioso */
+.fact{display:flex; align-items:center; gap:16px; padding:16px 22px; border-top:1.5px dashed var(--linea);
+  background:linear-gradient(90deg,rgba(224,163,67,.1),transparent 60%);}
+.fact-egg{flex-shrink:0; width:34px;}
+.fact p{flex:1; margin:0; font-size:.84rem; color:var(--tinta-soft);}
+.fact p b{color:var(--cafe);}
+.fact button{flex-shrink:0; padding:8px 14px; border:1.5px solid var(--linea); border-radius:100px;
+  background:var(--blanco); font-size:.66rem; font-weight:900; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--verde); transition:border-color .2s, transform .2s;}
+.fact button:hover{border-color:var(--verde-soft); transform:translateY(-2px);}
+
+/* Confeti */
+.confetti{position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:5;}
+.confetti span{position:absolute; top:-14px; width:8px; height:13px; border-radius:2px; opacity:.95;
+  animation:cfall linear forwards;}
+@keyframes cfall{to{transform:translate(var(--dx),108%) rotate(var(--rot)); opacity:.8;}}
+
+/* ---------- Cinta ---------- */
+.ticker{overflow:hidden; border-block:1.5px solid var(--verde); background:var(--verde); color:var(--crema);}
+.ticker-row{display:flex; width:max-content; animation:tick 26s linear infinite;}
+.ticker-track{display:flex; align-items:center; gap:34px; padding:14px 17px;
+  font-size:.7rem; font-weight:800; letter-spacing:.12em; white-space:nowrap; text-transform:uppercase;}
+.ticker-track i{width:6px; height:6px; border-radius:50%; background:var(--dorado);}
+@keyframes tick{to{transform:translateX(-50%);}}
+
+/* ---------- El sello (verde) ---------- */
+.sello{background:var(--verde); color:var(--crema);}
+.sello .kicker{color:var(--dorado);}
+.sello h2{font-size:clamp(1.9rem,4.4vw,3.1rem); max-width:640px;}
+.sello > .wrap > p{max-width:560px; margin:16px 0 40px; color:rgba(251,246,234,.72);}
+.sello-demo{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px;
+  padding:30px 18px; margin-bottom:16px; border:1.5px dashed rgba(251,246,234,.3); border-radius:var(--radio);}
+.seg{position:relative; padding:10px 16px; border-radius:11px; border:2px solid transparent;
+  font-family:var(--display); font-weight:800; font-size:clamp(1.9rem,5vw,3rem); letter-spacing:.06em;
+  cursor:pointer; transition:transform .25s var(--ease), border-color .25s, box-shadow .25s; user-select:none;}
+.seg-d{background:rgba(224,163,67,.2); color:var(--dorado);}
+.seg-p{background:rgba(251,246,234,.13); color:var(--crema);}
+.seg-g{background:rgba(138,155,92,.28); color:#CBD9A4;}
+.seg.on{border-color:var(--dorado); transform:translateY(-6px); box-shadow:0 14px 30px -14px rgba(0,0,0,.5);}
+.seg-dash{font-family:var(--display); font-weight:800; font-size:clamp(1.9rem,5vw,3rem); opacity:.5;}
+.sello-hint{margin:0 0 26px; text-align:center; font-size:.68rem; font-weight:800;
+  letter-spacing:.12em; text-transform:uppercase; color:rgba(251,246,234,.5);}
+.sello-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.sello-card{padding:22px; border:1.5px solid rgba(251,246,234,.2); border-radius:var(--radio);
+  transition:border-color .3s, background .3s, transform .3s var(--ease);}
+.sello-card.lit{border-color:var(--dorado); background:rgba(224,163,67,.12); transform:translateY(-5px);}
+.sello-card b{display:block; margin-bottom:8px; font-family:var(--display); font-size:1.04rem; color:var(--dorado);}
+.sello-card p{margin:0; font-size:.84rem; color:rgba(251,246,234,.75);}
+
+/* ---------- Recorrido ---------- */
+.viaje{overflow:hidden;} /* las paradas entran con translateX y no deben ensanchar la página */
+.viaje h2{font-size:clamp(1.9rem,4.4vw,3.1rem);}
+.viaje > .wrap > p{max-width:520px; margin:16px 0 50px; color:var(--tinta-soft);}
+.ruta{position:relative; max-width:760px; margin:0 auto; padding-left:64px;}
+.ruta-line{position:absolute; top:10px; bottom:10px; left:25px; width:3px; border-radius:3px; background:var(--crema-deep);}
+.ruta-fill{position:absolute; top:0; left:0; width:100%; height:0; border-radius:3px; background:var(--verde-soft);}
+.truck{position:absolute; left:-19px; top:0; width:44px; transition:top .18s linear; z-index:3;}
+.truck svg{width:100%; height:auto; filter:drop-shadow(0 6px 8px rgba(62,74,26,.35));}
+.parada{position:relative; padding:0 0 40px;}
+.parada:last-child{padding-bottom:0;}
+.parada::before{content:''; position:absolute; top:6px; left:-46px; width:13px; height:13px;
+  border-radius:50%; border:3px solid var(--crema-deep); background:var(--crema); transition:border-color .4s, background .4s;}
+.parada.on::before{border-color:var(--verde-soft); background:var(--dorado);}
+.parada{opacity:0; transform:translateX(22px); transition:opacity .6s var(--ease), transform .6s var(--ease);}
+.parada.on{opacity:1; transform:none;}
+.parada h3{font-size:1.16rem; margin-bottom:6px;}
+.parada h3 small{margin-right:10px; font-family:var(--display); font-size:.8rem; color:var(--dorado);}
+.parada p{max-width:560px; margin:0; color:var(--tinta-soft); font-size:.88rem;}
+
+/* ---------- Distribución ---------- */
+.dist{background:var(--crema-deep); border-block:1px solid var(--linea-soft);}
+.dist-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(30px,5vw,60px); align-items:center;}
+.dist h2{font-size:clamp(2rem,4.6vw,3.3rem);}
+.dist h2 em{font-style:normal; color:var(--cafe);}
+.dist .lead{max-width:470px; margin:16px 0 24px; color:var(--tinta-soft);}
+.chips{display:flex; flex-wrap:wrap; gap:9px; margin-bottom:30px;}
+.chips span{padding:9px 15px; border:1.5px solid var(--linea); border-radius:100px; background:var(--blanco);
+  font-size:.74rem; font-weight:800; color:var(--verde); transition:transform .2s var(--ease), border-color .2s;}
+.chips span:hover{transform:translateY(-3px); border-color:var(--verde-soft);}
+.contact-card{padding:26px; border:1.5px solid var(--linea); border-radius:var(--radio); background:var(--blanco);
+  box-shadow:0 20px 50px -32px rgba(62,74,26,.6);}
+.contact-card small{display:block; margin-bottom:6px; font-size:.64rem; font-weight:900;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--cafe);}
+.tel-big{display:block; margin-bottom:16px; font-family:var(--display); font-weight:900;
+  font-size:clamp(1.5rem,3.4vw,2.1rem); letter-spacing:.02em; color:var(--verde);}
+.tel-big:hover{color:var(--verde-mid);}
+.contact-actions{display:flex; flex-wrap:wrap; gap:10px;}
+.btn-wa,.btn-tel{display:inline-flex; align-items:center; gap:10px; padding:13px 20px; border-radius:11px;
+  font-weight:900; font-size:.76rem; letter-spacing:.04em; text-transform:uppercase;
+  transition:transform .2s ease, background .25s, color .25s;}
+.btn-wa{background:var(--verde); color:var(--crema);}
+.btn-wa:hover{background:var(--verde-mid); transform:translateY(-2px);}
+.btn-tel{border:1.5px solid var(--verde); color:var(--verde);}
+.btn-tel:hover{background:var(--verde); color:var(--crema); transform:translateY(-2px);}
+.btn-wa svg,.btn-tel svg{width:15px; height:15px; fill:currentColor;}
+.contact-note{margin:14px 0 0; font-size:.78rem; color:var(--tinta-soft);}
+.dist-art img{width:100%; border-radius:var(--radio); box-shadow:0 28px 54px -32px rgba(62,74,26,.5);}
+.dist-art figcaption{margin-top:12px; text-align:center; font-size:.68rem; font-weight:800;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--tinta-soft);}
+.dist-art{margin:0;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:clamp(40px,6vw,64px);
+  border:1px solid var(--linea-soft); border-radius:var(--radio); overflow:hidden; background:var(--linea-soft);}
+.stat{padding:22px 16px; text-align:center; background:var(--crema);}
+.stat b{display:block; font-family:var(--display); font-weight:900; font-size:clamp(1.5rem,3vw,2.1rem); color:var(--verde);}
+.stat span{font-size:.68rem; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--tinta-soft);}
+
+/* ---------- Firma ---------- */
+.firma{color:var(--crema); background:var(--tinta);}
+.firma-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:38px; align-items:center;}
+.firma .kicker{color:var(--dorado);}
+.firma h2{font-size:clamp(1.7rem,3.6vw,2.6rem);}
+.firma p{max-width:460px; margin:14px 0 26px; color:rgba(251,246,234,.66); font-size:.94rem;}
+.btn-tec{display:inline-flex; align-items:center; gap:11px; padding:15px 24px; border-radius:11px;
+  background:var(--dorado); color:var(--tinta); font-weight:900; font-size:.8rem;
+  letter-spacing:.04em; text-transform:uppercase; transition:transform .2s ease, background .2s;}
+.btn-tec:hover{background:#EFB55A; transform:translateY(-2px);}
+.nota{padding:22px; border:1.5px solid rgba(251,246,234,.18); border-radius:var(--radio);}
+.nota small{display:block; margin-bottom:9px; font-size:.62rem; font-weight:900;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--dorado);}
+.nota p{margin:0; font-size:.83rem; color:rgba(251,246,234,.72);}
+
+footer{padding:26px 0 40px; background:var(--tinta); color:rgba(251,246,234,.45);}
+.pie{display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  padding-top:22px; border-top:1px solid rgba(251,246,234,.14);
+  font-size:.66rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;}
+.pie a:hover{color:var(--dorado);}
+
+/* ---------- Responsive ---------- */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;}
+  .mascot-stage{min-height:340px; order:-1;}
+  .mascot{width:min(58%,270px);}
+  .float-chip.a{left:0; top:6%;}
+  .float-chip.b{right:0; top:40%;}
+  .float-chip.c{left:0; bottom:6%;}
+  .result-top{grid-template-columns:1fr; text-align:center; gap:16px; padding:26px 22px;}
+  .gauge{margin-inline:auto; width:260px;}
+  .verdict .chip{margin-inline:auto;}
+  .verdict p{margin-inline:auto;}
+  .mini-mascot{width:96px;}
+  .sello-grid{grid-template-columns:repeat(2,1fr);}
+  .dist-grid,.firma-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:620px){
+  .wrap{width:min(var(--wrap),calc(100% - 28px));}
+  .head-wa b{display:none;}
+  .head-wa{padding:11px 13px;}
+  .ficha{grid-template-columns:repeat(2,1fr);}
+  .ficha > div{border-bottom:1px solid var(--linea-soft);}
+  .ficha > div:nth-child(2){border-right:0;}
+  .sello-grid{grid-template-columns:1fr;}
+  .code-row{flex-direction:column;}
+  .btn-check{padding:15px 24px;}
+  .ruta{padding-left:50px;}
+  .ruta-line{left:18px;}
+  .parada::before{left:-39px;}
+  .truck{left:-24px; width:38px;}
+  .fact{flex-wrap:wrap;}
+  .contact-actions{flex-direction:column;}
+  .btn-wa,.btn-tel{justify-content:center;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms!important; animation-iteration-count:1!important;
+    transition-duration:.001ms!important;}
+  .reveal,.parada{opacity:1; transform:none;}
+}
 </style>
 </head>
 <body>
 
-<div class="demo-flag"><i></i>Vista previa · TEC CAPITAL</div>
-
-<header>
+<header class="site-head">
   <div class="wrap">
-    <a class="brand" href="../index.html"><img src="../assets/img/logo-t-hd.png" alt="">TEC CAPITAL</a>
-    <a class="back" href="../index.html">← Volver al sitio</a>
+    <a class="marca" href="#inicio">
+      <img src="../assets/img/tehuacan/emblema.png" alt="Distribuidor de Huevos Tehuacán" width="280" height="185">
+      <span><b>Huevos Tehuacán</b><span>Distribuidor</span></span>
+    </a>
+    <a class="head-wa" href="https://wa.me/5212381779821?text=Hola%2C%20quiero%20informes%20de%20Huevos%20Tehuac%C3%A1n" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.23-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.34z"/><path d="M12 0C5.37 0 0 5.37 0 12c0 2.14.56 4.14 1.54 5.87L0 24l6.29-1.5A11.95 11.95 0 0 0 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0zm0 21.82a9.8 9.8 0 0 1-5.06-1.4l-.36-.22-3.73.9.94-3.65-.23-.38A9.82 9.82 0 0 1 2.18 12c0-5.43 4.4-9.82 9.82-9.82 5.43 0 9.82 4.4 9.82 9.82s-4.4 9.82-9.82 9.82z"/></svg>
+      <b>238 177 9821</b>
+    </a>
   </div>
 </header>
 
-<main>
-  <section class="hero wrap section">
-    <span class="eyebrow">Escaneaste el código de tu huevo</span>
-    <!-- PLACEHOLDER: título con el nombre real de la marca/granja, a definir mañana -->
-    <h1 class="display">De la granja <em>a tu mesa</em>, sin nada que esconder.</h1>
-    <p class="lead">Esta página es lo primero que ve una persona al escanear el código en la cáscara: el origen exacto de su huevo, cómo se produjo y quién lo cuidó en el camino.</p>
+<main id="inicio">
 
-    <div class="lote-card" id="loteCard">
-      <div class="lote-head">
-        <strong id="loteGranja">Granja demo</strong>
-        <span>Ficha del lote</span>
-      </div>
-      <div class="lote-grid">
-        <div class="lote-item"><small>Lote</small><strong id="loteId">—</strong></div>
-        <div class="lote-item"><small>Recolección</small><strong id="loteFecha">—</strong></div>
-        <div class="lote-item"><small>Clasificación</small><strong id="loteClase">AA</strong></div>
-        <div class="lote-item"><small>Sistema</small><strong id="loteSistema">Piso libre</strong></div>
-      </div>
-      <div class="lote-note">Datos de ejemplo para la demostración — en producción, cada QR lee su propio lote real.</div>
-    </div>
-  </section>
-
-  <section class="process section">
+  <!-- ============ HERO + MEDIDOR ============ -->
+  <section class="hero section">
     <div class="wrap">
-      <div class="process-head">
-        <span class="eyebrow" style="justify-content:center;">El proceso</span>
-        <h2 class="display">Así llega este huevo hasta ti.</h2>
-        <p>Siete pasos, todos documentados, desde la granja hasta el punto de venta.</p>
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">Medidor de frescura</span>
+          <h1>¿Qué tan fresco<br>está <em>tu huevo</em>?</h1>
+          <p class="lead">Cada huevo que sale de nuestras granjas lleva impreso un código único. Escríbelo aquí y te decimos el día exacto en que se puso, de qué granja viene y hasta cuándo lo puedes disfrutar.</p>
+
+          <div class="checker">
+            <label for="codeInput">Código impreso en el cascarón</label>
+            <div class="code-row">
+              <input id="codeInput" type="text" inputmode="latin" maxlength="7"
+                     placeholder="218-AT" autocomplete="off" spellcheck="false" aria-describedby="hint">
+              <button class="btn-check" id="checkBtn" type="button">Revisar</button>
+            </div>
+            <p class="hint" id="hint">¿No traes un huevo a la mano? Prueba con
+              <button class="try" id="tryBtn" type="button">000-DT</button>, nuestro código de demostración.</p>
+          </div>
+        </div>
+
+        <div class="mascot-stage" aria-hidden="true">
+          <span class="float-chip a"><i>●</i> Puesto en granja local</span>
+          <span class="float-chip b"><i>●</i> Código único por pieza</span>
+          <span class="float-chip c"><i>●</i> Frescura verificable</span>
+          <div class="mascot-shadow"></div>
+          <svg class="mascot" id="heroMascot" viewBox="0 0 200 210">
+            <defs>
+              <radialGradient id="shell" cx="38%" cy="30%" r="80%">
+                <stop offset="0%" stop-color="#FFFDF6"/>
+                <stop offset="62%" stop-color="#F7EED9"/>
+                <stop offset="100%" stop-color="#EADFC2"/>
+              </radialGradient>
+            </defs>
+            <path d="M100 12 C146 12 176 62 176 110 C176 158 144 196 100 196 C56 196 24 158 24 110 C24 62 54 12 100 12 Z" fill="url(#shell)" stroke="#3E4A1A" stroke-width="3.5"/>
+            <circle cx="62" cy="70" r="3.2" fill="#D9CBA8"/><circle cx="142" cy="58" r="2.6" fill="#D9CBA8"/>
+            <circle cx="150" cy="132" r="3" fill="#D9CBA8"/><circle cx="52" cy="140" r="2.4" fill="#D9CBA8"/>
+            <g id="heroFace" transform="translate(100 108)"></g>
+          </svg>
+        </div>
       </div>
-      <div class="steps">
-        <article class="step"><div><h3>Selección y crianza de las aves</h3><p>Gallinas ponedoras criadas en condiciones controladas de espacio, luz y bienestar animal.</p></div></article>
-        <article class="step"><div><h3>Alimentación balanceada</h3><p>Dieta formulada para huevo de calidad consistente, sin antibióticos como promotores de crecimiento.</p></div></article>
-        <article class="step"><div><h3>Recolección diaria</h3><p>Cada lote se recolecta y se registra el mismo día, con hora y turno de granja.</p></div></article>
-        <article class="step"><div><h3>Clasificación y control de calidad</h3><p>Revisión de cascarón, peso y frescura antes de continuar al empaque.</p></div></article>
-        <article class="step"><div><h3>Empaque con código de trazabilidad</h3><p>Cada huevo recibe el código que ves aquí, único por lote de producción.</p></div></article>
-        <article class="step"><div><h3>Cadena de frío y distribución</h3><p>Traslado con temperatura controlada hasta el punto de venta más cercano a ti.</p></div></article>
-        <article class="step"><div><h3>Tu mesa</h3><p>Un huevo con historia comprobable, no solo una etiqueta.</p></div></article>
+
+      <!-- Resultado -->
+      <div class="result" id="result" role="status" aria-live="polite">
+        <div class="confetti" id="confetti"></div>
+        <div class="result-top">
+          <div class="gauge">
+            <svg viewBox="0 0 320 205" role="img" aria-labelledby="gaugeTitle">
+              <title id="gaugeTitle">Medidor de frescura</title>
+              <g id="ticks"></g>
+              <path class="gauge-arc gauge-track" d="M40 158 A120 120 0 0 1 280 158" stroke-width="19"/>
+              <path class="gauge-arc gauge-fill" id="gaugeFill" d="M40 158 A120 120 0 0 1 280 158"
+                    stroke-width="19" stroke="#4E7A2A" stroke-dasharray="377" stroke-dashoffset="377"/>
+              <g class="marker" id="marker">
+                <circle cx="160" cy="38" r="13" fill="#FFFDF8"/>
+                <circle cx="160" cy="38" r="8" id="markerDot" fill="#4E7A2A"/>
+              </g>
+              <text class="gauge-end" x="40" y="186" text-anchor="middle">0 días</text>
+              <text class="gauge-end" x="280" y="186" text-anchor="middle">30 días</text>
+              <text class="gauge-num" id="gaugeNum" x="160" y="126" text-anchor="middle">—</text>
+              <text class="gauge-cap" x="160" y="146" text-anchor="middle">días de frescura</text>
+            </svg>
+          </div>
+          <div class="verdict">
+            <span class="chip" id="chip">—</span>
+            <h2 id="verdictTitle">—</h2>
+            <span class="sub" id="verdictSub"></span>
+            <p id="verdictText">—</p>
+          </div>
+          <div class="mini-mascot" aria-hidden="true">
+            <svg viewBox="0 0 200 210">
+              <path d="M100 12 C146 12 176 62 176 110 C176 158 144 196 100 196 C56 196 24 158 24 110 C24 62 54 12 100 12 Z" fill="url(#shell)" stroke="#3E4A1A" stroke-width="4"/>
+              <g id="miniFace" transform="translate(100 108)"></g>
+            </svg>
+          </div>
+        </div>
+        <div class="ficha">
+          <div><small>Fecha de postura</small><b id="fPostura">—</b></div>
+          <div><small>Granja</small><b id="fGranja">—</b></div>
+          <div><small>Parvada</small><b id="fParvada">—</b></div>
+          <div><small>Consúmelo antes de</small><b id="fLimite">—</b></div>
+        </div>
+        <div class="fact">
+          <svg class="fact-egg" viewBox="0 0 200 210" aria-hidden="true">
+            <path d="M100 12 C146 12 176 62 176 110 C176 158 144 196 100 196 C56 196 24 158 24 110 C24 62 54 12 100 12 Z" fill="#F7EED9" stroke="#3E4A1A" stroke-width="6"/>
+          </svg>
+          <p><b>¿Sabías que…?</b> <span id="factText"></span></p>
+          <button id="factBtn" type="button">Otro dato</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="why section">
+  <!-- ============ CINTA ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-row">
+      <div class="ticker-track"><span>Huevo fresco de granja</span><i></i><span>Reparto local</span><i></i><span>Trazable pieza por pieza</span><i></i><span>Mayoreo y menudeo</span><i></i><span>Tehuacán y la región</span><i></i></div>
+      <div class="ticker-track"><span>Huevo fresco de granja</span><i></i><span>Reparto local</span><i></i><span>Trazable pieza por pieza</span><i></i><span>Mayoreo y menudeo</span><i></i><span>Tehuacán y la región</span><i></i></div>
+    </div>
+  </div>
+
+  <!-- ============ EL SELLO ============ -->
+  <section class="sello section">
     <div class="wrap">
-      <div class="why-head">
-        <span class="eyebrow" style="justify-content:center;">Por qué importa</span>
-        <h2 class="display">Trazabilidad real, no solo una promesa.</h2>
-        <p>Un código QR bien implementado convierte una etiqueta en una prueba verificable.</p>
+      <span class="kicker">El sello</span>
+      <h2 class="reveal">Cinco caracteres que cuentan toda la historia.</h2>
+      <p class="reveal">Impreso con tinta de grado alimenticio, apta para contacto directo con el alimento. Toca cada parte del código para ver qué significa:</p>
+
+      <div class="sello-demo reveal" id="selloDemo">
+        <button class="seg seg-d" data-k="d" type="button">218</button>
+        <span class="seg-dash">-</span>
+        <button class="seg seg-p" data-k="p" type="button">A</button>
+        <button class="seg seg-g" data-k="g" type="button">T</button>
       </div>
-      <div class="why-grid">
-        <article class="why-card"><small>01 · Transparencia</small><h3>Origen verificable</h3><p>La persona que compra puede confirmar de dónde viene su alimento, no solo confiar en el empaque.</p></article>
-        <article class="why-card"><small>02 · Confianza</small><h3>Bienestar animal</h3><p>Mostrar el proceso real de crianza construye una relación distinta con el consumidor.</p></article>
-        <article class="why-card"><small>03 · Diferenciación</small><h3>Marca con evidencia</h3><p>En un anaquel lleno de huevo genérico, la trazabilidad digital es una ventaja competitiva medible.</p></article>
+      <p class="sello-hint">— Toca los caracteres —</p>
+
+      <div class="sello-grid">
+        <article class="sello-card reveal" data-k="tinta"><b>Tinta segura</b><p>De grado alimenticio, certificada para imprimirse directo sobre el cascarón sin ningún riesgo.</p></article>
+        <article class="sello-card reveal" data-k="d"><b>218 · Día de postura</b><p>El día del año en que la gallina puso el huevo: 001 es el 1 de enero, 365 el 31 de diciembre.</p></article>
+        <article class="sello-card reveal" data-k="p"><b>A · Parvada</b><p>Identifica al grupo exacto de gallinas del que salió esta pieza.</p></article>
+        <article class="sello-card reveal" data-k="g"><b>T · Granja</b><p>La granja de origen dentro de nuestra red en la región de Tehuacán.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="pitch section">
-    <div class="wrap pitch-inner">
+  <!-- ============ RECORRIDO ============ -->
+  <section class="viaje section">
+    <div class="wrap">
+      <span class="kicker">Del corral a tu cocina</span>
+      <h2 class="reveal">Sigue el viaje de tu huevo.</h2>
+      <p class="reveal">Ocho paradas, todas registradas. El camión avanza contigo mientras bajas.</p>
+
+      <div class="ruta" id="ruta">
+        <div class="ruta-line"><div class="ruta-fill" id="rutaFill"></div></div>
+        <div class="truck" id="truck">
+          <svg viewBox="0 0 64 44">
+            <rect x="2" y="8" width="34" height="22" rx="4" fill="#3E4A1A"/>
+            <path d="M36 14 h14 l8 9 v7 h-22 Z" fill="#556520"/>
+            <rect x="40" y="17" width="9" height="7" rx="1.5" fill="#FBF6EA"/>
+            <circle cx="14" cy="33" r="6.5" fill="#241E14"/><circle cx="14" cy="33" r="2.8" fill="#FBF6EA"/>
+            <circle cx="48" cy="33" r="6.5" fill="#241E14"/><circle cx="48" cy="33" r="2.8" fill="#FBF6EA"/>
+            <rect x="6" y="13" width="22" height="4" rx="2" fill="#8A9B5C"/>
+          </svg>
+        </div>
+        <article class="parada"><h3><small>01</small>Crianza de las aves</h3><p>Gallinas en condiciones controladas de espacio, luz y ventilación, con seguimiento veterinario permanente.</p></article>
+        <article class="parada"><h3><small>02</small>Alimentación balanceada</h3><p>Dieta formulada por nutriólogos pecuarios, sin antibióticos como promotores de crecimiento.</p></article>
+        <article class="parada"><h3><small>03</small>Recolección diaria</h3><p>Cada parvada se recolecta el mismo día y se registra con hora y turno de granja.</p></article>
+        <article class="parada"><h3><small>04</small>Selección y control</h3><p>Revisión pieza por pieza de cascarón, peso y frescura antes de continuar.</p></article>
+        <article class="parada"><h3><small>05</small>Sellado del código</h3><p>Se imprime el código de trazabilidad que acabas de escribir, con tinta de grado alimenticio.</p></article>
+        <article class="parada"><h3><small>06</small>Cadena de frío</h3><p>Traslado a temperatura controlada desde la granja hasta el punto de venta.</p></article>
+        <article class="parada"><h3><small>07</small>Reparto en tu comunidad</h3><p>Rutas cortas por Tehuacán y la región: menos kilómetros, más frescura.</p></article>
+        <article class="parada"><h3><small>08</small>Tu mesa</h3><p>Un huevo con historia comprobable, no solo una fecha impresa en la caja.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISTRIBUCIÓN ============ -->
+  <section class="dist section" id="distribucion">
+    <div class="wrap">
+      <div class="dist-grid">
+        <div>
+          <span class="kicker">Distribución</span>
+          <h2 class="reveal">Le distribuimos <em>a todos</em>.</h2>
+          <p class="lead reveal">Del changarro de la esquina al restaurante más exigente: si en tu negocio o en tu casa se come huevo, nosotros te lo llevamos fresco, directo de granja.</p>
+          <div class="chips reveal">
+            <span>Tiendas de abarrotes</span><span>Restaurantes y fondas</span><span>Panaderías y reposterías</span>
+            <span>Cocinas económicas</span><span>Hoteles</span><span>Mercados</span><span>Cremerías</span><span>Hogares</span>
+          </div>
+          <div class="contact-card reveal">
+            <small>Pedidos, informes o lo que necesites</small>
+            <a class="tel-big" href="tel:+5212381779821">+52 1 238 177 9821</a>
+            <div class="contact-actions">
+              <a class="btn-wa" href="https://wa.me/5212381779821?text=Hola%2C%20quiero%20hacer%20un%20pedido%20de%20Huevos%20Tehuac%C3%A1n" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.23-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.34z"/><path d="M12 0C5.37 0 0 5.37 0 12c0 2.14.56 4.14 1.54 5.87L0 24l6.29-1.5A11.95 11.95 0 0 0 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0zm0 21.82a9.8 9.8 0 0 1-5.06-1.4l-.36-.22-3.73.9.94-3.65-.23-.38A9.82 9.82 0 0 1 2.18 12c0-5.43 4.4-9.82 9.82-9.82 5.43 0 9.82 4.4 9.82 9.82s-4.4 9.82-9.82 9.82z"/></svg>
+                Escribir por WhatsApp
+              </a>
+              <a class="btn-tel" href="tel:+5212381779821">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+                Llamar ahora
+              </a>
+            </div>
+            <p class="contact-note">Mayoreo y menudeo · Tehuacán y toda la región.</p>
+          </div>
+        </div>
+        <figure class="dist-art reveal">
+          <picture>
+            <source srcset="../assets/img/tehuacan/producto.webp" type="image/webp">
+            <img src="../assets/img/tehuacan/producto.png" alt="Empaque de 12 huevos frescos grado A de Distribuidor de Huevos Tehuacán" width="880" height="615" loading="lazy">
+          </picture>
+          <figcaption>Llevamos calidad a tu comunidad</figcaption>
+        </figure>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b data-n="5">0</b><span>Granjas en la región</span></div>
+        <div class="stat"><b data-n="7">0</b><span>Días de reparto por semana</span></div>
+        <div class="stat"><b data-n="30">0</b><span>Días de frescura trazable</span></div>
+        <div class="stat"><b data-n="1">0</b><span>Código único por huevo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIRMA TEC CAPITAL ============ -->
+  <section class="firma section">
+    <div class="wrap firma-grid">
       <div>
-        <span class="eyebrow">Lo que acabas de ver, para tu marca</span>
-        <h2 class="display">¿Y si cada producto que vendes contara su propia historia?</h2>
-        <p>Esta demostración se construyó para el Congreso Avícola. Si tienes una granja, una marca de alimentos o cualquier producto físico, podemos integrarte esta misma experiencia de trazabilidad con QR — con tu marca, tus datos reales y tu proceso.</p>
-        <a class="btn" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20vi%20la%20demo%20del%20QR%20del%20huevo%20en%20el%20congreso%20y%20quiero%20platicar%20de%20mi%20producto" target="_blank" rel="noopener">Quiero esto para mi marca ↗</a>
+        <span class="kicker">Tecnología por TEC CAPITAL</span>
+        <h2 class="reveal">¿Y si tu producto contara su propia historia?</h2>
+        <p class="reveal">Este medidor es una demostración funcional construida para el Congreso Avícola. La misma trazabilidad con QR se puede integrar a tu granja, tu marca de alimentos o cualquier producto físico — con tus datos reales y tu proceso.</p>
+        <a class="btn-tec reveal" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20vi%20el%20medidor%20de%20frescura%20en%20el%20congreso%20y%20quiero%20platicar%20de%20mi%20producto" target="_blank" rel="noopener">Quiero esto para mi marca</a>
       </div>
-      <div class="pitch-side">
-        <small>Nota para el stand</small>
-        <p>Nombre de marca, logo y fotografía real de granja se integran mañana — esta versión usa datos de ejemplo para mostrar la experiencia completa.</p>
+      <div class="nota reveal">
+        <small>Nota de la demostración</small>
+        <p>Los lotes y granjas mostrados son de ejemplo. En producción, cada código consulta el lote real registrado en granja.</p>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap footer">
-    <span>Demo construida por TEC CAPITAL — Congreso Avícola 2026</span>
-    <a href="../index.html">teccapitalweb.com</a>
+  <div class="wrap pie">
+    <span>Distribuidor de Huevos Tehuacán · Congreso Avícola 2026</span>
+    <a href="tel:+5212381779821">Pedidos: +52 1 238 177 9821</a>
+    <a href="../index.html">Desarrollado por TEC CAPITAL</a>
   </div>
 </footer>
 
 <script>
-  // Lee parámetros del QR para personalizar la ficha del lote.
-  // Ejemplo de URL que puede llevar el QR de cada huevo:
-  // /origen/?lote=A-0817&granja=Granja%20Demo&fecha=17%20ago&clase=AA&sistema=Piso%20libre
-  (() => {
-    const q = new URLSearchParams(location.search);
-    const set = (id, val) => { if (val) document.getElementById(id).textContent = val; };
-    set('loteGranja', q.get('granja'));
-    set('loteId', q.get('lote') || 'A-0817');
-    set('loteFecha', q.get('fecha') || '17 ago');
-    set('loteClase', q.get('clase'));
-    set('loteSistema', q.get('sistema'));
-    if (!q.get('granja')) document.getElementById('loteGranja').textContent = 'Granja demo';
-  })();
-</script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ========== Catálogos de la demo (sustituir por los reales en producción) ========== */
+  const GRANJAS = { T:'Tehuacán Centro', A:'Altépexi', M:'Miahuatlán',
+                    S:'San Gabriel Chilac', Z:'Zapotitlán', D:'Granja demo' };
+  const VIDA_UTIL = 30;
+  const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+  const ESCALA = [
+    { max:7,  hex:'#4E7A2A', etiqueta:'Recién puesto', cara:'feliz', confeti:true,
+      titulo:'¡Listo para cocinar!',
+      texto:'Este huevo está en su mejor momento. Ideal para huevo estrellado, pochado o tibio, donde la frescura se nota de inmediato.' },
+    { max:14, hex:'#7C9430', etiqueta:'Muy fresco', cara:'contento', confeti:true,
+      titulo:'¡Excelente pieza!',
+      texto:'En magnífico estado. Perfecto para cualquier preparación, desde un revuelto hasta repostería fina.' },
+    { max:21, hex:'#7C9430', etiqueta:'Fresco', cara:'contento', confeti:false,
+      titulo:'En buen punto.',
+      texto:'Sigue en muy buenas condiciones. A partir de aquí es cuando mejor se pelan los huevos cocidos.' },
+    { max:28, hex:'#D89A2E', etiqueta:'Consúmelo pronto', cara:'preocupado', confeti:false,
+      titulo:'Aprovéchalo esta semana.',
+      texto:'Todavía es seguro, pero ya va de salida. Mejor destinarlo a preparaciones bien cocidas: pasteles, tortas, capeados.' },
+    { max:Infinity, hex:'#A8442A', etiqueta:'Fuera de rango', cara:'triste', confeti:false,
+      titulo:'¡Ohh, no! Toca ir a la tienda.',
+      texto:'Este huevo ya pasó los 30 días recomendados. No te arriesgues — repartimos en toda la región varias veces por semana. Márcanos al 238 177 9821 y te surtimos.' }
+  ];
+
+  const DATOS = [
+    'la cámara de aire dentro del huevo crece con los días. Por eso un huevo viejo flota en agua y uno fresco se hunde.',
+    'el cascarón tiene miles de poros microscópicos por los que el huevo "respira" — así es como va envejeciendo.',
+    'un huevo muy fresco es más difícil de pelar cocido. Para huevos duros perfectos, usa piezas de 2 a 3 semanas.',
+    'el color de la yema depende de la alimentación de la gallina, no de la frescura ni de la calidad.',
+    'la clara de un huevo fresco se queda firme y alta al estrellarlo; si se extiende como agua, ya tiene tiempo.',
+    'refrigerado, un huevo conserva su frescura hasta tres veces más que a temperatura ambiente.',
+    'el color del cascarón —blanco o rojo— lo define la raza de la gallina; no cambia sabor ni nutrición.',
+    'cada huevo tarda unas 24 horas en formarse: una gallina pone aproximadamente una pieza al día.'
+  ];
+  let factIdx = Math.floor(Math.random() * DATOS.length);
+
+  /* ========== Caras de la mascota ========== */
+  const CARAS = {
+    feliz: `<g class="lids"></g>
+      <circle cx="-16" cy="-8" r="5" fill="#241E14"/><circle cx="16" cy="-8" r="5" fill="#241E14"/>
+      <circle cx="-13.6" cy="-10" r="1.7" fill="#FFFDF8"/><circle cx="18.4" cy="-10" r="1.7" fill="#FFFDF8"/>
+      <ellipse cx="-27" cy="4" rx="7" ry="4.5" fill="#E8A87C" opacity=".55"/>
+      <ellipse cx="27" cy="4" rx="7" ry="4.5" fill="#E8A87C" opacity=".55"/>
+      <path d="M-12 8 Q0 20 12 8" fill="none" stroke="#241E14" stroke-width="3.6" stroke-linecap="round"/>
+      <g class="lids"><rect x="-21" y="-13" width="10" height="10" rx="5" fill="#F7EED9"/><rect x="11" y="-13" width="10" height="10" rx="5" fill="#F7EED9"/></g>`,
+    contento: `
+      <circle cx="-16" cy="-8" r="5" fill="#241E14"/><circle cx="16" cy="-8" r="5" fill="#241E14"/>
+      <circle cx="-13.6" cy="-10" r="1.7" fill="#FFFDF8"/><circle cx="18.4" cy="-10" r="1.7" fill="#FFFDF8"/>
+      <path d="M-10 9 Q0 16 10 9" fill="none" stroke="#241E14" stroke-width="3.4" stroke-linecap="round"/>
+      <g class="lids"><rect x="-21" y="-13" width="10" height="10" rx="5" fill="#F7EED9"/><rect x="11" y="-13" width="10" height="10" rx="5" fill="#F7EED9"/></g>`,
+    preocupado: `
+      <path d="M-22 -18 Q-14 -22 -8 -18" fill="none" stroke="#241E14" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="-15" cy="-7" r="4.6" fill="#241E14"/><circle cx="15" cy="-7" r="4.6" fill="#241E14"/>
+      <path d="M-9 12 Q0 8 9 12" fill="none" stroke="#241E14" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M30 -22 q6 8 0 12 q-6 -4 0 -12" fill="#9DB8C9"/>
+      <g class="lids"><rect x="-20" y="-12" width="10" height="10" rx="5" fill="#F7EED9"/><rect x="10" y="-12" width="10" height="10" rx="5" fill="#F7EED9"/></g>`,
+    triste: `
+      <path d="M-21 -12 L-9 -4 M-9 -12 L-21 -4" stroke="#241E14" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M9 -12 L21 -4 M21 -12 L9 -4" stroke="#241E14" stroke-width="3.4" stroke-linecap="round"/>
+      <ellipse cx="0" cy="13" rx="6" ry="7.5" fill="#241E14"/>`,
+    confundido: `
+      <path d="M-22 -17 Q-14 -21 -8 -17" fill="none" stroke="#241E14" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="-15" cy="-7" r="4.6" fill="#241E14"/><circle cx="15" cy="-9" r="5.4" fill="#241E14"/>
+      <path d="M-9 11 L9 9" stroke="#241E14" stroke-width="3.2" stroke-linecap="round"/>
+      <text x="28" y="-18" font-family="Bitter,serif" font-weight="800" font-size="26" fill="#8F5418">?</text>
+      <g class="lids"><rect x="-20" y="-12" width="10" height="10" rx="5" fill="#F7EED9"/><rect x="10" y="-14" width="11" height="11" rx="5.5" fill="#F7EED9"/></g>`
+  };
+  const setFace = (id, cara) => { $(id).innerHTML = CARAS[cara] || CARAS.contento; };
+  setFace('heroFace', 'feliz');
+  const heroMascot = $('heroMascot');
+
+  /* ========== Utilidades de fecha ========== */
+  const hoy = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+  const fmt = d => `${d.getDate()} ${MESES[d.getMonth()]} ${d.getFullYear()}`;
+  const suma = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+
+  function desdeJuliano(ddd){
+    const t = hoy();
+    let f = new Date(t.getFullYear(),0,1); f.setDate(f.getDate()+ddd-1);
+    if (f > t){ f = new Date(t.getFullYear()-1,0,1); f.setDate(f.getDate()+ddd-1); }
+    return f;
+  }
+
+  function parse(raw){
+    const c = (raw||'').toUpperCase().replace(/[^0-9A-Z]/g,'');
+    if (!/^\d{3}[A-Z]{2}$/.test(c)) return null;
+    const ddd = parseInt(c.slice(0,3),10);
+    if (ddd > 366 || !GRANJAS[c[4]]) return null;
+    const postura = ddd === 0 ? suma(hoy(),-2) : desdeJuliano(ddd);
+    return { parvada:c[3], granja:c[4], postura,
+             dias: Math.round((hoy()-postura)/86400000) };
+  }
+
+  /* ========== Medidor ========== */
+  const ARCO = Math.PI * 120;
+  const input = $('codeInput'), result = $('result');
+
+  // Marcas del arco (0,5,10,…,30 días)
+  (function ticks(){
+    let out = '';
+    for (let v = 0; v <= 30; v += 5){
+      const th = Math.PI - (v/30)*Math.PI;
+      const c = Math.cos(th), s = Math.sin(th);
+      out += `<line class="tick" x1="${160+c*127}" y1="${158-s*127}" x2="${160+c*136}" y2="${158-s*136}"/>`;
+    }
+    $('ticks').innerHTML = out;
+  })();
+
+  function contar(el, destino){
+    if (REDUCED){ el.textContent = destino; return; }
+    const ini = performance.now(), dur = 950;
+    (function paso(t){
+      const p = Math.min((t-ini)/dur, 1);
+      el.textContent = Math.round(destino * (1 - Math.pow(1-p,3)));
+      if (p < 1) requestAnimationFrame(paso);
+    })(ini);
+  }
+
+  function confeti(){
+    if (REDUCED) return;
+    const box = $('confetti'), colores = ['#4E7A2A','#7C9430','#E0A343','#FBF6EA','#8A9B5C'];
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 42; i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.background = colores[i % colores.length];
+      s.style.animationDelay = Math.random()*.4 + 's';
+      s.style.animationDuration = 1.5 + Math.random()*1.1 + 's';
+      s.style.setProperty('--dx', (Math.random()*120-60) + 'px');
+      s.style.setProperty('--rot', Math.random()*420 + 'deg');
+      frag.appendChild(s);
+    }
+    box.innerHTML = ''; box.appendChild(frag);
+    setTimeout(() => { box.innerHTML = ''; }, 3400);
+  }
+
+  function pintar(hex, pct, dias){
+    $('gaugeFill').setAttribute('stroke', hex);
+    $('gaugeFill').style.strokeDashoffset = ARCO * (1 - pct);
+    $('marker').style.transform = `rotate(${((pct-.5)*180).toFixed(2)}deg)`;
+    $('markerDot').setAttribute('fill', hex);
+    $('gaugeNum').style.fill = hex;
+    const chip = $('chip');
+    chip.style.color = hex; chip.style.background = hex + '1F';
+  }
+
+  function nuevoDato(){
+    factIdx = (factIdx + 1) % DATOS.length;
+    $('factText').textContent = DATOS[factIdx];
+  }
+
+  function render(d){
+    const nivel = ESCALA.find(e => d.dias <= e.max);
+    const restantes = Math.max(0, VIDA_UTIL - d.dias);
+    const pct = Math.max(0, Math.min(1, restantes / VIDA_UTIL));
+
+    result.classList.add('show');
+    void result.offsetWidth;
+
+    pintar(nivel.hex, pct, d.dias);
+    contar($('gaugeNum'), restantes);
+
+    $('chip').textContent = nivel.etiqueta;
+    $('verdictTitle').textContent = nivel.titulo;
+    $('verdictSub').textContent = d.dias === 0 ? 'Puesto hoy mismo'
+      : d.dias === 1 ? 'Puesto ayer' : `Puesto hace ${d.dias} días`;
+    $('verdictText').textContent = nivel.texto;
+    $('fPostura').textContent = fmt(d.postura);
+    $('fGranja').textContent = GRANJAS[d.granja];
+    $('fParvada').textContent = `Parvada ${d.parvada}`;
+    $('fLimite').textContent = fmt(suma(d.postura, VIDA_UTIL));
+    $('factText').textContent = DATOS[factIdx];
+
+    setFace('miniFace', nivel.cara);
+    setFace('heroFace', nivel.cara);
+    heroMascot.classList.toggle('sad', nivel.cara === 'triste');
+
+    if (nivel.confeti) confeti();
+    result.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block:'nearest' });
+  }
+
+  function error(){
+    result.classList.add('show');
+    pintar('#A8442A', 0, 0);
+    $('gaugeFill').style.strokeDashoffset = ARCO;
+    $('gaugeNum').textContent = '—';
+    $('chip').textContent = 'Código no válido';
+    $('verdictTitle').textContent = '¡Upss! Algo salió mal.';
+    $('verdictSub').textContent = '';
+    $('verdictText').textContent = 'Revisa el código impreso en el cascarón: son tres números y dos letras, por ejemplo 218-AT.';
+    ['fPostura','fGranja','fParvada','fLimite'].forEach(id => $(id).textContent = '—');
+    $('factText').textContent = DATOS[factIdx];
+    setFace('miniFace','confundido'); setFace('heroFace','confundido');
+    heroMascot.classList.remove('sad');
+  }
+
+  const revisar = () => { const d = parse(input.value); d ? render(d) : error(); };
+
+  $('checkBtn').addEventListener('click', revisar);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') revisar(); });
+  $('tryBtn').addEventListener('click', () => { input.value = '000-DT'; revisar(); });
+  $('factBtn').addEventListener('click', nuevoDato);
+
+  input.addEventListener('input', () => {
+    const c = input.value.toUpperCase().replace(/[^0-9A-Z]/g,'');
+    input.value = c.length > 3 ? c.slice(0,3) + '-' + c.slice(3,5) : c;
+  });
+
+  /* Placeholder con efecto de escritura (se detiene al enfocar) */
+  (function typewriter(){
+    if (REDUCED) return;
+    const ejemplos = ['218-AT','045-BM','103-CS','327-AZ'];
+    let i = 0, ch = 0, borrando = false, activo = true;
+    input.addEventListener('focus', () => { activo = false; input.placeholder = '218-AT'; });
+    (function paso(){
+      if (!activo || document.activeElement === input || input.value) return;
+      const w = ejemplos[i];
+      if (!borrando){
+        ch++; input.placeholder = w.slice(0,ch);
+        if (ch === w.length){ borrando = true; return void setTimeout(paso, 1700); }
+        setTimeout(paso, 110);
+      } else {
+        ch--; input.placeholder = w.slice(0,ch);
+        if (ch === 0){ borrando = false; i = (i+1)%ejemplos.length; }
+        setTimeout(paso, 55);
+      }
+    })();
+  })();
+
+  /* Autollenado desde el QR: /origen/?c=218AT */
+  const qs = new URLSearchParams(location.search).get('c');
+  if (qs){
+    const c = qs.toUpperCase().replace(/[^0-9A-Z]/g,'');
+    input.value = c.length > 3 ? c.slice(0,3) + '-' + c.slice(3,5) : c;
+    setTimeout(revisar, 450);
+  }
+
+  /* ========== Decodificador del sello ========== */
+  const segs = [...document.querySelectorAll('.seg')];
+  const cards = [...document.querySelectorAll('.sello-card')];
+  let autoK = 0, pausaHasta = 0;
+  function litK(k){
+    segs.forEach(s => s.classList.toggle('on', s.dataset.k === k));
+    cards.forEach(c => c.classList.toggle('lit', c.dataset.k === k));
+  }
+  segs.forEach(s => s.addEventListener('click', () => { pausaHasta = Date.now() + 9000; litK(s.dataset.k); }));
+  setInterval(() => {
+    if (Date.now() < pausaHasta || REDUCED) return;
+    const orden = ['d','p','g','tinta'];
+    litK(orden[autoK % orden.length]); autoK++;
+  }, 2600);
+
+  /* ========== Aparición al hacer scroll ========== */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* Paradas del recorrido */
+  const ioP = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('on'); ioP.unobserve(e.target); }
+  }), { threshold:.3, rootMargin:'0px 0px -5% 0px' });
+  document.querySelectorAll('.parada').forEach(el => ioP.observe(el));
+
+  /* Camión que avanza con el scroll */
+  const ruta = $('ruta'), truck = $('truck'), rutaFill = $('rutaFill');
+  let raf = null;
+  function moverTruck(){
+    raf = null;
+    const r = ruta.getBoundingClientRect();
+    const objetivo = innerHeight * .55;
+    const p = Math.max(0, Math.min(1, (objetivo - r.top) / r.height));
+    truck.style.top = `calc(${(p*100).toFixed(2)}% - 20px)`;
+    rutaFill.style.height = (p*100).toFixed(2) + '%';
+  }
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(moverTruck); }, { passive:true });
+  moverTruck();
+
+  /* Contadores de la sección de distribución */
+  const ioS = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('b[data-n]').forEach(b => contar(b, +b.dataset.n));
+    ioS.unobserve(e.target);
+  }), { threshold:.35 });
+  document.querySelectorAll('.stats').forEach(el => ioS.observe(el));
+})();
+</script>
 </body>
 </html>
