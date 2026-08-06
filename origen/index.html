@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2efe8">
+<title>Demo — Trazabilidad de huevo | TEC CAPITAL</title>
+<meta name="description" content="Escanea el código de tu huevo y conoce su origen, su proceso y su granja. Demostración construida por TEC CAPITAL.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../assets/img/logo-t-hd.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DEMO — Trazabilidad de huevo (QR de stand, Congreso Avícola)
+     Página independiente, NO enlazada en el menú principal.
+     PENDIENTE (mañana): nombre de marca, logo real y foto de granja.
+     Buscar "PLACEHOLDER" para ubicar todo lo que falta por definir.
+     ============================================================ */
+  :root{
+    --paper:#f2efe8; --paper-deep:#e7e3db; --white:#faf9f6;
+    --ink:#121416; --ink-soft:#282c30; --muted:#6f726f;
+    --line:rgba(18,20,22,.16); --line-soft:rgba(18,20,22,.1);
+    --yolk:#e2892b;         /* PLACEHOLDER: color de acento — hoy "amarillo yema", mañana puede ser el color de marca */
+    --yolk-dark:#b8681a;
+    --sans:'Manrope',sans-serif; --display:'Urbanist',sans-serif; --mono:'DM Mono',monospace;
+    --wrap:900px; --ease:cubic-bezier(.2,.76,.22,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; min-width:320px; overflow-x:hidden;
+    color:var(--ink); background:var(--paper); font-family:var(--sans);
+    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  ::selection{color:#fff; background:var(--yolk);}
+  :focus-visible{outline:2px solid var(--yolk); outline-offset:3px;}
+  .wrap{width:min(var(--wrap), calc(100% - 40px)); margin-inline:auto;}
+  .section{padding:clamp(56px,8vw,96px) 0;}
+  .eyebrow{display:inline-flex; align-items:center; gap:10px; margin-bottom:18px; font:500 .68rem/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--yolk);}
+  .display{margin:0; font-family:var(--display); font-weight:600; letter-spacing:-.045em; line-height:.98;}
+  em{color:var(--yolk); font-style:normal;}
+
+  /* Aviso de demo */
+  .demo-flag{position:fixed; top:12px; left:50%; z-index:150; transform:translateX(-50%); display:flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--ink); border-radius:100px; background:var(--paper); font:500 .6rem var(--mono); letter-spacing:.06em; text-transform:uppercase; box-shadow:0 8px 20px rgba(18,20,22,.14);}
+  .demo-flag i{width:6px; height:6px; border-radius:50%; background:var(--yolk); animation:blink 2.2s infinite;}
+  @keyframes blink{50%{opacity:.25;}}
+
+  /* Header */
+  header{padding:64px 0 12px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .brand{display:inline-flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:.95rem; letter-spacing:-.01em;}
+  .brand img{width:24px; height:24px;}
+  .back{font:500 .66rem var(--mono); text-transform:uppercase; letter-spacing:.05em; color:var(--muted);}
+  .back:hover{color:var(--ink);}
+
+  /* Hero */
+  .hero{padding-top:20px; text-align:center;}
+  .hero .eyebrow{justify-content:center;}
+  .hero h1{font-size:clamp(2.4rem,7vw,4.6rem); max-width:760px; margin:0 auto 20px;}
+  .hero p.lead{max-width:520px; margin:0 auto; color:var(--muted); font-size:clamp(1rem,1.6vw,1.14rem);}
+
+  /* Ficha de lote (datos dinámicos vía QR) */
+  .lote-card{margin:44px auto 0; max-width:640px; border:1px solid var(--ink); background:var(--white); text-align:left;}
+  .lote-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 22px; border-bottom:1px solid var(--line); background:var(--ink); color:var(--paper);}
+  .lote-head span{font:500 .62rem var(--mono); letter-spacing:.1em; text-transform:uppercase;}
+  .lote-head strong{font-family:var(--display); font-size:.95rem;}
+  .lote-grid{display:grid; grid-template-columns:repeat(4,1fr);}
+  .lote-item{padding:20px 18px; border-right:1px solid var(--line);}
+  .lote-item:last-child{border-right:0;}
+  .lote-item small{display:block; margin-bottom:8px; font:400 .58rem var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+  .lote-item strong{font-family:var(--display); font-size:1.15rem; letter-spacing:-.02em;}
+  .lote-note{padding:12px 22px; border-top:1px dashed var(--line); font:400 .68rem var(--mono); color:var(--muted); text-align:center;}
+
+  /* Proceso */
+  .process{border-top:1px solid var(--line);}
+  .process-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+  .process-head h2{font-size:clamp(2rem,4.6vw,3.2rem); margin:0 0 14px;}
+  .process-head p{color:var(--muted); margin:0;}
+  .steps{counter-reset:steps; border-top:1px solid var(--line); max-width:760px; margin:0 auto;}
+  .step{counter-increment:steps; display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-bottom:1px solid var(--line);}
+  .step::before{content:'0' counter(steps); font:400 .68rem var(--mono); color:var(--yolk);}
+  .step h3{margin:0 0 8px; font-family:var(--display); font-size:clamp(1.2rem,2.4vw,1.5rem); font-weight:600; letter-spacing:-.02em;}
+  .step p{margin:0; max-width:520px; color:var(--muted); font-size:.9rem;}
+
+  /* Por qué importa */
+  .why{background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .why-head{text-align:center; max-width:640px; margin:0 auto 44px;}
+  .why-head h2{font-size:clamp(2rem,4.6vw,3.2rem); margin:0 0 14px;}
+  .why-head p{color:var(--muted); margin:0;}
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .why-card{padding:26px; border:1px solid var(--line); background:var(--white);}
+  .why-card small{display:block; margin-bottom:34px; color:var(--yolk); font:400 .6rem var(--mono); text-transform:uppercase;}
+  .why-card h3{margin:0 0 10px; font-family:var(--display); font-size:1.2rem; letter-spacing:-.02em;}
+  .why-card p{margin:0; color:var(--muted); font-size:.84rem;}
+
+  /* CTA de cierre (pitch para el stand) */
+  .pitch{color:var(--paper); background:var(--ink);}
+  .pitch-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;}
+  .pitch h2{font-size:clamp(2rem,4.6vw,3.4rem); margin:0 0 16px;}
+  .pitch p{max-width:460px; margin:0 0 28px; color:#a7aaaa;}
+  .btn{display:inline-flex; align-items:center; gap:12px; min-height:52px; padding:0 22px; border:1px solid var(--yolk); background:var(--yolk); color:#fff; font:600 .78rem var(--sans); transition:background .25s, transform .25s var(--ease);}
+  .btn:hover{background:var(--yolk-dark); transform:translateY(-3px);}
+  .pitch-side{padding:24px; border:1px solid rgba(255,255,255,.18);}
+  .pitch-side small{display:block; margin-bottom:12px; font:400 .6rem var(--mono); color:#a7aaaa; text-transform:uppercase;}
+  .pitch-side p{margin:0; color:#d6d7d6; font-size:.86rem;}
+
+  footer{padding:26px 0 40px;}
+  .footer{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding-top:22px; border-top:1px solid var(--line); font:400 .62rem var(--mono); color:var(--muted); text-transform:uppercase;}
+  .footer a:hover{color:var(--ink);}
+
+  @media (max-width:780px){
+    .lote-grid{grid-template-columns:repeat(2,1fr);}
+    .lote-item:nth-child(2){border-right:0;}
+    .lote-item{border-bottom:1px solid var(--line);}
+    .why-grid{grid-template-columns:1fr;}
+    .pitch-inner{grid-template-columns:1fr;}
+  }
+  @media (max-width:480px){
+    header{padding-top:52px;}
+    .step{grid-template-columns:36px 1fr; gap:12px;}
+    .demo-flag{font-size:.55rem; padding:7px 12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-flag"><i></i>Vista previa · TEC CAPITAL</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img src="../assets/img/logo-t-hd.png" alt="">TEC CAPITAL</a>
+    <a class="back" href="../index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap section">
+    <span class="eyebrow">Escaneaste el código de tu huevo</span>
+    <!-- PLACEHOLDER: título con el nombre real de la marca/granja, a definir mañana -->
+    <h1 class="display">De la granja <em>a tu mesa</em>, sin nada que esconder.</h1>
+    <p class="lead">Esta página es lo primero que ve una persona al escanear el código en la cáscara: el origen exacto de su huevo, cómo se produjo y quién lo cuidó en el camino.</p>
+
+    <div class="lote-card" id="loteCard">
+      <div class="lote-head">
+        <strong id="loteGranja">Granja demo</strong>
+        <span>Ficha del lote</span>
+      </div>
+      <div class="lote-grid">
+        <div class="lote-item"><small>Lote</small><strong id="loteId">—</strong></div>
+        <div class="lote-item"><small>Recolección</small><strong id="loteFecha">—</strong></div>
+        <div class="lote-item"><small>Clasificación</small><strong id="loteClase">AA</strong></div>
+        <div class="lote-item"><small>Sistema</small><strong id="loteSistema">Piso libre</strong></div>
+      </div>
+      <div class="lote-note">Datos de ejemplo para la demostración — en producción, cada QR lee su propio lote real.</div>
+    </div>
+  </section>
+
+  <section class="process section">
+    <div class="wrap">
+      <div class="process-head">
+        <span class="eyebrow" style="justify-content:center;">El proceso</span>
+        <h2 class="display">Así llega este huevo hasta ti.</h2>
+        <p>Siete pasos, todos documentados, desde la granja hasta el punto de venta.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><div><h3>Selección y crianza de las aves</h3><p>Gallinas ponedoras criadas en condiciones controladas de espacio, luz y bienestar animal.</p></div></article>
+        <article class="step"><div><h3>Alimentación balanceada</h3><p>Dieta formulada para huevo de calidad consistente, sin antibióticos como promotores de crecimiento.</p></div></article>
+        <article class="step"><div><h3>Recolección diaria</h3><p>Cada lote se recolecta y se registra el mismo día, con hora y turno de granja.</p></div></article>
+        <article class="step"><div><h3>Clasificación y control de calidad</h3><p>Revisión de cascarón, peso y frescura antes de continuar al empaque.</p></div></article>
+        <article class="step"><div><h3>Empaque con código de trazabilidad</h3><p>Cada huevo recibe el código que ves aquí, único por lote de producción.</p></div></article>
+        <article class="step"><div><h3>Cadena de frío y distribución</h3><p>Traslado con temperatura controlada hasta el punto de venta más cercano a ti.</p></div></article>
+        <article class="step"><div><h3>Tu mesa</h3><p>Un huevo con historia comprobable, no solo una etiqueta.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why section">
+    <div class="wrap">
+      <div class="why-head">
+        <span class="eyebrow" style="justify-content:center;">Por qué importa</span>
+        <h2 class="display">Trazabilidad real, no solo una promesa.</h2>
+        <p>Un código QR bien implementado convierte una etiqueta en una prueba verificable.</p>
+      </div>
+      <div class="why-grid">
+        <article class="why-card"><small>01 · Transparencia</small><h3>Origen verificable</h3><p>La persona que compra puede confirmar de dónde viene su alimento, no solo confiar en el empaque.</p></article>
+        <article class="why-card"><small>02 · Confianza</small><h3>Bienestar animal</h3><p>Mostrar el proceso real de crianza construye una relación distinta con el consumidor.</p></article>
+        <article class="why-card"><small>03 · Diferenciación</small><h3>Marca con evidencia</h3><p>En un anaquel lleno de huevo genérico, la trazabilidad digital es una ventaja competitiva medible.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pitch section">
+    <div class="wrap pitch-inner">
+      <div>
+        <span class="eyebrow">Lo que acabas de ver, para tu marca</span>
+        <h2 class="display">¿Y si cada producto que vendes contara su propia historia?</h2>
+        <p>Esta demostración se construyó para el Congreso Avícola. Si tienes una granja, una marca de alimentos o cualquier producto físico, podemos integrarte esta misma experiencia de trazabilidad con QR — con tu marca, tus datos reales y tu proceso.</p>
+        <a class="btn" href="https://wa.me/5212361112213?text=Hola%20TEC%20CAPITAL%2C%20vi%20la%20demo%20del%20QR%20del%20huevo%20en%20el%20congreso%20y%20quiero%20platicar%20de%20mi%20producto" target="_blank" rel="noopener">Quiero esto para mi marca ↗</a>
+      </div>
+      <div class="pitch-side">
+        <small>Nota para el stand</small>
+        <p>Nombre de marca, logo y fotografía real de granja se integran mañana — esta versión usa datos de ejemplo para mostrar la experiencia completa.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer">
+    <span>Demo construida por TEC CAPITAL — Congreso Avícola 2026</span>
+    <a href="../index.html">teccapitalweb.com</a>
+  </div>
+</footer>
+
+<script>
+  // Lee parámetros del QR para personalizar la ficha del lote.
+  // Ejemplo de URL que puede llevar el QR de cada huevo:
+  // /origen/?lote=A-0817&granja=Granja%20Demo&fecha=17%20ago&clase=AA&sistema=Piso%20libre
+  (() => {
+    const q = new URLSearchParams(location.search);
+    const set = (id, val) => { if (val) document.getElementById(id).textContent = val; };
+    set('loteGranja', q.get('granja'));
+    set('loteId', q.get('lote') || 'A-0817');
+    set('loteFecha', q.get('fecha') || '17 ago');
+    set('loteClase', q.get('clase'));
+    set('loteSistema', q.get('sistema'));
+    if (!q.get('granja')) document.getElementById('loteGranja').textContent = 'Granja demo';
+  })();
+</script>
+
+</body>
+</html>
