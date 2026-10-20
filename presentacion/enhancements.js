@@ -59,7 +59,7 @@
     },
     agroclub: {
       label: 'ECOSISTEMA DEL CAMPO', pulse: 'ACTIVO', accent: '#79d68c',
-      metrics: [['MERCADO', '+6.2'], ['CONTENIDO', '24/7'], ['COMUNIDAD', 'ONLINE']],
+      metrics: [['MERCADO', '+4.8%'], ['CONTENIDO', 'ACTIVO'], ['COMUNIDAD', 'ONLINE']],
       flow: ['Descubrir', 'Aprender', 'Conectar']
     },
     vision: {
@@ -117,6 +117,14 @@
     mediteck: 'media/human-systems-landscape-v1.png'
   };
 
+  const portfolioProjectNumbers = {
+    gymvexa: '01',
+    praxia: '02',
+    imdac: '03',
+    pondera: '04',
+    feedmix: '05'
+  };
+
   const capabilities = [
     ['01', 'Estrategia de producto', 'Convertimos retos de negocio en una ruta tecnológica clara.', 'Ruta priorizada'],
     ['02', 'Experiencia & marca', 'Diseñamos interfaces e identidades que hacen entendible cada producto.', 'Prototipo validable'],
@@ -126,48 +134,7 @@
     ['06', 'Cloud & evolución', 'Desplegamos, protegemos y mejoramos productos preparados para crecer.', 'Evolución continua']
   ];
 
-  const clubFamily = [
-    {
-      id: 'agroclub',
-      label: 'AgroClub',
-      shortLabel: 'Agro',
-      sector: 'Campo',
-      destination: 'AgroClub',
-      image: 'media/agro-curso.webp'
-    },
-    {
-      id: 'vision',
-      label: 'Visión Pecuaria',
-      shortLabel: 'Visión',
-      sector: 'Ganadería',
-      destination: 'Visión Pecuaria',
-      image: 'media/vision-rancho.jpg'
-    },
-    {
-      id: 'globalvet',
-      label: 'Globalvet',
-      shortLabel: 'Vet',
-      sector: 'Veterinaria',
-      destination: 'Globalvet',
-      image: 'media/globalvet-cirugia.webp'
-    },
-    {
-      id: 'dulcelab',
-      label: 'DulceLab Food',
-      shortLabel: 'Dulce',
-      sector: 'Gastronomía',
-      destination: 'DulceLab',
-      image: 'media/dulcelab-curso.png'
-    },
-    {
-      id: 'mediteck',
-      label: 'MediTeck',
-      shortLabel: 'Medi',
-      sector: 'Salud',
-      destination: 'MediTeck',
-      image: 'media/technology-landscape-v1.png'
-    }
-  ];
+  const clubFamily = [];
 
   const create = (tag, className, html) => {
     const element = document.createElement(tag);
@@ -214,9 +181,9 @@
 
     if (copy && !copy.querySelector('.intro-signals')) {
       copy.append(create('div', 'intro-signals', `
-        <span><b>11</b><small>casos en uso</small></span>
+        <span><b>5</b><small>productos seleccionados</small></span>
         <i></i>
-        <span><b>6</b><small>industrias</small></span>
+        <span><b>4</b><small>verticales</small></span>
         <i></i>
         <span><b>1</b><small>equipo integral</small></span>
       `));
@@ -254,12 +221,11 @@
     const orbitCore = stage.querySelector('.orbit-core');
     const orbitMark = stage.querySelector('.orbit-core img');
     const orbitNodes = [
-      { image: 'media/expo-avicola.jpg', alt: 'Producción avícola', label: 'Agroindustria', meta: '03 soluciones', accent: '#8bd279' },
-      { image: 'media/praxia-human-care.webp', alt: 'Tecnología para salud', label: 'Salud', meta: '02 soluciones', accent: '#79d9e6' },
-      { image: 'media/globalvet-cirugia.webp', alt: 'Educación profesional', label: 'Educación', meta: '03 ecosistemas', accent: '#b891ff' },
-      { image: 'media/gym-fuerza.webp', alt: 'Experiencia fitness', label: 'Fitness', meta: '01 plataforma', accent: '#5388ff' },
-      { image: 'media/technology-landscape-v1.png', alt: 'Sistemas para construcción', label: 'Construcción', meta: '01 sistema', accent: '#e8bd6d' },
-      { image: 'media/dulcelab.png', alt: 'Plataformas de servicios', label: 'Servicios', meta: '01 ecosistema', accent: '#e6e8ee' }
+      { image: 'media/feedmix-mark.svg', alt: 'FeedMix MX', label: 'FeedMix', meta: 'FORMULACIÓN AVÍCOLA', accent: '#f59e0b' },
+      { image: 'media/praxia-human-care.webp', alt: 'Praxia', label: 'Praxia', meta: 'CARE OS', accent: '#79d9e6' },
+      { image: 'media/pondera.png', alt: 'Pondera', label: 'Pondera', meta: 'OPTIMIZACIÓN', accent: '#e2aa3d' },
+      { image: 'media/gym-fuerza.webp', alt: 'Gymvexa', label: 'Gymvexa', meta: 'FITNESS SAAS', accent: '#8f6cff' },
+      { image: 'media/imdac-logo.png', alt: 'IMDAC', label: 'IMDAC', meta: 'CONTROL DE OBRA', accent: '#ff9d32' }
     ];
     const particlePositions = [
       [12, 17, 2], [28, 7, 1], [47, 15, 2], [71, 9, 1], [88, 24, 2],
@@ -273,7 +239,12 @@
 
     stage.querySelectorAll('.orbit-label').forEach((label, index) => {
       const node = orbitNodes[index];
-      if (!node || label.dataset.orbitEnhanced === 'true') return;
+      if (!node) {
+        label.hidden = true;
+        return;
+      }
+
+      if (label.dataset.orbitEnhanced === 'true') return;
 
       let image = label.querySelector('img');
       if (!image) {
@@ -312,7 +283,6 @@
           <span style="--connection-angle:5deg;--connection-length:46%;--connection-delay:-2.8s;--connection-color:#b891ff"><i></i></span>
           <span style="--connection-angle:67deg;--connection-length:45%;--connection-delay:-3.6s;--connection-color:#5388ff"><i></i></span>
           <span style="--connection-angle:145deg;--connection-length:45%;--connection-delay:-4.4s;--connection-color:#e8bd6d"><i></i></span>
-          <span style="--connection-angle:180deg;--connection-length:48%;--connection-delay:-5.1s;--connection-color:#e6e8ee"><i></i></span>
         </div>
         <div class="orbit-particles">
           ${particlePositions.map(([x, y, size], index) => (
@@ -348,22 +318,8 @@
 
     if (orbitCore && !orbitCore.querySelector('.orbit-core-caption')) {
       orbitCore.append(create('span', 'orbit-core-caption', `
-        <b>11</b><small>PRODUCTOS</small><i></i><b>06</b><small>INDUSTRIAS</small>
+        <b>05</b><small>PRODUCTOS</small><i></i><b>04</b><small>VERTICALES</small>
       `));
-    }
-
-    if (!layout.querySelector('.club-network-overview')) {
-      const overview = create('aside', 'club-network-overview', `
-        <div class="club-network-copy">
-          <small>PORTAFOLIO DE ECOSISTEMAS / 05 VERTICALES</small>
-          <strong>Una tecnología. Varias comunidades.</strong>
-          <p>Nuestra red reúne clubes especializados que conectan conocimiento, servicios, comercio y relaciones con identidad propia.</p>
-        </div>
-        <div class="club-network-list">${clubButtonsMarkup()}</div>
-      `);
-
-      layout.append(overview);
-      bindClubNavigation(overview);
     }
 
     if (layout.querySelector('.technology-stack')) return;
@@ -466,16 +422,95 @@
           <span class="sensor-beacon sensor-beacon-a"><i></i><b>24.2°</b><small>TEMP</small></span>
           <span class="sensor-beacon sensor-beacon-b"><i></i><b>61%</b><small>HUM</small></span>
           <span class="sensor-beacon sensor-beacon-c"><i></i><b>OK</b><small>AGUA</small></span>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 62 C34 30 56 78 89 28"></path></svg>
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path class="route-a" d="M16 50 C29 42 41 42 54 43"></path>
+            <path class="route-b" d="M48 72 C50 60 52 51 54 43"></path>
+            <path class="route-c" d="M94 58 C79 54 66 47 54 43"></path>
+            <circle cx="54" cy="43" r="0.9"></circle>
+          </svg>
+        `));
+      }
+
+      if (visual && !visual.querySelector('.avigo-field-console')) {
+        visual.append(create('section', 'avigo-field-console', `
+          <header>
+            <span><i></i> MAPA OPERATIVO</span>
+            <b>EN LÍNEA</b>
+          </header>
+          <div class="avigo-zone-map" aria-label="Zonas de monitoreo conectadas">
+            ${Array.from({ length: 24 }, (_, index) => `<i class="${[3, 8, 14, 19, 22].includes(index) ? 'is-pulsing' : ''}"></i>`).join('')}
+            <span class="avigo-zone-route"></span>
+            <strong>LOTE A-17<small>ZONAS CONECTADAS</small></strong>
+          </div>
+          <div class="avigo-console-metrics">
+            <span><small>CLIMA</small><b>24.2°</b></span>
+            <span><small>HUM</small><b>61%</b></span>
+            <span><small>AGUA</small><b>OK</b></span>
+          </div>
+          <div class="avigo-ai-note">
+            <span>IA</span>
+            <p><b>Patrón estable</b><small>Ambiente y consumo dentro de rango</small></p>
+            <i>→</i>
+          </div>
         `));
       }
     }
 
     if (id === 'agroclub') {
+      const visual = stage.querySelector('.agro-visual');
       const panel = stage.querySelector('.agro-panel');
-      if (panel && !panel.querySelector('.agro-digital-loop')) {
-        panel.append(create('div', 'agro-digital-loop', `
-          <span>PRECIO</span><i></i><span>CONTENIDO</span><i></i><span>COMUNIDAD</span>
+
+      if (panel && panel.dataset.agroMarketUi !== 'true') {
+        panel.dataset.agroMarketUi = 'true';
+        panel.innerHTML = `
+          <header class="agro-market-head"><span data-short="MERCADO"><i></i> MERCADO</span><b>HOY</b></header>
+          <div class="agro-market-main">
+            <p><small>MAÍZ BLANCO</small><strong>+4.8%</strong><span>tendencia</span></p>
+            <svg viewBox="0 0 180 62" preserveAspectRatio="none" aria-hidden="true">
+              <defs><linearGradient id="agroMarketFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#79d68c" stop-opacity=".42"/><stop offset="1" stop-color="#79d68c" stop-opacity="0"/></linearGradient></defs>
+              <path class="agro-market-area" d="M0 53 L0 45 L20 42 L39 46 L61 31 L82 36 L104 22 L126 31 L149 16 L180 9 L180 53 Z"></path>
+              <path class="agro-market-line" d="M0 45 L20 42 L39 46 L61 31 L82 36 L104 22 L126 31 L149 16 L180 9"></path>
+              <circle cx="180" cy="9" r="3"></circle>
+            </svg>
+          </div>
+          <div class="agro-market-watch"><span class="is-active">MAÍZ</span><span>SORGO</span><span>SOYA</span></div>
+          <footer><span><i></i> SEÑAL ACTUALIZADA</span><b>ALZA</b></footer>
+        `;
+      }
+
+      const course = visual?.querySelector(':scope > .agro-course');
+      if (course && !visual.querySelector('.agro-learning-card')) {
+        const learningCard = create('article', 'agro-learning-card', `
+          <header><span><i></i> AULA</span><b>AGROCLUB</b></header>
+          <div class="agro-learning-media"></div>
+          <footer><small>FORMACIÓN APLICADA</small><strong>Sanidad vegetal</strong><span>Contenido + especialistas</span></footer>
+        `);
+        course.replaceWith(learningCard);
+        learningCard.querySelector('.agro-learning-media')?.prepend(course);
+      }
+
+      if (visual && !visual.querySelector('.agro-field-hub')) {
+        visual.append(create('aside', 'agro-field-hub', `
+          <header><span data-short="PULSO AGRO"><i></i> PULSO AGRO</span><b>ACTIVO</b></header>
+          <div>
+            <span><i>M</i><p><b>Mercado</b><small>Señales visibles</small></p></span>
+            <span><i>A</i><p><b>Aprendizaje</b><small>Contenido aplicado</small></p></span>
+            <span><i>C</i><p><b>Comunidad</b><small>Conexión sectorial</small></p></span>
+          </div>
+          <footer><span>UNA RED</span><i></i><b>UN MISMO MOTOR</b></footer>
+        `));
+      }
+
+      if (visual && !visual.querySelector('.agro-field-network')) {
+        visual.append(create('div', 'agro-field-network', `
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M18 29 C35 29 43 42 61 46"></path>
+            <path d="M21 77 C36 69 46 55 61 46"></path>
+            <path d="M88 75 C80 62 72 53 61 46"></path>
+            <circle cx="61" cy="46" r="1.25"></circle>
+          </svg>
+          <span class="agro-network-core"><i></i><b>AGROCLUB</b><small>FIELD HUB</small></span>
+          <i class="agro-network-pulse pulse-a"></i><i class="agro-network-pulse pulse-b"></i><i class="agro-network-pulse pulse-c"></i>
         `));
       }
     }
@@ -491,9 +526,58 @@
       const visual = stage.querySelector('.gym-visual');
       if (visual && !visual.querySelector('.gym-activity-panel')) {
         visual.append(create('div', 'gym-activity-panel', `
-          <header><span><i></i> CLUB EN VIVO</span><b>HOY</b></header>
-          <strong>68%</strong><small>asistencia proyectada</small>
-          <div><i style="height:28%"></i><i style="height:46%"></i><i style="height:38%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:91%"></i><i style="height:78%"></i></div>
+          <header><span><i></i> ASISTENCIA</span><b>HOY</b></header>
+          <strong>68%</strong><small>ocupación actual</small>
+          <div class="gym-activity-bars" aria-hidden="true"><i style="height:28%"></i><i style="height:46%"></i><i style="height:38%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:91%"></i><i style="height:78%"></i></div>
+          <footer><span><i></i> ACCESO QR</span><b>AFORO</b></footer>
+        `));
+      }
+
+      const phone = visual?.querySelector('.phone-shell');
+      if (phone && !phone.dataset.gymvexaUi) {
+        phone.dataset.gymvexaUi = 'true';
+        phone.innerHTML = `
+          <div class="phone-top"></div>
+          <div class="gym-phone-status"><span>09:41</span><i></i><b>100</b></div>
+          <div class="gym-phone-user">
+            <div><small>BUEN DÍA</small><strong>Tu entrenamiento</strong></div>
+            <span class="gym-phone-streak">↗ 6 DÍAS</span>
+          </div>
+          <div class="gym-phone-focus">
+            <div class="gym-progress-ring"><span>72<small>%</small></span></div>
+            <div><small>RUTINA ACTIVA</small><strong>Fuerza total</strong><p>48 min · 8 ejercicios</p></div>
+          </div>
+          <div class="gym-phone-exercises">
+            <header><span>SIGUIENTES</span><b>VER PLAN</b></header>
+            <div><i>01</i><span><strong>Sentadilla</strong><small>4 × 10 · 60 kg</small></span><em>✓</em></div>
+            <div><i>02</i><span><strong>Press inclinado</strong><small>3 × 12 · 24 kg</small></span><em>→</em></div>
+            <div><i>03</i><span><strong>Remo sentado</strong><small>3 × 12 · 45 kg</small></span><em>→</em></div>
+          </div>
+          <button class="gym-phone-cta" type="button" tabindex="-1" aria-hidden="true"><span>Continuar sesión</span><i>→</i></button>
+          <div class="gym-phone-next-class">
+            <i></i><p><small>PRÓXIMA CLASE</small><b>Mobility · 18:30</b></p><em>LISTA</em>
+          </div>
+          <nav class="gym-phone-nav" aria-label="Navegación de la aplicación"><i class="is-active"></i><i></i><i></i><i></i></nav>
+        `;
+      }
+
+      if (visual && !visual.querySelector('.gym-access-pass')) {
+        visual.append(create('div', 'gym-access-pass', `
+          <header><span><i></i> PASE DIGITAL</span><b>ACTIVO</b></header>
+          <div>
+            <span class="gym-mini-qr" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p><strong>GYMVEXA BLACK</strong><span>Acceso inmediato</span><small>ACCESO VERIFICADO</small></p>
+          </div>
+        `));
+      }
+
+      if (visual && !visual.querySelector('.gym-energy-path')) {
+        visual.append(create('div', 'gym-energy-path', `
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M22 35 C42 20 48 82 86 67"></path>
+            <path class="gym-energy-signal" d="M22 35 C42 20 48 82 86 67"></path>
+          </svg>
+          <i class="gym-energy-node node-a"></i><i class="gym-energy-node node-b"></i><i class="gym-energy-node node-c"></i>
         `));
       }
     }
@@ -501,11 +585,54 @@
     if (id === 'praxia') {
       const agenda = stage.querySelector('.praxia-agenda');
       const note = stage.querySelector('.praxia-note');
-      if (agenda && !agenda.querySelector('.praxia-tour-tabs')) {
-        agenda.append(create('div', 'praxia-tour-tabs', '<span>Agenda</span><span>Paciente</span><span>Documentos</span>'));
+
+      const agendaTop = agenda?.querySelector('.agenda-top');
+      if (agendaTop && agendaTop.dataset.praxiaChrome !== 'true') {
+        agendaTop.dataset.praxiaChrome = 'true';
+        agendaTop.innerHTML = '<span><i></i> PRAXIA / CARE OS</span><strong>03 MÓDULOS</strong>';
       }
-      if (note && !note.querySelector('.praxia-confirmation-flow')) {
-        note.append(create('div', 'praxia-confirmation-flow', '<span>Cita creada</span><i></i><span>Recordatorio</span><i></i><span>Confirmada</span>'));
+
+      if (agenda && !agenda.querySelector('.praxia-tour-tabs')) {
+        agenda.append(create('div', 'praxia-tour-tabs', '<span data-short="Agenda">Agenda</span><span data-short="Perfil">Paciente</span><span data-short="Docs">Documentos</span>'));
+      }
+
+      const tabs = agenda?.querySelector('.praxia-tour-tabs');
+      if (tabs && tabs.dataset.synced !== 'true') {
+        tabs.dataset.synced = 'true';
+        [...tabs.children].forEach((tab, index) => tab.style.setProperty('--tour-delay', `${index * 3}s`));
+      }
+
+      if (agenda && !agenda.querySelector('.praxia-care-status')) {
+        agenda.append(create('div', 'praxia-care-status', `
+          <span><i></i> PRODUCTO EN OPERACIÓN</span><b>AGENDA · PACIENTE · DOCUMENTOS</b>
+        `));
+      }
+
+      if (note && note.dataset.praxiaCareUi !== 'true') {
+        note.dataset.praxiaCareUi = 'true';
+        note.innerHTML = `
+          <header><span><i></i> CITA VERIFICADA</span><b>WHATSAPP ✓</b></header>
+          <div class="praxia-appointment-main">
+            <span class="praxia-patient-avatar">P</span>
+            <p><small>PRÓXIMA CITA</small><strong>11:30</strong><em>Consulta de seguimiento</em></p>
+            <i>✓</i>
+          </div>
+          <div class="praxia-care-checks"><span><i></i> Expediente listo</span><span><i></i> Aviso listo</span></div>
+          <div class="praxia-confirmation-flow"><span>Cita</span><i></i><span>Consulta</span><i></i><span>Seguimiento</span></div>
+        `;
+      }
+
+      const layout = stage.querySelector('.praxia-layout');
+      if (layout && !layout.querySelector('.praxia-care-network')) {
+        layout.append(create('div', 'praxia-care-network', `
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M44 31 C55 20 62 24 72 34"></path>
+            <path d="M72 34 C69 54 61 64 56 72"></path>
+            <path class="praxia-care-signal" d="M44 31 C55 20 62 24 72 34 C69 54 61 64 56 72"></path>
+          </svg>
+          <i class="praxia-care-node node-a"></i><i class="praxia-care-node node-b"></i><i class="praxia-care-node node-c"></i>
+          <span>PRECONSULTA <i></i> CONSULTA <i></i> SEGUIMIENTO</span>
+        `));
       }
     }
 
@@ -565,6 +692,11 @@
     const copy = stage.querySelector('.project-copy');
     const impact = projectImpact[id];
 
+    const projectNumber = copy?.querySelector('.project-kicker span');
+    if (projectNumber && portfolioProjectNumbers[id]) {
+      projectNumber.textContent = portfolioProjectNumbers[id];
+    }
+
     if (copy && impact && !copy.querySelector('.project-impact')) {
       copy.append(create('div', 'project-impact', `
         <small>TECNOLOGÍA ACTIVADA</small>
@@ -582,7 +714,6 @@
       const originalScreen = agenda?.querySelector('img');
 
       if (agenda && originalScreen && !agenda.querySelector('.praxia-screen-extra')) {
-        if (agendaLabel) agendaLabel.textContent = 'PRODUCTO EN OPERACIÓN';
         originalScreen.classList.add('praxia-screen');
 
         [
@@ -646,6 +777,96 @@
     }
   };
 
+  const enhanceFeedmix = (stage) => {
+    stage.classList.remove('stage-expo');
+    stage.classList.add('stage-feedmix', 'stage-product-theater');
+    stage.style.setProperty('--project-accent', '#f59e0b');
+
+    stage.replaceChildren(create('div', 'feedmix-layout', `
+      <div class="feedmix-copy project-copy">
+        <div class="project-kicker"><span>05</span><i></i> FORMULACIÓN AVÍCOLA</div>
+        <div class="feedmix-brand-line"><img src="media/feedmix-mark.svg" alt=""><span>PRODUCTO TEC CAPITAL · MÉXICO</span></div>
+        <h2>FeedMix <em>MX</em></h2>
+        <p>Formula alimento balanceado para aves con requerimientos técnicos, ingredientes locales y costo bajo control.</p>
+        <div class="tag-row"><span>30 razas</span><span>179 etapas</span><span>NRC + Rostagno</span></div>
+        <div class="project-impact">
+          <small>TECNOLOGÍA ACTIVADA</small>
+          <span>Nutrición · costos · programación lineal</span>
+          <strong>De ingredientes dispersos a una fórmula lista para producir.</strong>
+        </div>
+      </div>
+
+      <div class="feedmix-visual">
+        <div class="feedmix-ambient-grid" aria-hidden="true"></div>
+        <div class="feedmix-particle-field" aria-hidden="true">
+          <i style="--x:8%;--y:18%;--d:-1s"></i><i style="--x:23%;--y:78%;--d:-2.4s"></i>
+          <i style="--x:62%;--y:9%;--d:-3.7s"></i><i style="--x:91%;--y:54%;--d:-4.8s"></i>
+          <i style="--x:73%;--y:88%;--d:-6.1s"></i>
+        </div>
+
+        <section class="feedmix-console" aria-label="Interfaz del formulador FeedMix MX">
+          <header>
+            <div><img src="media/feedmix-mark.svg" alt=""><p><strong>FeedMix MX</strong><small>FORMULADOR AVÍCOLA</small></p></div>
+            <span><i></i> MOTOR LISTO</span>
+          </header>
+
+          <div class="feedmix-context">
+            <span><small>ESPECIE</small><b>Gallina ponedora</b></span>
+            <span><small>LÍNEA</small><b>Hy-Line W-36</b></span>
+            <span><small>ETAPA</small><b>Semana 25–40</b></span>
+            <span><small>LOTE</small><b>1,000 kg</b></span>
+          </div>
+
+          <div class="feedmix-console-grid">
+            <article class="feedmix-ingredients">
+              <header><span>INGREDIENTES</span><b>$/KG</b><b>INCLUSIÓN</b></header>
+              <div><span><i class="is-corn"></i>Maíz amarillo</span><b>$6.50</b><strong>58.40%</strong></div>
+              <div><span><i class="is-soy"></i>Harina de soya</span><b>$10.80</b><strong>25.70%</strong></div>
+              <div><span><i class="is-oil"></i>Aceite vegetal</span><b>$24.00</b><strong>2.60%</strong></div>
+              <div><span><i class="is-calcium"></i>Carbonato de calcio</span><b>$2.40</b><strong>8.10%</strong></div>
+              <footer><span>+ 6 ingredientes activos</span><b>CATÁLOGO LOCAL</b></footer>
+            </article>
+
+            <article class="feedmix-nutrients">
+              <header><span>REQUERIMIENTOS</span><b>CUMPLIMIENTO</b></header>
+              <div><span><small>EM</small><b>2,800 kcal</b></span><i><em style="--fill:92%"></em></i><strong>✓</strong></div>
+              <div><span><small>PC</small><b>16.50%</b></span><i><em style="--fill:84%"></em></i><strong>✓</strong></div>
+              <div><span><small>LIS</small><b>0.78%</b></span><i><em style="--fill:76%"></em></i><strong>✓</strong></div>
+              <div><span><small>CA</small><b>4.10%</b></span><i><em style="--fill:88%"></em></i><strong>✓</strong></div>
+              <footer><i></i><span>PERFIL NUTRICIONAL DENTRO DE RANGO</span></footer>
+            </article>
+          </div>
+
+          <footer class="feedmix-console-footer">
+            <span><i></i> Ingredientes</span><em>→</em><span>Restricciones</span><em>→</em><span>Fórmula</span><em>→</em><span>PDF</span>
+            <button type="button" tabindex="-1" aria-hidden="true">OPTIMIZAR FÓRMULA <b>→</b></button>
+          </footer>
+        </section>
+
+        <aside class="feedmix-result">
+          <header><span><i></i> RESULTADO ÓPTIMO</span><b>&lt; 2 S</b></header>
+          <small>COSTO DE LA FÓRMULA</small>
+          <strong>$7.86<em>/kg</em></strong>
+          <div><span><small>POR TONELADA</small><b>$7,860</b></span><span><small>ESCENARIO</small><b>−12%</b></span></div>
+          <footer><i>✓</i><span><b>CUMPLE REQUERIMIENTOS</b><small>NRC + Rostagno</small></span></footer>
+        </aside>
+
+        <aside class="feedmix-system">
+          <header><img src="media/feedmix-mark.svg" alt=""><span>FEEDMIX · MOTOR</span></header>
+          <div><span><b>30</b><small>RAZAS</small></span><i></i><span><b>179</b><small>ETAPAS</small></span><i></i><span><b>01</b><small>FÓRMULA</small></span></div>
+          <footer><i></i> DATOS TÉCNICOS CONVERTIDOS EN DECISIÓN</footer>
+        </aside>
+
+        <div class="feedmix-data-route" aria-hidden="true">
+          <span>INGREDIENTES</span><i></i><span>NUTRICIÓN</span><i></i><span>COSTO</span><i></i><span>PRODUCCIÓN</span>
+        </div>
+      </div>
+    `));
+
+    const timelineLabel = root.querySelector('.timeline-label strong');
+    if (timelineLabel) timelineLabel.textContent = 'FeedMix';
+  };
+
   const enhanceMethod = (stage) => {
     const heading = stage.querySelector('.method-heading > p:last-child');
     const signature = stage.querySelector('.method-signature');
@@ -665,10 +886,11 @@
       layout.append(create('div', 'method-proof-wall', `
         <small>TECNOLOGÍA QUE YA ESTÁ EN USO</small>
         <div>
-          <figure><img src="media/expo-avicola.jpg" alt="Proyecto digital para la industria avícola"><figcaption>AGROINDUSTRIA</figcaption></figure>
-          <figure><img src="media/praxia-human-care.webp" alt="Experiencia digital para atención clínica"><figcaption>SALUD</figcaption></figure>
-          <figure><img src="media/vision-rancho.jpg" alt="Plataforma de inteligencia pecuaria"><figcaption>DATOS</figcaption></figure>
-          <figure><img src="media/globalvet-cirugia.webp" alt="Educación veterinaria digital"><figcaption>EDUCACIÓN</figcaption></figure>
+          <figure><img src="media/gym-fuerza.webp" alt="Operación digital de gimnasios con Gymvexa"><figcaption>GYMVEXA</figcaption></figure>
+          <figure><img src="media/praxia-human-care.webp" alt="Experiencia digital para atención clínica con Praxia"><figcaption>PRAXIA</figcaption></figure>
+          <figure><img src="media/imdac-logo.png" alt="Control digital de obra con IMDAC"><figcaption>IMDAC</figcaption></figure>
+          <figure><img src="media/pondera.png" alt="Optimización técnica con Pondera"><figcaption>PONDERA</figcaption></figure>
+          <figure><img src="media/feedmix-mark.svg" alt="Formulación avícola con FeedMix"><figcaption>FEEDMIX</figcaption></figure>
         </div>
       `));
     }
@@ -821,6 +1043,7 @@
 
     if (id === 'intro') enhanceIntro(stage);
     else if (id === 'ecosystem') enhanceEcosystem(stage);
+    else if (id === 'feedmix') enhanceFeedmix(stage);
     else if (projectImpact[id]) enhanceProject(stage, id);
     else if (id === 'method') enhanceMethod(stage);
     else if (id === 'capabilities') enhanceCapabilities(stage);
